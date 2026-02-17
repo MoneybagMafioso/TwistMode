@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TwistMode – Limited Drop</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+
+<!-- HERO -->
+<header class="hero">
+
+  <p class="micro">Hand printed. Small batch. Built by a barber.</p>
+
+  <video autoplay muted loop playsinline class="hero-video">
+    <source src="assets/videos/hero-2.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-content">
+    <h1>TwistMode</h1>
+    <p class="tagline">Built by a working barber for clean, consistent texture.</p>
+    <p class="limited">First Drop · Limited Quantity</p>
+    <a href="#products" class="btn">Pre-Order Now</a>
+  </div>
+
+</header>
+
+
+<!-- WASHING -->
+<section class="section">
+  <h2>Rinses Clean Between Clients</h2>
+  <video autoplay muted loop playsinline>
+    <source src="assets/videos/washing.mp4" type="video/mp4">
+  </video>
+  <p class="section-text">
+    Unlike foam sponges, TwistMode rinses instantly. No trapped dirt. No buildup.
+  </p>
+</section>
+
+
+<!-- PROBLEM / UPGRADE -->
+<section class="section">
+  <h2>The Problem</h2>
+  <p class="section-text">
+    Foam sponges trap dirt, oil, and product — and that goes on every client.
+  </p>
+
+  <h2>The Upgrade</h2>
+  <p class="section-text">
+    TwistMode rinses clean in seconds, keeps texture consistent,
+    and is built for real barbershop hygiene.
+  </p>
+</section>
+
+
+<!-- FLEX -->
+<section class="section">
+  <h2>Flexible. Durable. Built Different.</h2>
+  <video autoplay muted loop playsinline>
+    <source src="assets/videos/flex-shot.mp4" type="video/mp4">
+  </video>
+</section>
+
+
+<!-- COMPARISON -->
+<section class="section">
+
+  <h2>Why Barbers Are Switching</h2>
+
+  <div class="comparison-container">
+    <img src="assets/images/sponge.jpg">
+
+    <div class="comparison-overlay">
+      <img src="assets/images/foam-dirty.jpg">
+    </div>
+
+    <div class="comparison-divider"></div>
+
+    <input type="range" min="0" max="100" value="50" class="comparison-slider">
+  </div>
+
+</section>
+
+
+<!-- BUILT IN SHOP -->
+<section class="section">
+  <h2>Built in the Shop</h2>
+  <p class="section-text">
+    I created TwistMode after seeing how fast foam sponges break down
+    and collect dirt. I needed something cleaner, stronger,
+    and built for real barbershop use.
+  </p>
+</section>
+
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <h2>How It Works</h2>
+  <video autoplay muted loop playsinline class="how-video">
+    <source src="assets/videos/twist-on-client.mp4" type="video/mp4">
+  </video>
+
+  <ol class="how-steps">
+    <li>Insert into hair</li>
+    <li>Twist gently</li>
+    <li>Clean, consistent texture</li>
+  </ol>
+</section>
+
+
+<!-- LITE (MOVED HERE ON PURPOSE) -->
+<section class="section lite-hero">
+
+  <h2>TwistMode Lite</h2>
+
+  <video autoplay muted loop playsinline class="lite-video">
+    <source src="assets/videos/hero-lite.mp4" type="video/mp4">
+  </video>
+
+  <p class="section-text">
+    Perfect for starter lengths, kids, and tighter control.
+  </p>
+
+</section>
+
+
+<!-- DROP COUNTER -->
+<div class="drop-counter">
+  <p><strong><span id="sold-count">0</span></strong> of 100 units claimed in the first drop</p>
+</div>
+
+
+<!-- PRODUCTS -->
+<section class="section products" id="products">
+
+  <!-- LITE -->
+  <div class="card">
+
+    <img src="assets/images/lite-twistmode.jpg" class="product-img">
+
+    <h3>TwistMode Lite</h3>
+    <p>For starter & short hair · Kid friendly</p>
+    <p class="price">$14.99</p>
+
+    <p class="scarcity" data-product="lite"></p>
+
+    <button class="btn small open-modal">Get Drop Access</button>
+    <a href="checkout.html" class="btn small preorder-btn" data-product="lite">Pre-Order</a>
+
+  </div>
+
+
+  <!-- XL -->
+  <div class="card">
+
+    <img src="assets/images/sponge.jpg" class="product-img">
+
+    <h3>TwistMode XL</h3>
+    <p>For longer & mature afros · Faster twisting</p>
+    <p class="price">$29.99</p>
+
+    <p class="scarcity" data-product="xl"></p>
+
+    <button class="btn small open-modal">Get Drop Access</button>
+    <a href="checkout.html" class="btn small preorder-btn" data-product="xl">Pre-Order</a>
+
+  </div>
+
+
+  <!-- BUNDLE -->
+  <div class="card">
+
+    <div class="bundle-images">
+      <img src="assets/images/lite-twistmode.jpg">
+      <img src="assets/images/sponge.jpg">
+    </div>
+
+    <h3>TwistMode Bundle</h3>
+    <p>Lite + XL · Complete shop setup</p>
+    <p class="price">$39.99</p>
+
+    <p class="scarcity" data-product="bundle"></p>
+
+    <button class="btn small open-modal">Get Drop Access</button>
+    <a href="checkout.html" class="btn small preorder-btn" data-product="bundle">Pre-Order</a>
+
+  </div>
+
+</section>
+
+
+<!-- EMAIL SECTION -->
+<section class="section drop-access">
+
+  <h2>Missed This Drop?</h2>
+
+  <p class="section-text">
+    Join the list and get first access before the next batch goes live.
+  </p>
+
+  <button class="btn open-modal">Get Next Drop Access</button>
+
+</section>
+
+
+<!-- SHIPPING -->
+<section class="section">
+
+  <h2>Shipping</h2>
+
+  <p>
+    First drop orders ship in 7–14 days.
+    Each TwistMode is printed in small batches for quality.
+  </p>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <h3>TwistMode</h3>
+    <p>Built by a barber. Designed for texture.</p>
+    <p class="copyright">© 2026 TwistMode</p>
+  </div>
+</footer>
+
+<!-- EMAIL MODAL -->
+<div class="modal" id="emailModal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h3>Join The Next Drop</h3>
+    <p style="color:#aaa; margin-bottom:20px;">
+      Get early access before the next batch sells out.
+    </p>
+
+    <form action="https://formspree.io/f/xkovjzkl" method="POST">
+      <input 
+        type="email" 
+        name="email" 
+        placeholder="Enter your email"
+        required
+      >
+      <button type="submit" class="btn small">
+      Join list  
+      </button>
+    </form>
+  </div>
+</div>
+
+
+<!-- SCRIPTS -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* SCROLL ANIMATION */
+  const sections = document.querySelectorAll(".section");
+
+  window.addEventListener("scroll", () => {
+    sections.forEach(section => {
+      const sectionTop = section.getBoundingClientRect().top;
+      if (sectionTop < window.innerHeight - 100) {
+        section.classList.add("visible");
+      }
+    });
+  });
+
+  /* STOCK SYSTEM */
+
+  let stock = JSON.parse(localStorage.getItem("twistStock")) || {
+    lite: 50,
+    xl: 50
+  };
+
+  const maxDrop = 100;
+  const soldCounter = document.getElementById("sold-count");
+  const stockText = document.querySelectorAll(".scarcity");
+  const buttons = document.querySelectorAll(".preorder-btn");
+
+  function updateUI() {
+
+    stockText.forEach(item => {
+
+      const type = item.dataset.product;
+
+      let value =
+        type === "bundle"
+          ? Math.min(stock.lite, stock.xl)
+          : stock[type];
+
+      item.textContent = value > 0
+        ? `Only ${value} left in first drop`
+        : "Sold Out";
+
+      const card = item.closest(".card");
+      if (!card) return;
+
+      const preorderBtn = card.querySelector(".preorder-btn");
+      const waitlistBtn = card.querySelector(".open-modal");
+
+      if (value === 0) {
+        if (preorderBtn) preorderBtn.style.display = "none";
+        if (waitlistBtn) waitlistBtn.style.display = "block";
+      } else {
+        if (preorderBtn) preorderBtn.style.display = "inline-block";
+        if (waitlistBtn) waitlistBtn.style.display = "none";
+      }
+
+    });
+
+    const sold = maxDrop - (stock.lite + stock.xl);
+    if (soldCounter) soldCounter.textContent = sold;
+
+    localStorage.setItem("twistStock", JSON.stringify(stock));
+  }
+
+  updateUI();
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+
+      const type = button.dataset.product;
+
+      if (type === "bundle") {
+        if (stock.lite > 0 && stock.xl > 0) {
+          stock.lite--;
+          stock.xl--;
+        }
+      } else {
+        if (stock[type] > 0) {
+          stock[type]--;
+        }
+      }
+
+      updateUI();
+    });
+  });
+
+  /* COMPARISON SLIDER */
+
+  const slider = document.querySelector(".comparison-slider");
+  const overlay = document.querySelector(".comparison-overlay");
+  const divider = document.querySelector(".comparison-divider");
+  const container = document.querySelector(".comparison-container");
+
+  function moveSlider(x) {
+    let rect = container.getBoundingClientRect();
+    let percent = ((x - rect.left) / rect.width) * 100;
+    percent = Math.max(0, Math.min(100, percent));
+    overlay.style.width = percent + "%";
+    divider.style.left = percent + "%";
+    slider.value = percent;
+  }
+
+  if (slider && overlay && divider && container) {
+
+    slider.addEventListener("input", e => {
+      overlay.style.width = e.target.value + "%";
+      divider.style.left = e.target.value + "%";
+    });
+
+    container.addEventListener("touchmove", e => {
+      moveSlider(e.touches[0].clientX);
+    });
+  }
+
+  /* MODAL */
+
+  const modal = document.getElementById("emailModal");
+  const openButtons = document.querySelectorAll(".open-modal");
+  const closeModal = document.querySelector(".close-modal");
+
+  openButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      modal.style.display = "flex";
+    });
+  });
+
+  if (closeModal) {
+    closeModal.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+  }
+
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+
+  /* FORM SUCCESS MESSAGE */
+
+  const form = document.querySelector(".modal-content form");
+
+  if (form) {
+    form.addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const data = new FormData(form);
+
+      await fetch(form.action, {
+        method: "POST",
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      form.innerHTML =
+        "<p style='font-size:18px;color:#8affc1;'>You’re on the list 💈</p>";
+    });
+  }
+
+});
+</script>
+
+
+</body>
+</html>
