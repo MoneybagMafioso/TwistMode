@@ -8,6 +8,9 @@
 </head>
 
 <body>
+  <div class="cart-ui">
+  💈 <span id="cart-count">0</span>
+</div>
 
 <!-- HERO -->
 <header class="hero">
@@ -43,7 +46,7 @@
 <!-- PROBLEM / UPGRADE -->
 <section class="section">
   <h2>The Problem</h2>
-  <p class="section-text">
+  <p class="section-text problem-upgrade">
     Foam sponges trap dirt, oil, and product — and that goes on every client.
   </p>
 
@@ -147,7 +150,14 @@
     <p class="scarcity" data-product="lite"></p>
 
     <button class="btn small open-modal">Get Drop Access</button>
-    <a href="checkout.html" class="btn small preorder-btn" data-product="lite">Pre-Order</a>
+
+    <button
+      class="btn small preorder-btn"
+      data-product="lite"
+      data-price="14.99"
+      data-name="TwistMode Lite">
+      Pre-Order
+    </button>
 
   </div>
 
@@ -164,7 +174,14 @@
     <p class="scarcity" data-product="xl"></p>
 
     <button class="btn small open-modal">Get Drop Access</button>
-    <a href="checkout.html" class="btn small preorder-btn" data-product="xl">Pre-Order</a>
+
+    <button
+      class="btn small preorder-btn"
+      data-product="xl"
+      data-price="29.99"
+      data-name="TwistMode XL">
+      Pre-Order
+    </button>
 
   </div>
 
@@ -184,7 +201,14 @@
     <p class="scarcity" data-product="bundle"></p>
 
     <button class="btn small open-modal">Get Drop Access</button>
-    <a href="checkout.html" class="btn small preorder-btn" data-product="bundle">Pre-Order</a>
+
+    <button
+      class="btn small preorder-btn"
+      data-product="bundle"
+      data-price="39.99"
+      data-name="TwistMode Bundle">
+      Pre-Order
+    </button>
 
   </div>
 
@@ -210,10 +234,22 @@
 
   <h2>Shipping</h2>
 
-  <p>
+  <p class="section-text">
     First drop orders ship in 7–14 days.
     Each TwistMode is printed in small batches for quality.
   </p>
+
+</section>
+
+<section class="section" id="checkout">
+
+  <h2>Your Cart</h2>
+
+  <div id="cart-items"></div>
+
+  <p id="cart-total"></p>
+
+  <a class="btn" id="checkout-btn">Checkout</a>
 
 </section>
 
@@ -317,26 +353,29 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   updateUI();
+buttons.forEach(button => {
+  button.addEventListener("click", (e) => {
 
-  buttons.forEach(button => {
-    button.addEventListener("click", () => {
+    e.preventDefault();
 
-      const type = button.dataset.product;
+    const type = button.dataset.product;
 
-      if (type === "bundle") {
-        if (stock.lite > 0 && stock.xl > 0) {
-          stock.lite--;
-          stock.xl--;
-        }
-      } else {
-        if (stock[type] > 0) {
-          stock[type]--;
-        }
-      }
+    if (type === "bundle") {
+      if (stock.lite > 0 && stock.xl > 0) {
+        stock.lite--;
+        stock.xl--;
+      } else return;
+    } else {
+      if (stock[type] > 0) {
+        stock[type]--;
+      } else return;
+    }
 
-      updateUI();
-    });
+    updateUI();
+
+
   });
+});
 
   /* COMPARISON SLIDER */
 
@@ -410,6 +449,50 @@ document.addEventListener("DOMContentLoaded", () => {
         "<p style='font-size:18px;color:#8affc1;'>You’re on the list 💈</p>";
     });
   }
+/* CART SYSTEM */
+
+let cart = [];
+const cartCount = document.getElementById("cart-count");
+const cartItems = document.getElementById("cart-items");
+const cartTotal = document.getElementById("cart-total");
+
+function updateCartUI() {
+
+  cartCount.textContent = cart.length;
+
+  cartItems.innerHTML = "";
+
+  let total = 0;
+
+  cart.forEach(item => {
+    total += item.price;
+    cartItems.innerHTML += `<p>${item.name} — $${item.price}</p>`;
+  });
+
+  cartTotal.textContent = "Total: $" + total.toFixed(2);
+}
+
+buttons.forEach(button => {
+  button.addEventListener("click", (e) => {
+
+    e.preventDefault();
+
+    const type = button.dataset.product;
+    const price = parseFloat(button.dataset.price);
+
+    const name = button.dataset.name;
+
+    cart.push({name,price});
+
+    updateCartUI();
+  
+    document.getElementById("checkout-btn").addEventListener("click",()=> {
+      alert("Next step = sending this cart to Stripe");
+    });
+     
+
+  });
+});
 
 });
 </script>
