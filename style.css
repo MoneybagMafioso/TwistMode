@@ -118,7 +118,7 @@ body {
   margin-top: 20px;
   text-align: center;
   color: #aaa;
-  font: size 1.35rem;
+  font-size: 1.25rem;
   font-weight: 600;
   max-width: 700px;
   margin-left: auto;
@@ -214,6 +214,7 @@ video {
 .btn.small {
   padding: 10px 20px;
   font-size: 0.9rem;
+  display: inline-block;
 }
 .card {
   background: #1a1a1a;
@@ -229,6 +230,11 @@ video {
   transform: translateY(-6px);
   border: 1px solid #8affc1;
   box-shadow: 0 0 25px rgba(138, 255, 193, 0.25);
+}
+.card .btn{
+  margin-top: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .drop-counter {
@@ -403,6 +409,7 @@ footer {
 }
 .cart-ui {
   position: fixed;
+  cursor: pointer;
   top: 20px;
   right: 20px;
   background: #111;
@@ -427,4 +434,30 @@ footer {
   margin-bottom: 20px;
   font-size: 1.2rem;
   font-weight: 600;
+}
+.cart-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.qty-controls{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.qty-controls button{
+  background:#8affc1;
+  border:none;
+  padding:4px 10px;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.free-ship-msg{
+  margin-top:10px;
+  color:#8affc1;
+  font-size:0.9rem;
 }
