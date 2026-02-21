@@ -315,6 +315,25 @@ window.addEventListener("scroll", () => {
   });
 });
 
+/* EMAIL MODAL */
+const modal = document.getElementById("emailModal");
+const openBtns = document.querySelectorAll(".open-modal");
+const closeBtn = document.querySelector(".close-modal");
+
+openBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    modal.style.display = "flex";
+  });
+});
+
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+window.addEventListener("click", e => {
+  if (e.target === modal) modal.style.display = "none";
+});
+
 /* STOCK SYSTEM */
 let stock = {
   lite: 50,
@@ -355,7 +374,6 @@ function updateUI() {
   const sold = maxDrop - (stock.lite + stock.xl);
   if (soldCounter) soldCounter.textContent = sold;
 
-  localStorage.setItem("twistStock", JSON.stringify(stock));
 }
 
 updateUI();
