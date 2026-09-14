@@ -3,72 +3,155 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TwistMode – Limited Drop</title>
+  <title>TwistMode – Texture & Styling Tools for Barbers</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
 
 <body>
-  <div class="cart-ui" id="cart-toggle">
-  💈 <span id="cart-count">0</span>
-</div>
+<!-- TOP NAV -->
+<nav class="top-nav">
+
+
+<a href="/" class="nav-logo">
+  <img
+    src="assets/images/twistmode-logo.svg"
+    alt="TwistMode"
+    class="nav-logo-img"
+  />
+</a>
+
+
+  <div class="nav-links">
+
+    <a href="#products" class="nav-control">
+      Shop
+    </a>
+
+    <a href="wholesale.html" class="nav-control">
+      Wholesale
+    </a>
+
+  </div>
+
+  <button class="nav-control cart-ui" id="cart-toggle">
+    🛒 <span>Cart</span>
+    <span class="cart-count" id="cart-count">0</span>
+  </button>
+
+</nav>
 
 <!-- HERO -->
 <header class="hero">
 
-  <p class="micro">Hand printed. Small batch. Built by a barber.</p>
+  <p class="micro">Small batch. 3D printed. Built by a barber.</p>
 
   <video autoplay muted loop playsinline class="hero-video">
     <source src="assets/videos/hero-2.mp4" type="video/mp4">
   </video>
 
   <div class="hero-content">
-    <h1>TwistMode</h1>
-    <p class="tagline">Built by a working barber for clean, consistent texture.</p>
-    <p class="limited">First Drop · Limited Quantity</p>
-    <a href="#products" class="btn">Shop The First Drop</a>
+  <img
+  src="assets/images/twistmode-logo.svg"
+  alt="TwistMode"
+  class="hero-logo"
+>
+    <p class="tagline">A better way to create texture. Designed for barbers</p>
+    <p class="limited">Designed for textured hair · Made for the shop</p>
+    <a href="#products" class="btn">Shop TwistMode</a>
   </div>
 
 </header>
 
 
 <!-- WASHING -->
-<section class="section">
-  <h2>Rinses Clean Between Clients</h2>
-  <video autoplay muted loop playsinline>
+<!-- WASHING -->
+<section class="section washing-section">
+
+  <p class="homepage-eyebrow">
+    CARE FOR YOUR TOOL
+  </p>
+
+  <h2>Clean Between Clients.</h2>
+
+  <p class="section-text">
+    TwistMode is designed with the barbershop in mind.
+    Rinse it between clients and keep your styling tool
+    ready for the next cut.
+  </p>
+
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    class="washing-video"
+  >
     <source src="assets/videos/washing.mp4" type="video/mp4">
   </video>
-  <p class="section-text">
-    Unlike foam sponges, TwistMode rinses instantly. No trapped dirt. No buildup.
-  </p>
+
 </section>
 
 
-<!-- PROBLEM / UPGRADE -->
-<section class="section">
-  <h2>The Problem</h2>
-  <p class="section-text problem-upgrade">
-    Foam sponges trap dirt, oil, and product — and that goes on every client.
+<!-- WHY TWISTMODE -->
+<section class="section why-twistmode-section">
+
+  <p class="homepage-eyebrow">
+    BUILT FOR THE BARBER'S CHAIR
   </p>
 
-  <h2>The Upgrade</h2>
-  <p class="section-text">
-    TwistMode rinses clean in seconds, keeps texture consistent,
-    and is built for real barbershop hygiene.
+  <h2>Built for the Barber's Chair.</h2>
+
+  <img
+    src="assets/images/dirty-vs-clean-side-by-side.jpg"
+    alt="Dirty styling tool compared with a clean TwistMode"
+    class="why-twistmode-image"
+  >
+
+  <p class="section-text problem-upgrade">
+    Your styling tool should work as hard as you do.
   </p>
+
+  <p class="section-text">
+    TwistMode is made for creating texture and definition
+    while giving barbers a tool that's easy to rinse,
+    reuse, and keep in rotation.
+  </p>
+
 </section>
 
 
 <!-- FLEX -->
-<section class="section">
-  <h2>Flexible. Durable. Built Different.</h2>
-  <video autoplay muted loop playsinline>
+<section class="section flex-section">
+
+<p class="homepage-eyebrow">
+  BUILT FOR DAILY USE
+</p>
+
+<h2>Flexible. Durable. Made for the Shop</h2>
+
+<p class="section-text flex-description">
+  Built to move with the hair and hold up through the daily grind of the shop.
+</p>
+
+
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    class="flex-video"
+  >
     <source src="assets/videos/flex-shot.mp4" type="video/mp4">
   </video>
+
 </section>
 
-
 <!-- COMPARISON -->
-<section class="section">
+<section class="section comparison-section">
+
+  <p class="homepage-eyebrow">
+    SEE THE DIFFERENCE
+  </p>
 
   <h2>Why Barbers Are Switching</h2>
 
@@ -81,40 +164,70 @@
 
     <div class="comparison-divider"></div>
 
-    <input type="range" min="0" max="100" value="50" class="comparison-slider">
+    <input
+      type="range"
+      min="0"
+      max="100"
+      value="50"
+      class="comparison-slider"
+    >
+
   </div>
 
 </section>
 
 
 <!-- BUILT IN SHOP -->
-<section class="section">
-  <h2>Built in the Shop</h2>
-  <p class="section-text">
-    I created TwistMode after seeing how fast foam sponges break down
-    and collect dirt. I needed something cleaner, stronger,
-    and built for real barbershop use.
+<section class="section" style="text-align: center;">
+
+  <p class="homepage-eyebrow">
+    WHERE IT STARTED
   </p>
+
+  <h2>Built in the Shop.</h2>
+
+  <p class="section-text">
+    TwistMode started behind the barber chair.
+    I wanted a styling tool that felt more durable,
+    was easy to rinse, and could keep up with the work
+    that goes into every cut.
+  </p>
+
+  <p class="section-text">
+    So I built one.
+  </p>
+
 </section>
 
 
 <!-- HOW IT WORKS -->
-<section class="section">
-  <h2>How It Works</h2>
+<section class="section" style="text-align: center;">
+
+  <p class="homepage-eyebrow">
+    HOW TO USE
+  </p>
+
+  <h2>How It Works.</h2>
+
   <video autoplay muted loop playsinline class="how-video">
     <source src="assets/videos/twist-on-client.mp4" type="video/mp4">
   </video>
 
   <ol class="how-steps">
-    <li>Insert into hair</li>
-    <li>Twist gently</li>
-    <li>Clean, consistent texture</li>
+    <li>Start with clean, slightly damp hair.</li>
+    <li>Place TwistMode against the hair and use a gentle circular motion.</li>
+    <li>Work evenly through the area until you get the texture and definition you're looking for.</li>
   </ol>
+
 </section>
 
 
 <!-- LITE (MOVED HERE ON PURPOSE) -->
-<section class="section lite-hero">
+<section class="section lite-hero" style="text-align: center;">
+
+  <p class="homepage-eyebrow">
+    BEST FOR SHORTER, COARSE HAIR
+  </p>
 
   <h2>TwistMode Lite</h2>
 
@@ -123,17 +236,10 @@
   </video>
 
   <p class="section-text">
-    Perfect for starter lengths, kids, and tighter control.
+    Made for shorter cuts and tighter control. A great fit for kids and adults with shorter, coarse or textured hair.
   </p>
 
 </section>
-
-
-<!-- DROP COUNTER -->
-<div class="drop-counter">
-  <p><strong><span id="sold-count">0</span></strong> of 100 units claimed in the first drop</p>
-</div>
-
 
 <!-- PRODUCTS -->
 <section class="section products" id="products">
@@ -144,48 +250,140 @@
     <img src="assets/images/lite-twistmode.jpg" class="product-img">
 
     <h3>TwistMode Lite</h3>
-    <p>For starter & short hair · Kid friendly</p>
+
+    <p>Shorter Curly Hair · Thin to Thick </p>
+
     <p class="price">$14.99</p>
 
-    <p class="scarcity" data-product="lite"></p>
+    <!-- COLOR -->
+    <label class="color-label" for="lite-color">
+      Color
+    </label>
 
-    <button class="btn small open-modal">Get Drop Access</button>
+    <select class="color-select product-color" id="lite-color">
+
+  <optgroup label="STANDARD">
+    <option value="black">Black</option>
+    <option value="white">White</option>
+    <option value="clear">Clear</option>
+    <option value="gray">Gray</option>
+    <option value="pink">Pink</option>
+    <option value="orange">Orange</option>
+    <option value="grass-green">Grass Green</option>
+  </optgroup>
+
+  <optgroup label="TRANSLUCENT">
+    <option value="translucent-blue">Translucent Blue</option>
+    <option value="translucent-red">Translucent Red</option>
+    <option value="translucent-green">Translucent Green</option>
+    <option value="translucent-purple">Translucent Purple</option>
+    <option value="translucent-orange">Translucent Orange</option>
+  </optgroup>
+
+  <optgroup label="SPECIAL COLORS">
+    <option value="neon-magenta">Neon Magenta</option>
+    <option value="pastel-rose">Pastel Rose</option>
+    <option value="neon-yellow">Neon Yellow</option>
+  </optgroup>
+
+  <optgroup label="LUMINOUS — GLOW IN THE DARK">
+    <option value="luminous-pink">Luminous Pink</option>
+    <option value="luminous-electric-indigo">Luminous Electric Indigo</option>
+    <option value="luminous-blue">Luminous Blue</option>
+    <option value="luminous-green">Luminous Green</option>
+    <option value="luminous-orange">Luminous Orange</option>
+  </optgroup>
+
+</select>
+
+    <!-- PRODUCTION NOTE -->
+    <p class="production-note">
+      Ready to ship.
+    </p>
 
     <button
-      class="btn small preorder-btn"
+      class="btn small add-to-cart-btn"
       data-product="lite"
       data-price="14.99"
       data-price-id="price_1T22lRQVzg9AuHq0tMt1qdCJ"
       data-name="TwistMode Lite">
-      Pre-Order
+
+      Add to Cart
+
     </button>
 
   </div>
 
 
-  <!-- XL -->
-  <div class="card">
+<!-- XL -->
+<div class="card">
 
-    <img src="assets/images/sponge.jpg" class="product-img">
+  <img src="assets/images/sponge.jpg" class="product-img">
 
-    <h3>TwistMode XL</h3>
-    <p>For longer & mature afros · Faster twisting</p>
-    <p class="price">$29.99</p>
+  <h3>TwistMode XL</h3>
 
-    <p class="scarcity" data-product="xl"></p>
+  <p>Short & Long Curly Hair · Thin to Thick</p>
 
-    <button class="btn small open-modal">Get Drop Access</button>
+  <p class="price">$29.99</p>
 
-    <button
-      class="btn small preorder-btn"
-      data-product="xl"
-      data-price-id="price_1T22ulQVzg9AuHq0F9BiKkGN"
-      data-price="29.99"
-      data-name="TwistMode XL">
-      Pre-Order
-    </button>
+  <!-- COLOR -->
+  <label class="color-label" for="xl-color">
+    Color
+  </label>
 
-  </div>
+ <select class="product-color color-select" id="xl-color">
+
+  <optgroup label="STANDARD">
+    <option value="black">Black</option>
+    <option value="white">White</option>
+    <option value="clear">Clear</option>
+    <option value="gray">Gray</option>
+    <option value="pink">Pink</option>
+    <option value="orange">Orange</option>
+    <option value="grass-green">Grass Green</option>
+  </optgroup>
+
+  <optgroup label="TRANSLUCENT">
+    <option value="translucent-blue">Translucent Blue</option>
+    <option value="translucent-red">Translucent Red</option>
+    <option value="translucent-green">Translucent Green</option>
+    <option value="translucent-purple">Translucent Purple</option>
+    <option value="translucent-orange">Translucent Orange</option>
+  </optgroup>
+
+  <optgroup label="SPECIAL COLORS">
+    <option value="neon-magenta">Neon Magenta</option>
+    <option value="pastel-rose">Pastel Rose</option>
+    <option value="neon-yellow">Neon Yellow</option>
+  </optgroup>
+
+  <optgroup label="LUMINOUS — GLOW IN THE DARK">
+    <option value="luminous-pink">Luminous Pink</option>
+    <option value="luminous-electric-indigo">Luminous Electric Indigo</option>
+    <option value="luminous-blue">Luminous Blue</option>
+    <option value="luminous-green">Luminous Green</option>
+    <option value="luminous-orange">Luminous Orange</option>
+  </optgroup>
+
+</select>
+
+  <!-- PRODUCTION NOTE -->
+  <p class="production-note" id="xl-production-note">
+    Ready to ship.
+  </p>
+
+  <button
+    class="btn small add-to-cart-btn"
+    data-product="xl"
+    data-price-id="price_1T22ulQVzg9AuHq0F9BiKkGN"
+    data-price="29.99"
+    data-name="TwistMode XL">
+
+    Add to Cart
+
+  </button>
+
+</div>
 
 
   <!-- BUNDLE -->
@@ -197,20 +395,108 @@
     </div>
 
     <h3>TwistMode Bundle</h3>
+
     <p>Lite + XL · Complete shop setup</p>
+
     <p class="price">$39.99</p>
 
-    <p class="scarcity" data-product="bundle"></p>
+    <!-- LITE COLOR -->
+    <label class="color-label" for="bundle-lite-color">
+      Lite Color
+    </label>
 
-    <button class="btn small open-modal">Get Drop Access</button>
+    <select class="color-select product-color" id="bundle-lite-color">
+
+    <optgroup label="STANDARD">
+    <option value="black">Black</option>
+    <option value="white">White</option>
+    <option value="clear">Clear</option>
+    <option value="gray">Gray</option>
+    <option value="pink">Pink</option>
+    <option value="orange">Orange</option>
+    <option value="grass-green">Grass Green</option>
+  </optgroup>
+
+  <optgroup label="TRANSLUCENT">
+    <option value="translucent-blue">Translucent Blue</option>
+    <option value="translucent-red">Translucent Red</option>
+    <option value="translucent-green">Translucent Green</option>
+    <option value="translucent-purple">Translucent Purple</option>
+    <option value="translucent-orange">Translucent Orange</option>
+  </optgroup>
+
+  <optgroup label="SPECIAL COLORS">
+    <option value="neon-magenta">Neon Magenta</option>
+    <option value="pastel-rose">Pastel Rose</option>
+    <option value="neon-yellow">Neon Yellow</option>
+  </optgroup>
+
+  <optgroup label="LUMINOUS — GLOW IN THE DARK">
+    <option value="luminous-pink">Luminous Pink</option>
+    <option value="luminous-electric-indigo">Luminous Electric Indigo</option>
+    <option value="luminous-blue">Luminous Blue</option>
+    <option value="luminous-green">Luminous Green</option>
+    <option value="luminous-orange">Luminous Orange</option>
+  </optgroup>
+
+    </select>
+
+
+    <!-- XL COLOR -->
+    <label class="color-label" for="bundle-xl-color">
+      XL Color
+    </label>
+
+    <select class="color-select product-color" id="bundle-xl-color">
+
+   <optgroup label="STANDARD">
+    <option value="black">Black</option>
+    <option value="white">White</option>
+    <option value="clear">Clear</option>
+    <option value="gray">Gray</option>
+    <option value="pink">Pink</option>
+    <option value="orange">Orange</option>
+    <option value="grass-green">Grass Green</option>
+  </optgroup>
+
+  <optgroup label="TRANSLUCENT">
+    <option value="translucent-blue">Translucent Blue</option>
+    <option value="translucent-red">Translucent Red</option>
+    <option value="translucent-green">Translucent Green</option>
+    <option value="translucent-purple">Translucent Purple</option>
+    <option value="translucent-orange">Translucent Orange</option>
+  </optgroup>
+
+  <optgroup label="SPECIAL COLORS">
+    <option value="neon-magenta">Neon Magenta</option>
+    <option value="pastel-rose">Pastel Rose</option>
+    <option value="neon-yellow">Neon Yellow</option>
+  </optgroup>
+
+  <optgroup label="LUMINOUS — GLOW IN THE DARK">
+    <option value="luminous-pink">Luminous Pink</option>
+    <option value="luminous-electric-indigo">Luminous Electric Indigo</option>
+    <option value="luminous-blue">Luminous Blue</option>
+    <option value="luminous-green">Luminous Green</option>
+    <option value="luminous-orange">Luminous Orange</option>
+  </optgroup>
+
+    </select>
+
+
+    <p class="production-note">
+      Ready to ship.
+    </p>
 
     <button
-      class="btn small preorder-btn"
+      class="btn small add-to-cart-btn"
       data-product="bundle"
       data-price-id="price_1T23GbQVzg9AuHq0qEgFeqUb"
       data-price="39.99"
       data-name="TwistMode Bundle">
-      Pre-Order
+
+      Add to Cart
+
     </button>
 
   </div>
@@ -218,32 +504,142 @@
 </section>
 
 
-<!-- EMAIL SECTION -->
-<section class="section drop-access">
 
-  <h2>Missed This Drop?</h2>
+<!-- COLOR REQUEST FORM -->
+<section class="section color-request" style="text-align: center;">
 
-  <p class="section-text">
-    Join the list and get first access before the next batch goes live.
+  <p class="homepage-eyebrow">
+    CAN'T FIND YOUR COLOR?
   </p>
 
-  <button class="btn open-modal">Get Next Drop Access</button>
+  <h2>Want a Different Color?</h2>
+
+  <p class="section-text">
+    Don't see the color you're looking for?
+    Let us know what you'd like and we'll see what we can make.
+  </p>
+
+  <form
+    action="https://formspree.io/f/mqedlqrz"
+    method="POST"
+    class="color-request-form"
+  >
+
+    <input
+      type="text"
+      name="name"
+      placeholder="Your Name"
+      required
+    >
+
+    <input
+      type="email"
+      name="email"
+      placeholder="Your Email"
+      required
+    >
+
+    <input
+      type="text"
+      name="color"
+      placeholder="Color You Want"
+      required
+    >
+
+    <textarea
+      name="message"
+      placeholder="Anything else you'd like us to know?"
+      rows="4"
+    ></textarea>
+
+    <button type="submit" class="btn">
+      Request Color
+    </button>
+
+  </form>
 
 </section>
 
-
 <!-- SHIPPING -->
-<section class="section">
+<section class="section" style="text-align: center;">
+
+  <p class="homepage-eyebrow">
+    ORDER WITH CONFIDENCE
+  </p>
 
   <h2>Shipping</h2>
 
   <p class="section-text">
-  Made to order.Ships in 2-5 weeks
-  Each TwistMode is printed in small batches for quality and durability
+    Ready-to-ship colors are sent out as quickly as possible.
+    Made-to-order colors require additional production time
+    before shipping.
+  </p>
+
+  <p class="section-text">
+    Because every TwistMode is produced in small batches,
+    production times may vary depending on the color and
+    order volume.
   </p>
 
 </section>
 
+<!-- FAQ -->
+<section class="section faq-section" style="text-align: center;">
+
+  <p class="homepage-eyebrow">
+    GOT QUESTIONS?
+  </p>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-list">
+
+    <details>
+      <summary>Is TwistMode only for curly hair?</summary>
+      <p>
+    TwistMode is made for textured and curly hair with enough natural texture for the tool to grab and shape.
+    It works best on medium to tight curls and textured hair, but it isn't designed for straight hair or very loose curls.
+      </p>
+    </details>
+
+    <details>
+      <summary>Which one should I get — Lite or XL?</summary>
+      <p>
+        Lite is best for shorter, coarse hair and tighter control.
+        XL gives you more coverage and reach for short-to-long hair.
+      </p>
+    </details>
+
+    <details>
+      <summary>Can I wash TwistMode after using it?</summary>
+      <p>
+    Yes. TwistMode can be washed and reused.
+    For a deeper clean, use a brush to remove trapped hair and product buildup,
+    then rinse thoroughly and let it dry before using it again.
+      </p>
+    </details>
+
+    <details>
+      <summary>How do I know which size is right for me?</summary>
+      <p>
+        If the hair is shorter and you want more control, go Lite.
+        For longer hair or more coverage, go XL.
+      </p>
+    </details>
+
+    <details>
+      <summary>Do you offer custom colors?</summary>
+      <p>
+        If you don't see the color you're looking for,
+        submit a color request and we'll let you know what's possible.
+      </p>
+    </details>
+
+  </div>
+
+</section>
+
+<!-- CHECKOUT SECTION -->
 <section class="section cart-section" id="checkout">
 
   <h2>Your Cart</h2>
@@ -264,23 +660,106 @@
 </section>
 
 
-
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <h3>TwistMode</h3>
+
+    <img
+      src="assets/images/twistmode-logo.svg"
+      alt="TwistMode"
+      class="footer-logo"
+    />
+
     <p>Built by a barber. Designed for texture.</p>
+
+    <div class="footer-columns">
+
+      <div class="footer-column">
+        <p class="footer-heading">FOLLOW TWISTMODE</p>
+
+        <div class="footer-socials">
+
+          <a
+            href="https://www.instagram.com/shoptwistmode"
+            target="_blank"
+            rel="noopener"
+            aria-label="Instagram"
+            class="footer-social"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect>
+              <circle cx="12" cy="12" r="4"></circle>
+              <circle cx="17.5" cy="6.5" r="1"></circle>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.tiktok.com/@shoptwistmode"
+            target="_blank"
+            rel="noopener"
+            aria-label="TikTok"
+            class="footer-social"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M14 4v10.2a4.3 4.3 0 1 1-3.2-4.16"></path>
+              <path d="M14 4c.45 2.7 2.1 4.4 4.8 4.8"></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.youtube.com/@shoptwistmode"
+            target="_blank"
+            rel="noopener"
+            aria-label="YouTube"
+            class="footer-social"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21 7.2a2.8 2.8 0 0 0-2-2C17.2 4.7 12 4.7 12 4.7s-5.2 0-7 .5a2.8 2.8 0 0 0-2 2C2.5 9 2.5 12 2.5 12s0 3 .5 4.8a2.8 2.8 0 0 0 2 2c1.8.5 7 .5 7 .5s5.2 0 7-.5a2.8 2.8 0 0 0 2-2c.5-1.8.5-4.8.5-4.8s0-3-.5-4.8Z"></path>
+              <path d="m10 9 5 3-5 3V9Z"></path>
+            </svg>
+          </a>
+
+            <a
+            href="https://www.facebook.com/people/Shop-Twist-Mode/61588585911481/"
+            target="_blank"
+            rel="noopener"
+            aria-label="Facebook"
+            class="footer-social"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M13.5 8H15V5h-1.5A4.5 4.5 0 0 0 9 9.5V11H7v3h2v5h3v-5h2.5l.5-3H12V9.5c0-.8.7-1.5 1.5-1.5Z"></path>
+            </svg>
+          </a>
+
+        </div>
+      </div>
+
+      <div class="footer-column">
+      <p class="footer-heading">HELP & POLICIES</p>
+
+      <a href="mailto:shoptwistmode@gmail.com">Support</a>
+      <a href="shipping.html">Shipping</a>
+      <a href="returns.html">Returns & Refunds</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      </div>
+
+    </div>
+
     <p class="copyright">© 2026 TwistMode</p>
+
   </div>
 </footer>
+
 
 <!-- EMAIL MODAL -->
 <div class="modal" id="emailModal">
   <div class="modal-content">
     <span class="close-modal">&times;</span>
-    <h3>Join The Next Drop</h3>
+    <h3>Request a Color</h3>
     <p style="color:#aaa; margin-bottom:20px;">
-      Get early access before the next batch sells out.
+     Tell us what color you'd like to see next.
     </p>
 
     <form action="https://formspree.io/f/xkovjzkl" method="POST">
@@ -291,7 +770,7 @@
         required
       >
       <button type="submit" class="btn small">
-      Join list  
+      Send Request  
       </button>
     </form>
   </div>
@@ -334,49 +813,10 @@ window.addEventListener("click", e => {
   if (e.target === modal) modal.style.display = "none";
 });
 
-/* STOCK SYSTEM */
-let stock = {
-  lite: 50,
-  xl: 50
-};
+/* PRODUCT BUTTONS */
 
-const maxDrop = 100;
-const soldCounter = document.getElementById("sold-count");
-const stockText = document.querySelectorAll(".scarcity");
-const buttons = document.querySelectorAll(".preorder-btn");
+const buttons = document.querySelectorAll(".add-to-cart-btn");
 
-function updateUI() {
-
-  stockText.forEach(item => {
-
-    const type = item.dataset.product;
-
-    let value =
-      type === "bundle"
-        ? Math.min(stock.lite, stock.xl)
-        : stock[type];
-
-    item.textContent = value > 0
-      ? `Only ${value} left in first drop`
-      : "Sold Out";
-
-    const card = item.closest(".card");
-    if (!card) return;
-
-    const preorderBtn = card.querySelector(".preorder-btn");
-    const waitlistBtn = card.querySelector(".open-modal");
-
-    preorderBtn.style.display = value === 0 ? "none" : "inline-block";
-    waitlistBtn.style.display = value === 0 ? "inline-block" : "none";
-
-  });
-
-  const sold = maxDrop - (stock.lite + stock.xl);
-  if (soldCounter) soldCounter.textContent = sold;
-
-}
-
-updateUI();
 
 /* CART */
 let cart = [];
@@ -393,38 +833,87 @@ cartToggle.addEventListener("click", () => {
 });
 
 /* ADD TO CART */
+
 buttons.forEach(button => {
 
   button.addEventListener("click", (e) => {
 
     e.preventDefault();
 
+    const card = button.closest(".card");
+
     const type = button.dataset.product;
     const name = button.dataset.name;
     const price = parseFloat(button.dataset.price);
     const priceId = button.dataset.priceId;
 
-    /* STOCK REDUCTION */
-    if (type === "bundle") {
-      if (stock.lite > 0 && stock.xl > 0) {
-        stock.lite--;
-        stock.xl--;
-      } else return;
-    } else {
-      if (stock[type] > 0) stock[type]--;
-      else return;
-    }
 
-    /* ADD / INCREMENT CART */
-    const existingItem = cart.find(item => item.priceId === priceId);
+
+/*
+  Get the selected color(s)
+  from this product card.
+*/
+
+const colorSelects =
+  card.querySelectorAll(".product-color");
+
+let colors = [];
+
+colorSelects.forEach(select => {
+
+  const selectedOption =
+    select.options[select.selectedIndex];
+
+  colors.push({
+    value: selectedOption.value,
+    name: selectedOption.text
+      .split(" — ")[0]
+      .trim()
+  });
+
+});
+
+
+
+    /*
+      Check if the exact same
+      product + color combination
+      is already in the cart.
+    */
+
+
+const colorKey = JSON.stringify(colors);
+
+const existingItem = cart.find(item =>
+  item.priceId === priceId &&
+  JSON.stringify(item.colors) === colorKey
+);
+
+
+
 
     if (existingItem) {
+
       existingItem.qty++;
+
     } else {
-      cart.push({ name, price, priceId, qty: 1 });
+
+      cart.push({
+
+        name: name,
+
+        price: price,
+
+        priceId: priceId,
+
+        colors: colors,
+
+        qty: 1
+
+      });
+
     }
 
-    updateUI();
     updateCartUI();
 
   });
@@ -432,6 +921,7 @@ buttons.forEach(button => {
 });
 
 /* UPDATE CART UI */
+
 function updateCartUI() {
 
   cartItems.innerHTML = "";
@@ -446,37 +936,100 @@ function updateCartUI() {
 
     cartItems.innerHTML += `
       <div class="cart-row">
-        <span>${item.name}</span>
 
-        <div class="qty-controls">
-          <button onclick="changeQty(${index}, -1)">–</button>
-          <span>${item.qty}</span>
-          <button onclick="changeQty(${index}, 1)">+</button>
+        <div>
+
+          <strong>${item.name}</strong>
+
+${
+  item.colors && item.colors.length
+    ? `
+      <div style="
+        font-size:0.8rem;
+        color:#aaa;
+        margin-top:4px;
+      ">
+        ${item.colors
+          .map(color => color.name)
+          .join(" + ")}
+      </div>
+    `
+    : ""
+}
+
+
         </div>
 
-        <span>$${(item.price * item.qty).toFixed(2)}</span>
+        <div class="qty-controls">
+
+          <button onclick="changeQty(${index}, -1)">
+            −
+          </button>
+
+          <span>
+            ${item.qty}
+          </span>
+
+          <button onclick="changeQty(${index}, 1)">
+            +
+          </button>
+
+        </div>
+
+        <strong>
+          $${(item.price * item.qty).toFixed(2)}
+        </strong>
+
       </div>
     `;
+
   });
 
   cartCount.textContent = totalQty;
 
+  /*
+    SHIPPING
+
+    Temporary system:
+    $5 shipping under $75
+    Free shipping at $75+
+
+    We'll revisit this after we calculate
+    your actual shipping costs.
+  */
+
   const freeShipThreshold = 75;
 
   let shipping = 0;
-  let awayHTML = "";
+  let shippingMessage = "";
 
   if (subtotal === 0) {
+
     shipping = 0;
-  }
-  else if (subtotal >= freeShipThreshold) {
+
+  } else if (subtotal >= freeShipThreshold) {
+
     shipping = 0;
-    awayHTML = `<p class="free-ship-msg">🎉 You unlocked FREE shipping!</p>`;
-  }
-  else {
+
+    shippingMessage = `
+      <p class="free-ship-msg">
+        🎉 You unlocked FREE shipping!
+      </p>
+    `;
+
+  } else {
+
     shipping = 5;
-    const amountAway = (freeShipThreshold - subtotal).toFixed(2);
-    awayHTML = `<p class="free-ship-msg">You're $${amountAway} away from free shipping 🚚</p>`;
+
+    const amountAway =
+      (freeShipThreshold - subtotal).toFixed(2);
+
+    shippingMessage = `
+      <p class="free-ship-msg">
+        You're $${amountAway} away from free shipping 🚚
+      </p>
+    `;
+
   }
 
   const finalTotal = subtotal + shipping;
@@ -484,8 +1037,11 @@ function updateCartUI() {
   cartTotal.innerHTML =
     "Subtotal: $" + subtotal.toFixed(2) +
     "<br>Shipping: $" + shipping.toFixed(2) +
-    "<br><strong>Total: $" + finalTotal.toFixed(2) + "</strong>" +
-    awayHTML;
+    "<br><strong>Total: $" +
+    finalTotal.toFixed(2) +
+    "</strong>" +
+    shippingMessage;
+
 }
 
 /* QTY */
@@ -548,7 +1104,781 @@ checkoutBtn.addEventListener("click", async () => {
     container.addEventListener("touchmove", e => {
       moveSlider(e.touches[0].clientX);
     });
+}
+
+// =========================================================
+// TWISTMODE COLOR AVAILABILITY
+// =========================================================
+//
+// true  = Ready to Ship
+// false = Made to Order
+//
+// Change ONLY these values when inventory changes.
+// =========================================================
+
+const liteColorSettings = {
+
+  "black": false,
+  "white": false,
+  "clear": false,
+  "gray": false,
+  "pink": false,
+  "orange": false,
+  "grass-green": false,
+
+  "translucent-blue": false,
+  "translucent-red": false,
+  "translucent-green": false,
+  "translucent-purple": false,
+  "translucent-orange": false,
+
+  "neon-magenta": true,
+  "pastel-rose": false,
+  "neon-yellow": false,
+
+  "luminous-pink": false,
+  "luminous-electric-indigo": false,
+  "luminous-blue": true,
+  "luminous-green": false,
+  "luminous-orange": false
+
+};
+
+
+const xlColorSettings = {
+
+  "black": true,
+  "white": false,
+  "clear": false,
+  "gray": false,
+  "pink": false,
+  "orange": false,
+  "grass-green": false,
+
+  "translucent-blue": false,
+  "translucent-red": false,
+  "translucent-green": false,
+  "translucent-purple": false,
+  "translucent-orange": false,
+
+  "neon-magenta": false,
+  "pastel-rose": false,
+  "neon-yellow": false,
+
+  "luminous-pink": false,
+  "luminous-electric-indigo": false,
+  "luminous-blue": true,
+  "luminous-green": false,
+  "luminous-orange": false
+
+};
+
+
+// =========================================================
+// COLOR DROPDOWN CATEGORIES
+// =========================================================
+
+const colorCategories = {
+
+  standard: [
+    "black",
+    "white",
+    "clear",
+    "gray",
+    "pink",
+    "orange",
+    "grass-green"
+  ],
+
+  translucent: [
+    "translucent-blue",
+    "translucent-red",
+    "translucent-green",
+    "translucent-purple",
+    "translucent-orange"
+  ],
+
+  special: [
+    "neon-magenta",
+    "pastel-rose",
+    "neon-yellow"
+  ],
+
+  luminous: [
+    "luminous-pink",
+    "luminous-electric-indigo",
+    "luminous-blue",
+    "luminous-green",
+    "luminous-orange"
+  ]
+
+};
+
+
+// =========================================================
+// COLOR DISPLAY NAMES
+// =========================================================
+
+const colorNames = {
+
+  "black": "Black",
+  "white": "White",
+  "clear": "Clear",
+  "gray": "Gray",
+  "pink": "Pink",
+  "orange": "Orange",
+  "grass-green": "Grass Green",
+
+  "translucent-blue": "Translucent Blue",
+  "translucent-red": "Translucent Red",
+  "translucent-green": "Translucent Green",
+  "translucent-purple": "Translucent Purple",
+  "translucent-orange": "Translucent Orange",
+
+  "neon-magenta": "Neon Magenta",
+  "pastel-rose": "Pastel Rose",
+  "neon-yellow": "Neon Yellow",
+
+  "luminous-pink": "Luminous Pink",
+  "luminous-electric-indigo": "Luminous Electric Indigo",
+  "luminous-blue": "Luminous Blue",
+  "luminous-green": "Luminous Green",
+  "luminous-orange": "Luminous Orange"
+
+};
+
+
+// =========================================================
+// SET UP COLOR SELECTOR
+// ONE DROPDOWN PER PRODUCT
+// =========================================================
+
+function setupColorSelector(select, settings) {
+
+  if (!select || !settings) return;
+
+  if (select.dataset.customSelectorReady === "true") {
+    return;
   }
+
+  select.dataset.customSelectorReady = "true";
+
+  const categories = [
+    {
+      key: "standard",
+      label: "STANDARD",
+      colors: colorCategories.standard
+    },
+    {
+      key: "translucent",
+      label: "TRANSLUCENT",
+      colors: colorCategories.translucent
+    },
+    {
+      key: "special",
+      label: "SPECIAL COLORS",
+      colors: colorCategories.special
+    },
+    {
+      key: "luminous",
+      label: "LUMINOUS — GLOW IN THE DARK",
+      colors: colorCategories.luminous
+    }
+  ];
+
+
+  // ---------------------------------------------------------
+  // SORT READY-TO-SHIP COLORS FIRST
+  // ---------------------------------------------------------
+
+  function sortColors(colors) {
+
+    return [...colors].sort((a, b) => {
+
+      const aReady = settings[a] === true;
+      const bReady = settings[b] === true;
+
+      if (aReady && !bReady) return -1;
+      if (!aReady && bReady) return 1;
+
+      return 0;
+    });
+
+  }
+
+
+  // ---------------------------------------------------------
+  // MAIN DROPDOWN
+  // ---------------------------------------------------------
+
+  const wrapper =
+    document.createElement("div");
+
+  wrapper.className =
+    "custom-color-dropdown";
+
+
+  // ---------------------------------------------------------
+  // DROPDOWN BUTTON
+  // ---------------------------------------------------------
+
+  const trigger =
+    document.createElement("button");
+
+  trigger.type = "button";
+
+  trigger.className =
+    "custom-color-trigger";
+
+  trigger.setAttribute(
+    "aria-expanded",
+    "false"
+  );
+
+
+  const triggerText =
+    document.createElement("span");
+
+  triggerText.className =
+    "custom-color-trigger-text";
+
+
+  const triggerArrow =
+    document.createElement("span");
+
+  triggerArrow.className =
+    "custom-color-trigger-arrow";
+
+  triggerArrow.textContent = "▾";
+
+
+  trigger.appendChild(triggerText);
+  trigger.appendChild(triggerArrow);
+
+
+  // ---------------------------------------------------------
+  // DROPDOWN PANEL
+  // ---------------------------------------------------------
+
+  const panel =
+    document.createElement("div");
+
+  panel.className =
+    "custom-color-panel";
+
+
+  // ---------------------------------------------------------
+  // CATEGORY SECTIONS
+  // ---------------------------------------------------------
+
+  categories.forEach(category => {
+
+    const categoryBox =
+      document.createElement("div");
+
+    categoryBox.className =
+      "custom-color-category";
+
+
+    const categoryButton =
+      document.createElement("button");
+
+    categoryButton.type = "button";
+
+    categoryButton.className =
+      "custom-color-category-button";
+
+    categoryButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+
+    const categoryName =
+      document.createElement("span");
+
+    categoryName.textContent =
+      category.label;
+
+
+    const categoryArrow =
+      document.createElement("span");
+
+    categoryArrow.className =
+      "custom-color-category-arrow";
+
+    categoryArrow.textContent = "▾";
+
+
+    categoryButton.appendChild(
+      categoryName
+    );
+
+    categoryButton.appendChild(
+      categoryArrow
+    );
+
+
+    const options =
+      document.createElement("div");
+
+    options.className =
+      "custom-color-options";
+
+
+    // -------------------------------------------------------
+    // COLORS
+    // -------------------------------------------------------
+
+    sortColors(category.colors).forEach(value => {
+
+      const ready =
+        settings[value] === true;
+
+
+      const colorButton =
+        document.createElement("button");
+
+      colorButton.type = "button";
+
+      colorButton.className =
+        "custom-color-option";
+
+
+      colorButton.dataset.value =
+        value;
+
+
+      const name =
+        document.createElement("span");
+
+      name.className =
+        "custom-color-option-name";
+
+      name.textContent =
+        colorNames[value];
+
+
+      const status =
+        document.createElement("span");
+
+      status.className =
+        ready
+          ? "custom-color-option-status ready"
+          : "custom-color-option-status made-to-order";
+
+      status.textContent =
+        ready
+          ? "Ready to Ship"
+          : "Made to Order";
+
+
+      colorButton.appendChild(name);
+      colorButton.appendChild(status);
+
+
+      // -----------------------------------------------------
+      // SELECT COLOR
+      // -----------------------------------------------------
+
+      colorButton.addEventListener(
+        "click",
+        () => {
+
+          select.value = value;
+
+          updateDisplay();
+
+          select.dispatchEvent(
+            new Event("change", {
+              bubbles: true
+            })
+          );
+
+          closeDropdown();
+
+        }
+      );
+
+
+      options.appendChild(
+        colorButton
+      );
+
+    });
+
+
+    // -------------------------------------------------------
+    // OPEN / CLOSE CATEGORY
+    // -------------------------------------------------------
+
+    categoryButton.addEventListener(
+      "click",
+      () => {
+
+        const alreadyOpen =
+          categoryBox.classList.contains("open");
+
+
+        panel
+          .querySelectorAll(".custom-color-category")
+          .forEach(other => {
+
+            other.classList.remove("open");
+
+            const otherButton =
+              other.querySelector(
+                ".custom-color-category-button"
+              );
+
+            if (otherButton) {
+              otherButton.setAttribute(
+                "aria-expanded",
+                "false"
+              );
+            }
+
+          });
+
+
+        if (!alreadyOpen) {
+
+          categoryBox.classList.add("open");
+
+          categoryButton.setAttribute(
+            "aria-expanded",
+            "true"
+          );
+
+        }
+
+      }
+    );
+
+
+    categoryBox.appendChild(
+      categoryButton
+    );
+
+    categoryBox.appendChild(
+      options
+    );
+
+    panel.appendChild(
+      categoryBox
+    );
+
+  });
+
+  // ---------------------------------------------------------
+  // ADD DROPDOWN BUTTON + PANEL TO WRAPPER
+  // ---------------------------------------------------------
+
+  wrapper.appendChild(trigger);
+  wrapper.appendChild(panel);
+
+
+  // ---------------------------------------------------------
+  // DISPLAY SELECTED COLOR
+  // ---------------------------------------------------------
+  
+  function updateDisplay() {
+
+    const selected =
+      select.value;
+
+
+    triggerText.textContent =
+      colorNames[selected] || "Choose a color";
+
+
+    panel
+      .querySelectorAll(".custom-color-option")
+      .forEach(option => {
+
+        option.classList.toggle(
+          "selected",
+          option.dataset.value === selected
+        );
+
+      });
+
+  }
+
+
+  // ---------------------------------------------------------
+  // OPEN DROPDOWN
+  // ---------------------------------------------------------
+
+  function openDropdown() {
+
+    wrapper.classList.add("open");
+
+    trigger.setAttribute(
+      "aria-expanded",
+      "true"
+    );
+
+  }
+
+
+  // ---------------------------------------------------------
+  // CLOSE DROPDOWN
+  // ---------------------------------------------------------
+
+  function closeDropdown() {
+
+    wrapper.classList.remove("open");
+
+    trigger.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+  }
+
+
+  trigger.addEventListener(
+    "click",
+    () => {
+
+      if (
+        wrapper.classList.contains("open")
+      ) {
+        closeDropdown();
+      } else {
+        openDropdown();
+      }
+
+    }
+  );
+
+
+  // ---------------------------------------------------------
+  // CLOSE WHEN CLICKING OUTSIDE
+  // ---------------------------------------------------------
+
+  document.addEventListener(
+    "click",
+    event => {
+
+      if (!wrapper.contains(event.target)) {
+        closeDropdown();
+      }
+
+    }
+  );
+
+
+  // ---------------------------------------------------------
+  // HIDE ORIGINAL SELECT
+  // KEEP IT FOR CART / EXISTING LOGIC
+  // ---------------------------------------------------------
+
+  select.style.display = "none";
+
+
+  select.parentNode.insertBefore(
+    wrapper,
+    select.nextSibling
+  );
+
+
+  // ---------------------------------------------------------
+  // REBUILD ORIGINAL SELECT
+  // READY FIRST
+  // ---------------------------------------------------------
+
+  select.innerHTML = "";
+
+
+  categories.forEach(category => {
+
+    const group =
+      document.createElement("optgroup");
+
+    group.label =
+      category.label;
+
+
+    sortColors(category.colors).forEach(value => {
+
+      const option =
+        document.createElement("option");
+
+      option.value =
+        value;
+
+      option.textContent =
+        colorNames[value] +
+        (
+          settings[value] === true
+            ? " — Ready to Ship"
+            : " — Made to Order"
+        );
+
+
+      group.appendChild(option);
+
+    });
+
+
+    select.appendChild(group);
+
+  });
+
+
+  // ---------------------------------------------------------
+  // INITIAL DISPLAY
+  // ---------------------------------------------------------
+
+  updateDisplay();
+
+  updateProductionNote(select);
+
+
+  // ---------------------------------------------------------
+  // KEEP EVERYTHING SYNCED
+  // ---------------------------------------------------------
+
+  select.addEventListener(
+    "change",
+    () => {
+
+      updateDisplay();
+
+      updateProductionNote(select);
+
+    }
+  );
+
+}
+
+
+
+// =========================================================
+// PRODUCTION NOTE
+// =========================================================
+
+function updateProductionNote(select) {
+
+  const card = select.closest(".card");
+
+  if (!card) return;
+
+  const productionNote =
+    card.querySelector(".production-note");
+
+  if (!productionNote) return;
+
+
+  // =======================================================
+  // BUNDLE
+  // =======================================================
+
+  if (card.querySelector("#bundle-lite-color")) {
+
+    const liteSelect =
+      card.querySelector("#bundle-lite-color");
+
+    const xlSelect =
+      card.querySelector("#bundle-xl-color");
+
+
+    const liteReady =
+      liteColorSettings[liteSelect.value] === true;
+
+    const xlReady =
+      xlColorSettings[xlSelect.value] === true;
+
+
+    if (liteReady && xlReady) {
+
+      productionNote.textContent =
+        "Ready to ship.";
+
+    } else {
+
+      productionNote.textContent =
+        "⚠️ Made to order — allow additional production time.";
+
+    }
+
+    return;
+  }
+
+
+  // =======================================================
+  // LITE
+  // =======================================================
+
+  if (select.id === "lite-color") {
+
+    const ready =
+      liteColorSettings[select.value] === true;
+
+    productionNote.textContent =
+      ready
+        ? "Ready to ship."
+        : "⚠️ Made to order — allow additional production time.";
+
+    return;
+  }
+
+
+  // =======================================================
+  // XL
+  // =======================================================
+
+  if (select.id === "xl-color") {
+
+    const ready =
+      xlColorSettings[select.value] === true;
+
+    productionNote.textContent =
+      ready
+        ? "Ready to ship."
+        : "⚠️ Made to order — allow additional production time.";
+
+  }
+
+}
+
+
+// =========================================================
+// LITE
+// =========================================================
+
+setupColorSelector(
+  document.getElementById("lite-color"),
+  liteColorSettings
+);
+
+
+// =========================================================
+// XL
+// =========================================================
+
+setupColorSelector(
+  document.getElementById("xl-color"),
+  xlColorSettings
+);
+
+
+// =========================================================
+// BUNDLE
+// =========================================================
+
+setupColorSelector(
+  document.getElementById("bundle-lite-color"),
+  liteColorSettings
+);
+
+setupColorSelector(
+  document.getElementById("bundle-xl-color"),
+  xlColorSettings
+);
+
 });
 </script>
 
