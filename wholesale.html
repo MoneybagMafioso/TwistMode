@@ -602,60 +602,86 @@
           ></p>
 
 
-          <!-- SHIPPING ADDRESS -->
+<!-- SHIPPING ADDRESS -->
 
-          <label for="shipping-address">
-            Shipping Address
-          </label>
+<label for="shipping-state">
+  State
+</label>
 
-          <input
-            id="shipping-address"
-            type="text"
-            name="shipping_address"
-            placeholder="Street address"
-            required
-          />
+<input
+  id="shipping-state"
+  type="text"
+  name="shipping_state"
+  placeholder="State"
+  autocomplete="address-level1"
+  required
+/>
 
-          <label for="shipping-city">
-            City
-          </label>
+<label for="shipping-city">
+  City
+</label>
 
-          <input
-            id="shipping-city"
-            type="text"
-            name="shipping_city"
-            placeholder="City"
-            required
-          />
+<input
+  id="shipping-city"
+  type="text"
+  name="shipping_city"
+  placeholder="City"
+  autocomplete="address-level2"
+  required
+/>
 
-          <label for="shipping-state">
-            State
-          </label>
+<label for="shipping-zip">
+  ZIP Code
+</label>
 
-          <input
-            id="shipping-state"
-            type="text"
-            name="shipping_state"
-            placeholder="State"
-            required
-          />
+<input
+  id="shipping-zip"
+  type="text"
+  name="shipping_zip"
+  placeholder="ZIP Code"
+  inputmode="numeric"
+  autocomplete="postal-code"
+  required
+/>
 
-          <label for="shipping-zip">
-            ZIP Code
-          </label>
+<label for="shipping-address">
+  Street Address
+</label>
 
-          <input
-            id="shipping-zip"
-            type="text"
-            name="shipping_zip"
-            placeholder="ZIP Code"
-            inputmode="numeric"
-            required
-          />
+<div class="wholesale-address-autocomplete">
+  <input
+    id="shipping-address"
+    type="text"
+    name="shipping_address"
+    placeholder="Start typing your street address"
+    autocomplete="street-address"
+    required
+  />
 
-          <p class="form-helper">
-            Used to estimate shipping for your wholesale order.
-          </p>
+  <div
+    id="shipping-address-suggestions"
+    class="wholesale-address-suggestions"
+    role="listbox"
+    aria-label="Address suggestions"
+  ></div>
+</div>
+
+<label for="shipping-unit">
+  Apt / Suite / Unit
+  <span class="form-optional">(Optional)</span>
+</label>
+
+<input
+  id="shipping-unit"
+  type="text"
+  name="shipping_unit"
+  placeholder="Apt, suite, unit, etc."
+  autocomplete="address-line2"
+/>
+
+<p class="form-helper">
+  Used to estimate shipping for your wholesale order.
+</p>
 
 
 
@@ -1372,7 +1398,8 @@
 </footer>
 
 <script>
- /* =====================================================
+
+/* =====================================================
    WHOLESALE PRODUCT MIX + COLOR SELECTOR
 ===================================================== */
 
@@ -1385,13 +1412,12 @@ const wholesaleProductSections =
 const wholesaleColorRows =
   document.querySelectorAll(".wholesale-color-row");
 
-  const wholesaleColorStatus =
+const wholesaleColorStatus =
   document.getElementById("wholesale-color-status");
 
-const WHOLESALE_MINIMUM =
-  10;
+const WHOLESALE_MINIMUM = 10;
 
-  const wholesaleColorTotal =
+const wholesaleColorTotal =
   document.getElementById("wholesale-color-total");
 
 const wholesaleColorSelections =
@@ -1399,7 +1425,6 @@ const wholesaleColorSelections =
 
 const wholesaleColorsInput =
   document.getElementById("wholesale-colors");
-
 
 
 /* =====================================================
@@ -1416,49 +1441,26 @@ function updateWholesaleProductSections() {
   const xlSection =
     document.querySelector(".wholesale-xl-colors");
 
-
-  /* Hide both when nothing is selected */
-
   liteSection.style.display = "none";
   xlSection.style.display = "none";
-
-
-  /* Close both */
 
   liteSection.classList.remove("open");
   xlSection.classList.remove("open");
 
-
-  /* Lite */
-
   if (mix === "Lite") {
-
     liteSection.style.display = "block";
-
   }
-
-
-  /* XL */
 
   if (mix === "XL") {
-
     xlSection.style.display = "block";
-
   }
-
-
-  /* Mixed */
 
   if (mix === "Mixed") {
-
     liteSection.style.display = "block";
     xlSection.style.display = "block";
-
   }
 
-
   updateWholesaleColors();
-
 }
 
 
@@ -1473,28 +1475,23 @@ wholesaleProductSections.forEach(section => {
       ".wholesale-product-color-toggle"
     );
 
+  if (!toggle) {
+    return;
+  }
 
   toggle.addEventListener("click", () => {
 
     const isOpen =
       section.classList.contains("open");
 
-
-    /* Close both */
-
-    wholesaleProductSections.forEach(otherSection => {
-
-      otherSection.classList.remove("open");
-
-    });
-
-
-    /* Open clicked section */
+    wholesaleProductSections.forEach(
+      otherSection => {
+        otherSection.classList.remove("open");
+      }
+    );
 
     if (!isOpen) {
-
       section.classList.add("open");
-
     }
 
   });
@@ -1523,7 +1520,6 @@ function updateWholesaleColors() {
 
     const liteSelections = [];
 
-
     document
       .querySelectorAll(
         '.wholesale-color-row[data-product="Lite"]'
@@ -1535,6 +1531,9 @@ function updateWholesaleColors() {
             ".wholesale-color-qty"
           );
 
+        if (!quantityElement) {
+          return;
+        }
 
         let quantity =
           Math.max(
@@ -1545,15 +1544,11 @@ function updateWholesaleColors() {
             ) || 0
           );
 
-
-        quantityElement.value =
-          quantity;
-
+        quantityElement.value = quantity;
 
         if (quantity > 0) {
 
           total += quantity;
-
 
           liteSelections.push(
             `${quantity} ${row.dataset.color}`
@@ -1562,7 +1557,6 @@ function updateWholesaleColors() {
         }
 
       });
-
 
     if (liteSelections.length > 0) {
 
@@ -1583,7 +1577,6 @@ function updateWholesaleColors() {
 
     const xlSelections = [];
 
-
     document
       .querySelectorAll(
         '.wholesale-color-row[data-product="XL"]'
@@ -1595,6 +1588,9 @@ function updateWholesaleColors() {
             ".wholesale-color-qty"
           );
 
+        if (!quantityElement) {
+          return;
+        }
 
         let quantity =
           Math.max(
@@ -1605,15 +1601,11 @@ function updateWholesaleColors() {
             ) || 0
           );
 
-
-        quantityElement.value =
-          quantity;
-
+        quantityElement.value = quantity;
 
         if (quantity > 0) {
 
           total += quantity;
-
 
           xlSelections.push(
             `${quantity} ${row.dataset.color}`
@@ -1622,7 +1614,6 @@ function updateWholesaleColors() {
         }
 
       });
-
 
     if (xlSelections.length > 0) {
 
@@ -1639,61 +1630,62 @@ function updateWholesaleColors() {
      TOTAL
   ================================================== */
 
-wholesaleColorTotal.textContent = total;
+  wholesaleColorTotal.textContent = total;
 
-wholesaleColorSelections.innerHTML =
-  productSummaries.length > 0
-    ? productSummaries
-        .map(summary => `<div>${summary}</div>`)
-        .join("")
-    : "No colors selected yet.";
-
-/* ===================================================
-   WHOLESALE MINIMUM STATUS
-=================================================== */
-
-wholesaleColorStatus.classList.remove(
-  "ready",
-  "warning"
-);
+  wholesaleColorSelections.innerHTML =
+    productSummaries.length > 0
+      ? productSummaries
+          .map(
+            summary => `<div>${summary}</div>`
+          )
+          .join("")
+      : "No colors selected yet.";
 
 
-if (total === 0) {
+  /* ===================================================
+     WHOLESALE MINIMUM STATUS
+  ================================================== */
 
-  wholesaleColorStatus.textContent =
-    "Minimum order: 10 units";
-
-}
-
-
-else if (total < WHOLESALE_MINIMUM) {
-
-  const remaining =
-    WHOLESALE_MINIMUM - total;
-
-  wholesaleColorStatus.textContent =
-    `${remaining} more unit${remaining === 1 ? "" : "s"} needed`;
-
-  wholesaleColorStatus.classList.add(
+  wholesaleColorStatus.classList.remove(
+    "ready",
     "warning"
   );
 
-}
+  if (total === 0) {
 
+    wholesaleColorStatus.textContent =
+      "Minimum order: 10 units";
 
-else {
+  }
 
-  wholesaleColorStatus.textContent =
-    "✓ Ready to submit";
+  else if (total < WHOLESALE_MINIMUM) {
 
-  wholesaleColorStatus.classList.add(
-    "ready"
-  );
+    const remaining =
+      WHOLESALE_MINIMUM - total;
 
-}
+    wholesaleColorStatus.textContent =
+      `${remaining} more unit${remaining === 1 ? "" : "s"} needed`;
+
+    wholesaleColorStatus.classList.add(
+      "warning"
+    );
+
+  }
+
+  else {
+
+    wholesaleColorStatus.textContent =
+      "✓ Ready to submit";
+
+    wholesaleColorStatus.classList.add(
+      "ready"
+    );
+
+  }
+
 
   /* ===================================================
-     FORMSPREE HIDDEN FIELD
+     HIDDEN FORM FIELD
   ================================================== */
 
   if (productSummaries.length > 0) {
@@ -1725,6 +1717,14 @@ wholesaleColorRows.forEach(row => {
   const quantityElement =
     row.querySelector(".wholesale-color-qty");
 
+  if (
+    !minusButton ||
+    !plusButton ||
+    !quantityElement
+  ) {
+    return;
+  }
+
 
   /* PLUS */
 
@@ -1736,13 +1736,10 @@ wholesaleColorRows.forEach(row => {
         10
       ) || 0;
 
-
     quantity++;
-
 
     quantityElement.value =
       quantity;
-
 
     updateWholesaleColors();
 
@@ -1759,17 +1756,12 @@ wholesaleColorRows.forEach(row => {
         10
       ) || 0;
 
-
     if (quantity > 0) {
-
       quantity--;
-
     }
-
 
     quantityElement.value =
       quantity;
-
 
     updateWholesaleColors();
 
@@ -1781,9 +1773,7 @@ wholesaleColorRows.forEach(row => {
   quantityElement.addEventListener(
     "input",
     () => {
-
       updateWholesaleColors();
-
     }
   );
 
@@ -1801,25 +1791,25 @@ wholesaleProductSections.forEach(section => {
       ".wholesale-color-category"
     );
 
-
   categories.forEach(category => {
 
     category.addEventListener(
       "toggle",
       () => {
 
-        if (!category.open) return;
+        if (!category.open) {
+          return;
+        }
 
+        categories.forEach(
+          otherCategory => {
 
-        categories.forEach(otherCategory => {
-
-          if (otherCategory !== category) {
-
-            otherCategory.open = false;
+            if (otherCategory !== category) {
+              otherCategory.open = false;
+            }
 
           }
-
-        });
+        );
 
       }
     );
@@ -1843,18 +1833,24 @@ wholesaleMix.addEventListener(
    INITIAL STATE
 ===================================================== */
 
+updateWholesaleProductSections();
 
-  updateWholesaleProductSections();
+
+/* =====================================================
+   WHOLESALE FORM
+===================================================== */
+
+const wholesaleForm =
+  document.querySelector(".wholesale-form");
 
 
-  /* =====================================================
-     WHOLESALE FORM MINIMUM ORDER CHECK
-  ===================================================== */
+/* =====================================================
+   WHOLESALE FORM MINIMUM ORDER CHECK
+===================================================== */
 
-  const wholesaleForm =
-    document.querySelector(".wholesale-form");
-
-  wholesaleForm.addEventListener("submit", (event) => {
+wholesaleForm.addEventListener(
+  "submit",
+  event => {
 
     const total =
       parseInt(
@@ -1889,6 +1885,7 @@ wholesaleMix.addEventListener(
           notice,
           wholesaleForm.firstElementChild
         );
+
       }
 
       notice.innerHTML = `
@@ -1919,238 +1916,787 @@ wholesaleMix.addEventListener(
       });
 
       return;
-    }
-  });
 
-
-  /* =====================================================
-     EMAIL CONFIRMATION
-  ===================================================== */
-
-  const wholesaleEmail =
-    document.getElementById("wholesale-email");
-
-  const wholesaleEmailConfirm =
-    document.getElementById("wholesale-email-confirm");
-
-  const wholesaleEmailMatch =
-    document.getElementById("wholesale-email-match");
-
-  function checkWholesaleEmailMatch() {
-
-    const email =
-      wholesaleEmail.value.trim();
-
-    const confirmEmail =
-      wholesaleEmailConfirm.value.trim();
-
-    if (!confirmEmail) {
-      wholesaleEmailMatch.textContent = "";
-      return true;
     }
 
-    if (email !== confirmEmail) {
+  }
+);
 
-      wholesaleEmailMatch.textContent =
-        "⚠️ Emails do not match.";
 
-      wholesaleEmailMatch.style.color =
-        "#ff7b7b";
+/* =====================================================
+   EMAIL CONFIRMATION
+===================================================== */
 
-      return false;
-    }
+const wholesaleEmail =
+  document.getElementById(
+    "wholesale-email"
+  );
 
-    wholesaleEmailMatch.textContent =
-      "✓ Emails match.";
+const wholesaleEmailConfirm =
+  document.getElementById(
+    "wholesale-email-confirm"
+  );
 
-    wholesaleEmailMatch.style.color =
-      "#8affc1";
+const wholesaleEmailMatch =
+  document.getElementById(
+    "wholesale-email-match"
+  );
+
+
+function checkWholesaleEmailMatch() {
+
+  const email =
+    wholesaleEmail.value.trim();
+
+  const confirmEmail =
+    wholesaleEmailConfirm.value.trim();
+
+  if (!confirmEmail) {
+
+    wholesaleEmailMatch.textContent = "";
 
     return true;
+
   }
 
-  wholesaleEmail.addEventListener(
-    "input",
-    checkWholesaleEmailMatch
-  );
+  if (email !== confirmEmail) {
 
-  wholesaleEmailConfirm.addEventListener(
-    "input",
-    checkWholesaleEmailMatch
-  );
+    wholesaleEmailMatch.textContent =
+      "⚠️ Emails do not match.";
+
+    wholesaleEmailMatch.style.color =
+      "#ff7b7b";
+
+    return false;
+
+  }
+
+  wholesaleEmailMatch.textContent =
+    "✓ Emails match.";
+
+  wholesaleEmailMatch.style.color =
+    "#8affc1";
+
+  return true;
+
+}
+
+
+wholesaleEmail.addEventListener(
+  "input",
+  checkWholesaleEmailMatch
+);
+
+wholesaleEmailConfirm.addEventListener(
+  "input",
+  checkWholesaleEmailMatch
+);
 
 
 /* =====================================================
    WHOLESALE FORM SUBMISSION
 ===================================================== */
 
-wholesaleForm.addEventListener("submit", async (event) => {
+wholesaleForm.addEventListener(
+  "submit",
+  async event => {
 
-  /*
-    Stop here if another validation already blocked
-    the submission, such as the 10-unit minimum.
-  */
-  if (event.defaultPrevented) {
-    return;
-  }
+    /*
+      Stop here if another validation
+      already blocked the submission.
+    */
+
+    if (event.defaultPrevented) {
+      return;
+    }
 
 
-  /*
-    Make sure the two emails match.
-  */
-  if (!checkWholesaleEmailMatch()) {
+    /*
+      Make sure the two emails match.
+    */
+
+    if (!checkWholesaleEmailMatch()) {
+
+      event.preventDefault();
+
+      wholesaleEmailConfirm.focus();
+
+      return;
+
+    }
+
+
+    /*
+      Stop the normal browser form submission.
+    */
+
     event.preventDefault();
-    wholesaleEmailConfirm.focus();
-    return;
+
+
+    const submitButton =
+      wholesaleForm.querySelector(
+        'button[type="submit"]'
+      );
+
+    const originalButtonText =
+      submitButton.textContent;
+
+
+    /*
+      Show sending state.
+    */
+
+    submitButton.disabled = true;
+
+    submitButton.textContent =
+      "Sending...";
+
+
+    /*
+      Send the entire form to Cloudflare.
+    */
+
+    try {
+
+      const response =
+        await fetch(
+          "https://twistmode-wholesale.margarci6782.workers.dev",
+          {
+            method: "POST",
+            body: new FormData(
+              wholesaleForm
+            )
+          }
+        );
+
+
+      const result =
+        await response
+          .json()
+          .catch(() => ({}));
+
+
+      if (
+        !response.ok ||
+        !result.success
+      ) {
+
+        throw new Error(
+          result.error ||
+          "Unable to send wholesale request."
+        );
+
+      }
+
+
+      /*
+        Success message.
+      */
+
+      let notice =
+        document.getElementById(
+          "wholesale-submit-notice"
+        );
+
+
+      if (!notice) {
+
+        notice =
+          document.createElement("div");
+
+        notice.id =
+          "wholesale-submit-notice";
+
+        notice.className =
+          "wholesale-submit-notice";
+
+        wholesaleForm.insertBefore(
+          notice,
+          wholesaleForm.firstElementChild
+        );
+
+      }
+
+
+      notice.textContent =
+        "✓ Wholesale request sent. We'll review your order and follow up with pricing, shipping, availability, and timing.";
+
+      notice.classList.add("show");
+
+
+      /*
+        Keep the button from being clicked again.
+      */
+
+      submitButton.textContent =
+        "Request Sent ✓";
+
+    }
+
+
+    catch (error) {
+
+      console.error(
+        "Wholesale submission failed:",
+        error
+      );
+
+
+      let notice =
+        document.getElementById(
+          "wholesale-submit-notice"
+        );
+
+
+      if (!notice) {
+
+        notice =
+          document.createElement("div");
+
+        notice.id =
+          "wholesale-submit-notice";
+
+        notice.className =
+          "wholesale-submit-notice";
+
+        wholesaleForm.insertBefore(
+          notice,
+          wholesaleForm.firstElementChild
+        );
+
+      }
+
+
+      notice.textContent =
+        "⚠️ We couldn't send your request. Please try again.";
+
+      notice.classList.add("show");
+
+
+      submitButton.disabled = false;
+
+      submitButton.textContent =
+        originalButtonText;
+
+    }
+
   }
+);
 
 
-  /*
-    Stop the normal browser form submission.
-    We are sending the form directly to the
-    Cloudflare Worker instead.
-  */
-  event.preventDefault();
+/* =====================================================
+   GOOGLE ADDRESS AUTOCOMPLETE
+===================================================== */
+
+const GOOGLE_PLACES_API_KEY =
+  "AIzaSyADGf0DgPTUQNFR_0jo54bJThdjhYRPyAc";
 
 
-  const submitButton =
-    wholesaleForm.querySelector(
-      'button[type="submit"]'
+const shippingState =
+  document.getElementById(
+    "shipping-state"
+  );
+
+const shippingCity =
+  document.getElementById(
+    "shipping-city"
+  );
+
+const shippingZip =
+  document.getElementById(
+    "shipping-zip"
+  );
+
+const shippingAddress =
+  document.getElementById(
+    "shipping-address"
+  );
+
+const shippingAddressSuggestions =
+  document.getElementById(
+    "shipping-address-suggestions"
+  );
+
+
+let addressSessionToken =
+  crypto.randomUUID();
+
+let addressSuggestions = [];
+
+
+/* =====================================================
+   LOAD ADDRESS SUGGESTIONS
+===================================================== */
+
+async function loadAddressSuggestions() {
+
+  const street =
+    shippingAddress.value.trim();
+
+  const state =
+    shippingState.value.trim();
+
+  const city =
+    shippingCity.value.trim();
+
+  const zip =
+    shippingZip.value.trim();
+
+
+  if (street.length < 3) {
+
+    shippingAddressSuggestions.innerHTML = "";
+
+    shippingAddressSuggestions.classList.remove(
+      "show"
     );
 
+    return;
 
-  const originalButtonText =
-    submitButton.textContent;
-
-
-  /*
-    Show sending state.
-  */
-  submitButton.disabled = true;
-  submitButton.textContent = "Sending...";
+  }
 
 
-  /*
-    Send the entire form to Cloudflare.
-  */
+  const searchText = [
+    street,
+    city,
+    state,
+    zip
+  ]
+    .filter(Boolean)
+    .join(", ");
+
+
   try {
 
     const response =
       await fetch(
-        "https://twistmode-wholesale.margarci6782.workers.dev",
+        "https://places.googleapis.com/v1/places:autocomplete",
         {
           method: "POST",
-          body: new FormData(wholesaleForm)
+
+          headers: {
+            "Content-Type":
+              "application/json",
+
+            "X-Goog-Api-Key":
+              "AIzaSyADGf0DgPTUQNFR_0jo54bJThdjhYRPyAc",
+
+            "X-Goog-FieldMask":
+              "suggestions.placePrediction.placeId,suggestions.placePrediction.text"
+          },
+
+          body: JSON.stringify({
+            input: searchText,
+
+            includedRegionCodes: [
+              "us"
+            ],
+
+            includedPrimaryTypes: [
+              "street_address"
+            ],
+
+            sessionToken:
+              addressSessionToken
+          })
+
         }
       );
 
 
-    const result =
-      await response.json().catch(() => ({}));
+    const data =
+      await response.json();
 
 
-    if (!response.ok || !result.success) {
+    if (!response.ok) {
 
-      throw new Error(
-        result.error ||
-        "Unable to send wholesale request."
+      console.error(
+        "Google Places error:",
+        data
       );
+
+      shippingAddressSuggestions.innerHTML = "";
+
+      shippingAddressSuggestions.classList.remove(
+        "show"
+      );
+
+      return;
 
     }
 
 
-    /*
-      Success message.
-    */
-    let notice =
-      document.getElementById(
-        "wholesale-submit-notice"
+    addressSuggestions =
+      data.suggestions || [];
+
+
+    shippingAddressSuggestions.innerHTML = "";
+
+
+    if (!addressSuggestions.length) {
+
+      shippingAddressSuggestions.classList.remove(
+        "show"
       );
 
-
-    if (!notice) {
-
-      notice =
-        document.createElement("div");
-
-      notice.id =
-        "wholesale-submit-notice";
-
-      notice.className =
-        "wholesale-submit-notice";
-
-      wholesaleForm.insertBefore(
-        notice,
-        wholesaleForm.firstElementChild
-      );
+      return;
 
     }
 
 
-    notice.textContent =
-      "✓ Wholesale request sent. We'll review your order and follow up with pricing, shipping, availability, and timing.";
+    addressSuggestions.forEach(
+      (suggestion, index) => {
 
-    notice.classList.add("show");
+        const prediction =
+          suggestion.placePrediction;
 
-
-    /*
-      Keep the button from being clicked again.
-    */
-    submitButton.textContent =
-      "Request Sent ✓";
+        if (!prediction) {
+          return;
+        }
 
 
-  } catch (error) {
+        const button =
+          document.createElement(
+            "button"
+          );
 
-    console.error(
-      "Wholesale submission failed:",
-      error
+
+        button.type =
+          "button";
+
+        button.className =
+          "wholesale-address-suggestion";
+
+        button.textContent =
+          prediction.text?.text || "";
+
+
+        button.addEventListener(
+          "click",
+          () => selectAddress(index)
+        );
+
+
+        shippingAddressSuggestions.appendChild(
+          button
+        );
+
+      }
     );
 
 
-    let notice =
-      document.getElementById(
-        "wholesale-submit-notice"
+    shippingAddressSuggestions.classList.add(
+      "show"
+    );
+
+  }
+
+
+  catch (error) {
+
+    console.error(
+      "Address autocomplete failed:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   SELECT ADDRESS
+===================================================== */
+
+async function selectAddress(index) {
+
+  const suggestion =
+    addressSuggestions[index];
+
+  const prediction =
+    suggestion?.placePrediction;
+
+
+  if (!prediction?.placeId) {
+    return;
+  }
+
+
+  try {
+
+    const response =
+      await fetch(
+        `https://places.googleapis.com/v1/${prediction.placeId}`,
+        {
+          method: "GET",
+
+          headers: {
+
+            "X-Goog-Api-Key":
+              "AIzaSyADGf0DgPTUQNFR_0jo54bJThdjhYRPyAc",
+
+            "X-Goog-FieldMask":
+              "formattedAddress,addressComponents"
+
+          }
+
+        }
       );
 
 
-    if (!notice) {
+    const place =
+      await response.json();
 
-      notice =
-        document.createElement("div");
 
-      notice.id =
-        "wholesale-submit-notice";
+    if (!response.ok) {
 
-      notice.className =
-        "wholesale-submit-notice";
-
-      wholesaleForm.insertBefore(
-        notice,
-        wholesaleForm.firstElementChild
+      console.error(
+        "Google Place Details error:",
+        place
       );
+
+      return;
 
     }
 
 
-    notice.textContent =
-      "⚠️ We couldn't send your request. Please try again.";
-
-    notice.classList.add("show");
+    const components =
+      place.addressComponents || [];
 
 
-    submitButton.disabled = false;
+    let streetNumber = "";
 
-    submitButton.textContent =
-      originalButtonText;
+    let route = "";
+
+    let selectedCity = "";
+
+    let selectedState = "";
+
+    let selectedZip = "";
+
+
+    components.forEach(
+      component => {
+
+        const types =
+          component.types || [];
+
+
+        if (
+          types.includes(
+            "street_number"
+          )
+        ) {
+
+          streetNumber =
+            component.longText || "";
+
+        }
+
+
+        if (
+          types.includes(
+            "route"
+          )
+        ) {
+
+          route =
+            component.longText || "";
+
+        }
+
+
+        if (
+          types.includes(
+            "locality"
+          ) ||
+          types.includes(
+            "postal_town"
+          )
+        ) {
+
+          selectedCity =
+            component.longText || "";
+
+        }
+
+
+        if (
+          types.includes(
+            "administrative_area_level_1"
+          )
+        ) {
+
+          selectedState =
+            component.shortText ||
+            component.longText ||
+            "";
+
+        }
+
+
+        if (
+          types.includes(
+            "postal_code"
+          )
+        ) {
+
+          selectedZip =
+            component.longText || "";
+
+        }
+
+      }
+    );
+
+
+    shippingAddress.value =
+      [
+        streetNumber,
+        route
+      ]
+        .filter(Boolean)
+        .join(" ");
+
+
+    if (selectedCity) {
+
+      shippingCity.value =
+        selectedCity;
+
+    }
+
+
+    if (selectedState) {
+
+      shippingState.value =
+        selectedState;
+
+    }
+
+
+    if (selectedZip) {
+
+      shippingZip.value =
+        selectedZip;
+
+    }
+
+
+    shippingAddressSuggestions.innerHTML = "";
+
+    shippingAddressSuggestions.classList.remove(
+      "show"
+    );
+
+
+    /*
+      Start a fresh session after
+      the current address is selected.
+    */
+
+    addressSessionToken =
+      crypto.randomUUID();
 
   }
 
-});
 
-  
+  catch (error) {
+
+    console.error(
+      "Address selection failed:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   INPUT EVENTS
+===================================================== */
+
+shippingAddress.addEventListener(
+  "input",
+  loadAddressSuggestions
+);
+
+
+shippingState.addEventListener(
+  "input",
+  () => {
+
+    if (
+      shippingAddress.value.trim().length >= 3
+    ) {
+
+      loadAddressSuggestions();
+
+    }
+
+  }
+);
+
+
+shippingCity.addEventListener(
+  "input",
+  () => {
+
+    if (
+      shippingAddress.value.trim().length >= 3
+    ) {
+
+      loadAddressSuggestions();
+
+    }
+
+  }
+);
+
+
+shippingZip.addEventListener(
+  "input",
+  () => {
+
+    if (
+      shippingAddress.value.trim().length >= 3
+    ) {
+
+      loadAddressSuggestions();
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   CLOSE SUGGESTIONS WHEN CLICKING ELSEWHERE
+===================================================== */
+
+document.addEventListener(
+  "click",
+  event => {
+
+    if (
+      !event.target.closest(
+        ".wholesale-address-autocomplete"
+      )
+    ) {
+
+      shippingAddressSuggestions.innerHTML = "";
+
+      shippingAddressSuggestions.classList.remove(
+        "show"
+      );
+
+    }
+
+  }
+);
+
 </script>
+
 </body>
-
-
 </html>
