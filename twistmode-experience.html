@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+
+  <title>TwistMode — Experience</title>
+
+  <!-- =====================================================
+       OPEN GRAPH / SOCIAL PREVIEW TAGS
+       -----------------------------------------------------
+       These control how this page looks when the LINK is
+       pasted somewhere else — texted, DM'd, dropped in
+       Instagram/Facebook, posted on X, etc. Without them,
+       the platform just shows a bare blue link. With them,
+       it shows a title, a short description, and a preview
+       image, like a real product post.
+
+       Two things to do before this goes live:
+       1. Swap "https://shoptwistmode.com/twistmode-experience.html"
+          below for the real, final URL of this page once it's
+          hosted (crawlers need the full address, not a relative
+          path, or the preview silently fails).
+       2. Create assets/images/twistmode-og-image.jpg — a flat
+          still image, 1200x630px, JPG or PNG. It can't be the
+          video or the animated page itself; platforms only ever
+          grab a static image for the preview card. A clean shot
+          of the tool, or a still from the video, works well.
+  ====================================================== -->
+
+  <meta property="og:title" content="TwistMode">
+  <meta property="og:description" content="Perfected behind the chair. Built by a barber, designed for texture.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shoptwistmode.com/twistmode-experience.html">
+  <meta property="og:image" content="assets/images/twistmode-og-image.jpg">
+
+  <link rel="stylesheet" href="twistmode-experience.css">
+</head>
+
+<body>
+
+  <!-- =====================================================
+       PRELOADER — shows first, hides once the video has
+       actually buffered enough to play smoothly
+  ====================================================== -->
+
+  <div class="preloader" id="preloader">
+    <div class="preloader-spinner"></div>
+  </div>
+
+  <!-- =====================================================
+       CUSTOM CURSOR — desktop / trackpad only, JS enables it
+  ====================================================== -->
+
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+
+  <!-- =====================================================
+       1. INTRO — black screen, logo, tagline, enter
+  ====================================================== -->
+
+  <div class="intro" id="intro">
+
+    <img
+      src="assets/images/twistmode-logo.svg"
+      alt="TwistMode"
+      class="intro-logo"
+      id="introLogo"
+    >
+
+    <p class="intro-tag">PERFECTED BEHIND THE CHAIR.</p>
+
+    <button class="intro-enter" id="enter" type="button">
+      ENTER TWISTMODE<span class="arrow">&rarr;</span>
+    </button>
+
+  </div>
+
+  <!-- light that travels ahead of the logo during the zoom -->
+  <div class="bloom" id="bloom"></div>
+
+
+  <!-- =====================================================
+       2. BACKGROUND VIDEO
+  ====================================================== -->
+
+  <div class="bg">
+    <div class="bg-inner" id="bgInner">
+      <!-- starts on the "story" cut, no loop attribute — it plays
+           once, then the script swaps it for the ambient loop clip
+           and turns looping on for that one, permanently -->
+      <video
+        class="bg-video"
+        id="video"
+        muted
+        playsinline
+        preload="auto"
+        poster=""
+      >
+        <source src="assets/videos/twistmode-story.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <div class="bg-grade"></div>
+  <div class="bg-grain"></div>
+
+  <!-- cursor / touch spark trail lives here, above everything -->
+  <canvas class="spark-layer" id="sparks"></canvas>
+
+
+  <!-- =====================================================
+       3. CINEMATIC TYPOGRAPHY
+       Edit the words here. One shows at a time.
+  ====================================================== -->
+
+  <div class="cues" id="cues">
+    <div class="cue"><i></i>TEXTURE.</div>
+    <div class="cue"><i></i>CONTROL.</div>
+    <div class="cue"><i></i>MOVEMENT.</div>
+    <div class="cue"><i></i>BUILT FOR THE SHOP.</div>
+  </div>
+
+
+  <!-- =====================================================
+       4. STAGE + GLASS CARD
+  ====================================================== -->
+
+  <main class="stage" id="stage">
+
+    <div class="card-tilt" id="tilt">
+      <div class="card">
+
+        <div class="card-head">
+
+          <img
+            src="assets/images/twistmode-logo.svg"
+            alt="TwistMode"
+            class="card-logo"
+            id="cardLogo"
+          >
+
+          <p class="card-tag">PERFECTED BEHIND THE CHAIR.</p>
+
+        </div>
+
+        <nav class="card-links">
+
+          <a class="row" href="index.html">
+            <span class="row-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 8h12l-1 12H7L6 8z"/>
+                <path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+              </svg>
+            </span>
+            <span class="row-label">SHOP TWISTMODE</span>
+            <span class="row-leader"></span>
+            <span class="row-arrow">&rarr;</span>
+          </a>
+
+          <a class="row" href="https://www.instagram.com/shoptwistmode" target="_blank" rel="noopener">
+            <span class="row-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="5.5"/>
+                <circle cx="12" cy="12" r="4.2"/>
+                <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>
+              </svg>
+            </span>
+            <span class="row-label">INSTAGRAM</span>
+            <span class="row-leader"></span>
+            <span class="row-arrow">&rarr;</span>
+          </a>
+
+          <a class="row" href="https://www.facebook.com/shoptwistmode" target="_blank" rel="noopener">
+            <span class="row-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13.6 21v-7.75h2.6l.39-3h-3v-1.9c0-.87.24-1.46 1.5-1.46h1.6V4.14c-.28-.04-1.22-.12-2.32-.12-2.3 0-3.87 1.4-3.87 3.97v2.28H7.9v3h2.6V21h3.1z"/>
+              </svg>
+            </span>
+            <span class="row-label">FACEBOOK</span>
+            <span class="row-leader"></span>
+            <span class="row-arrow">&rarr;</span>
+          </a>
+
+          <a class="row" href="https://www.tiktok.com/@shoptwistmode" target="_blank" rel="noopener">
+            <span class="row-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16.6 5.82c-1-.86-1.6-2.11-1.6-3.5h-3.1v13.44a3.1 3.1 0 1 1-2.2-2.97V9.6a6.2 6.2 0 1 0 5.3 6.14V9.9a8.1 8.1 0 0 0 4.7 1.5V8.3a4.85 4.85 0 0 1-3.1-2.48z"/>
+              </svg>
+            </span>
+            <span class="row-label">TIKTOK</span>
+            <span class="row-leader"></span>
+            <span class="row-arrow">&rarr;</span>
+          </a>
+
+          <a class="row" href="https://www.youtube.com/@shoptwistmode" target="_blank" rel="noopener">
+            <span class="row-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="5" width="18" height="14" rx="4"/>
+                <path d="M10.5 9.5l5 2.7-5 2.7v-5.4z" fill="currentColor" stroke="none"/>
+              </svg>
+            </span>
+            <span class="row-label">YOUTUBE</span>
+            <span class="row-leader"></span>
+            <span class="row-arrow">&rarr;</span>
+          </a>
+
+          <a class="row" href="wholesale.html">
+            <span class="row-icon">
+              <svg viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 8l9-4 9 4-9 4-9-4z"/>
+                <path d="M3 8v8l9 4 9-4V8"/>
+                <path d="M12 12v8"/>
+              </svg>
+            </span>
+            <span class="row-label">WHOLESALE</span>
+            <span class="row-leader"></span>
+            <span class="row-arrow">&rarr;</span>
+          </a>
+
+        </nav>
+
+      </div>
+    </div>
+
+  </main>
+
+
+  <!-- =====================================================
+       5. HUD + MARK  (siblings of .stage — keep them here)
+  ====================================================== -->
+
+  <div class="hud">
+    <div class="player">
+
+      <button class="player-btn" id="replay" type="button" aria-label="Replay track">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4v6h6"/>
+          <path d="M20 12a8 8 0 1 1-3-6.3"/>
+        </svg>
+      </button>
+
+      <button class="player-btn player-btn--play" id="playPause" type="button" aria-label="Pause">
+        <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor">
+          <rect x="6" y="5" width="4" height="14" rx="1"/>
+          <rect x="14" y="5" width="4" height="14" rx="1"/>
+        </svg>
+        <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </button>
+
+      <button class="player-btn" id="skip" type="button" aria-label="Next track">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6 5l9 7-9 7V5z"/>
+          <rect x="16" y="5" width="2.4" height="14" rx="1"/>
+        </svg>
+      </button>
+
+      <input
+        class="player-volume"
+        id="volume"
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        aria-label="Volume"
+      >
+
+    </div>
+  </div>
+
+  <a class="mark" href="index.html">SHOPTWISTMODE.COM</a>
+
+
+  <!-- =====================================================
+       6. AUDIO
+       Swap the file below whenever you re-cut the track.
+  ====================================================== -->
+
+  <!-- no "loop" attribute here on purpose — the playlist script
+       below manages advancing to the next track itself -->
+  <audio id="track" preload="auto">
+    <source src="assets/audio/twistmode-track.webm" type="audio/webm">
+  </audio>
+
+
+<script>
+/* =====================================================
+   TWISTMODE EXPERIENCE — SCRIPT
+   Everything is grouped into small named blocks so you
+   can edit one part without touching the rest.
+====================================================== */
+
+(function () {
+  "use strict";
+
+  /* ---------------------------------------------------
+     SETTINGS — the knobs you are most likely to turn
+  --------------------------------------------------- */
+
+  var SETTINGS = {
+    musicVolume:   0.6,    // 0 to 1
+    musicFadeIn:   2200,   // ms it takes to reach full volume
+    zoomDuration:  1600,   // must match the CSS zoom transition
+    revealAt:      1050,   // ms into the zoom when the main page appears
+    cueHold:       3200,   // ms each cinematic line stays on screen
+    cueGap:        900,    // ms of black between lines
+    cueFirstDelay: 2200,   // ms after reveal before the first line
+    tiltMax:       13,     // degrees of card rotation
+    shiftMax:      28,     // px the card drifts toward the cursor
+    bgMax:         24,     // px the video drifts the opposite way
+    spring:        0.09,   // 0.02 = heavy and slow, 0.2 = snappy
+    bassSmoothing: 0.3,    // 0 to 1, higher reacts faster / jitters more
+    sparkThrottle: 16      // min ms between spawned sparks while moving —
+                            // lower = a more continuous streak
+  };
+
+  /* ---------------------------------------------------
+     MUSIC PLAYLIST
+     -----------------------------------------------------
+     HOW TO ADD MORE SONGS (step by step):
+       1. Get the song as an audio file — .mp3 is the easiest
+          and works everywhere; .webm/.m4a work too.
+       2. Rename the file something simple, no spaces —
+          e.g. "twistmode-track-2.mp3". Spaces in filenames
+          cause problems on the web, dashes/underscores are fine.
+       3. Move that file into the assets/audio/ folder in
+          your project (same folder the current song is in).
+       4. Add ONE new line below, inside the TRACKS list,
+          with that exact filename. Copy the format of the
+          line already there. Don't forget the comma above
+          the new line if it's not the last one.
+       That's it — SKIP, REPLAY, the song ending, all of it
+       automatically knows about every song in this list.
+       They play in a shuffled order, never repeating back
+       to back. One song is fine too, nothing else changes.
+
+     WANT A SONG TO START PARTWAY IN (e.g. right at a drop)?
+       Instead of a plain filename, write it as:
+         { src: "assets/audio/song.mp3", startAt: 23 }
+       "startAt" is in seconds — 23 means "skip the first
+       23 seconds and start right there," every single time
+       that song plays. Leave "startAt" off (or use a plain
+       filename like the others) and it just starts at 0.
+  --------------------------------------------------- */
+
+  var TRACKS = [
+    { src: "assets/audio/twistmode-track.webm", startAt: 21 },
+    { src: "assets/audio/twistmode-track-2.webm", startAt: 20 }
+
+    // a plain filename always starts at 0:
+    // , "assets/audio/twistmode-track-2.mp3"
+
+    // or start partway in — this one jumps straight to 0:23,
+    // e.g. for a song where the beat drops right there:
+    // , { src: "assets/audio/twistmode-track-3.mp3", startAt: 23 }
+  ];
+
+  // reads either a plain "path.mp3" or a {src, startAt} entry —
+  // everything below calls these two instead of touching
+  // TRACKS directly, so either format just works
+  function trackSrc(t)   { return typeof t === "string" ? t : t.src; }
+  function trackStart(t) { return typeof t === "string" ? 0 : (t.startAt || 0); }
+
+  /* ---------------------------------------------------
+     BACKGROUND VIDEO
+     -----------------------------------------------------
+     Two clips, two jobs:
+
+     STORY_VIDEO plays once, right from page load — this is
+     the "action" cut (tool reveal -> styling -> after reveal).
+
+     LOOP_VIDEO takes over the instant STORY_VIDEO finishes,
+     and loops forever from then on as the calm ambient
+     background — something steady behind the card for anyone
+     who lingers, instead of the same fast cut replaying.
+
+     The switch between them fades through black so it's never
+     a hard cut.
+
+     TO SWAP EITHER ONE OUT LATER: just point the variable at
+     a new file in assets/videos/ — nothing else needs to change.
+     (If you ever want several story cuts to rotate through
+     instead of just one, say the word and I'll wire that back in.)
+  --------------------------------------------------- */
+
+  var STORY_VIDEO = "assets/videos/twistmode-story.mp4";
+  var LOOP_VIDEO   = "assets/videos/twistmode-loop.mp4";
+
+  /* ---------------------------------------------------
+     ELEMENTS
+  --------------------------------------------------- */
+
+  var intro       = document.getElementById("intro");
+  var introLogo   = document.getElementById("introLogo");
+  var enterBtn    = document.getElementById("enter");
+  var bloom       = document.getElementById("bloom");
+  var stage       = document.getElementById("stage");
+  var tilt        = document.getElementById("tilt");
+  var cardLogo    = document.getElementById("cardLogo");
+  var bgInner     = document.getElementById("bgInner");
+  var video       = document.getElementById("video");
+  var track       = document.getElementById("track");
+  var replayBtn   = document.getElementById("replay");
+  var playPauseBtn = document.getElementById("playPause");
+  var skipBtn     = document.getElementById("skip");
+  var sparkCanvas = document.getElementById("sparks");
+  var sctx        = sparkCanvas.getContext("2d");
+  var cardEl      = document.querySelector(".card");
+  var cues        = Array.prototype.slice.call(
+                      document.querySelectorAll(".cue"));
+
+  var preloader   = document.getElementById("preloader");
+  var cursorDot   = document.getElementById("cursorDot");
+  var cursorRing  = document.getElementById("cursorRing");
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  var entered = false;
+
+
+  /* ---------------------------------------------------
+     ONE-SHOT SOUND EFFECTS
+     To add clipper hits, whooshes or bass drops later,
+     drop files in assets/audio/ and list them below —
+     then call Sound.play("whoosh"). No other part of the
+     page needs to change.
+  --------------------------------------------------- */
+
+  var Sound = {
+
+    effects: {
+      // whoosh:  "assets/audio/whoosh.webm",
+      // clipper: "assets/audio/clipper.webm",
+      // bass:    "assets/audio/bass-hit.webm",
+      // tick:    "assets/audio/tick.webm"      // plays on nav-row hover
+    },
+
+    _pool: {},
+
+    preload: function () {
+      for (var name in this.effects) {
+        var a = new Audio(this.effects[name]);
+        a.preload = "auto";
+        this._pool[name] = a;
+      }
+    },
+
+    // plays a one-shot effect; safe to call even if the file is missing
+    play: function (name, volume) {
+      var src = this.effects[name];
+      if (!src) return;
+
+      var a = (this._pool[name] || new Audio(src)).cloneNode();
+      a.volume = typeof volume === "number" ? volume : 0.7;
+      a.play().catch(function () {});
+    },
+
+    fadeTo: function (target, ms) {
+      var start = track.volume;
+      var t0 = performance.now();
+
+      function step(now) {
+        var k = Math.min((now - t0) / ms, 1);
+        track.volume = start + (target - start) * k;
+        if (k < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+  };
+
+  Sound.preload();
+
+
+  /* ---------------------------------------------------
+     PLAYLIST QUEUE
+     Shuffles TRACKS, plays through the shuffled order,
+     then reshuffles once every track has had a turn.
+  --------------------------------------------------- */
+
+  var queue = [];
+  var queuePos = 0;
+  var currentStartAt = 0;
+
+  function shuffled(list) {
+    var a = list.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function buildQueue() {
+    queue = shuffled(TRACKS.map(function (_, i) { return i; }));
+    queuePos = 0;
+  }
+
+  function loadCurrentTrack() {
+    if (!TRACKS.length) return;
+    var t = TRACKS[queue[queuePos]];
+    var src = trackSrc(t);
+    currentStartAt = trackStart(t);
+    if (track.getAttribute("src") !== src) track.src = src;
+  }
+
+  // jumps to this track's configured start point (0 unless it
+  // has a "startAt" set) — safe to call whether or not the audio
+  // has finished loading yet
+  function seekToTrackStart() {
+    if (!currentStartAt) return;
+    if (track.readyState >= 1) {
+      track.currentTime = currentStartAt;
+    } else {
+      track.addEventListener("loadedmetadata", function once() {
+        track.currentTime = currentStartAt;
+        track.removeEventListener("loadedmetadata", once);
+      }, { once: true });
+    }
+  }
+
+  buildQueue();
+  loadCurrentTrack();
+
+
+  /* ---------------------------------------------------
+     STORY -> AMBIENT LOOP HANDOFF
+     STORY_VIDEO plays once (it starts loaded in the HTML
+     with no "loop" attribute, so it naturally fires an
+     "ended" event). The instant that happens, this fades
+     to black, swaps the source to LOOP_VIDEO, turns native
+     looping on, and fades back in — permanently, from then on.
+  --------------------------------------------------- */
+
+  function settleIntoAmbientLoop() {
+    video.style.transition = "opacity 0.7s ease";
+    video.style.opacity = 0;
+
+    setTimeout(function () {
+      var source = video.querySelector("source");
+      source.src = LOOP_VIDEO;
+      video.loop = true;
+      video.load();
+      video.play().catch(function () {});
+      video.style.opacity = 1;
+    }, 720);
+  }
+
+  video.addEventListener("ended", settleIntoAmbientLoop, { once: true });
+
+
+  /* ---------------------------------------------------
+     PLAYER — play / pause / replay / skip, mp3-style
+  --------------------------------------------------- */
+
+  var Player = {
+
+    // called directly from the ENTER click — kept as the very
+    // first thing that happens so the browser counts it as a
+    // direct result of the user's gesture and allows sound
+    play: function () {
+      if (!TRACKS.length) return;
+      seekToTrackStart();          // jumps to startAt, e.g. straight to a drop
+      var p = track.play();
+      if (p && p.catch) p.catch(function () {});
+      Sound.fadeTo(SETTINGS.musicVolume, SETTINGS.musicFadeIn);
+    },
+
+    pause: function () {
+      track.pause();
+    },
+
+    toggle: function () {
+      if (track.paused) this.play(); else this.pause();
+    },
+
+    // restarts the CURRENT song from ITS configured start point
+    // (0, or wherever startAt says) — not necessarily 0:00 of the
+    // file, so it stays consistent with how the song is meant to hit
+    replay: function () {
+      track.currentTime = currentStartAt;
+      if (!track.paused) track.play().catch(function () {});
+    },
+
+    next: function () {
+      if (!TRACKS.length) return;
+      queuePos++;
+      if (queuePos >= queue.length) buildQueue();
+      loadCurrentTrack();
+      seekToTrackStart();
+      track.play().catch(function () {});
+      Sound.fadeTo(SETTINGS.musicVolume, 500);
+    }
+  };
+
+  // keep the button icon in sync with whatever the audio element
+  // is actually doing (covers the skip/replay/autoplay-block cases too)
+  track.addEventListener("play",  function () { playPauseBtn.classList.remove("is-paused"); });
+  track.addEventListener("pause", function () { playPauseBtn.classList.add("is-paused"); });
+  track.addEventListener("ended", function () { Player.next(); });
+
+  replayBtn.addEventListener("click", function () { Player.replay(); });
+  playPauseBtn.addEventListener("click", function () { Player.toggle(); });
+  skipBtn.addEventListener("click", function () { Player.next(); });
+
+
+  /* ---------------------------------------------------
+     VOLUME SLIDER
+     Starts at SETTINGS.musicVolume. Dragging it updates the
+     track immediately AND becomes the new target that fades
+     (skip/next, etc.) fade back up to, so it doesn't jump
+     back to the old level the next time a track changes.
+  --------------------------------------------------- */
+
+  var volumeSlider = document.getElementById("volume");
+  volumeSlider.value = SETTINGS.musicVolume;
+
+  volumeSlider.addEventListener("input", function () {
+    var v = parseFloat(volumeSlider.value);
+    SETTINGS.musicVolume = v;
+    track.volume = v;
+  });
+
+
+  /* ---------------------------------------------------
+     BASS REACTIVITY
+     A Web Audio analyser reads the low end off the track
+     and drives the --bass CSS variable on the card, which
+     the stylesheet turns into a glow + a tiny scale pulse.
+     An auto-gain step keeps it responsive whether the track
+     is mastered loud or quiet. If the browser blocks the
+     analyser for any reason the card just stays still —
+     nothing else on the page depends on this.
+
+     NOTE: if you're previewing this by double-clicking the
+     HTML file (a file:// address), Chrome sometimes treats
+     local audio/video as cross-origin and silently mutes
+     anything routed through the Web Audio API — sound *and*
+     the bass reaction both go quiet. Serve the folder from
+     a local server (e.g. VS Code's "Live Server", or
+     `python3 -m http.server`) or your real site and it
+     resolves itself.
+  --------------------------------------------------- */
+
+  var audioCtx, analyser, freqData;
+  var bassLevel = 0;
+  var bassPeak = 0.05; // auto-gain ceiling, adapts to the track
+
+  function setupAnalyser() {
+    if (audioCtx) return;
+    try {
+      var Ctx = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new Ctx();
+
+      var source = audioCtx.createMediaElementSource(track);
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 512;
+      analyser.smoothingTimeConstant = 0.55;
+
+      source.connect(analyser);
+      analyser.connect(audioCtx.destination);
+
+      freqData = new Uint8Array(analyser.frequencyBinCount);
+    } catch (e) {
+      analyser = null; // visuals just stay calm
+    }
+  }
+
+  function bassLoop() {
+    if (analyser) {
+      analyser.getByteFrequencyData(freqData);
+
+      var bins = 4;                 // sub/bass region at this fftSize
+      var sum = 0;
+      for (var i = 0; i < bins; i++) sum += freqData[i];
+      var raw = (sum / bins) / 255;
+
+      // auto-gain: track the loudest recent bass and normalize to it,
+      // so quiet tracks still visibly pulse the card
+      bassPeak = Math.max(raw, bassPeak * 0.999);
+      var normalized = bassPeak > 0.02 ? raw / bassPeak : 0;
+
+      bassLevel += (normalized - bassLevel) * SETTINGS.bassSmoothing;
+    } else {
+      bassLevel *= 0.94;
+    }
+
+    if (cardEl) cardEl.style.setProperty("--bass", bassLevel.toFixed(3));
+
+    requestAnimationFrame(bassLoop);
+  }
+
+
+  /* ---------------------------------------------------
+     CURSOR / TOUCH SPARKS
+     A canvas trail that drifts downward like falling
+     embers wherever you move the pointer or a finger.
+     Size scales up slightly with the bass.
+  --------------------------------------------------- */
+
+  var sparks = [];
+  var lastSparkAt = 0;
+
+  function fitCanvas() {
+    var dpr = window.devicePixelRatio || 1;
+    sparkCanvas.width  = window.innerWidth * dpr;
+    sparkCanvas.height = window.innerHeight * dpr;
+    sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  fitCanvas();
+  window.addEventListener("resize", fitCanvas);
+
+  function spawnSparks(x, y) {
+    var boost = 1 + bassLevel * 1.6;
+    var count = finePointer ? 2 : 3;
+
+    for (var i = 0; i < count; i++) {
+      var spread = (Math.random() - 0.5) * 1.6;   // side-to-side drift
+      var fall   = 0.6 + Math.random() * 1.1;      // downward speed
+
+      sparks.push({
+        x: x, y: y,
+        vx: spread * boost,
+        vy: fall * boost,
+        life: 1,
+        size: (0.9 + Math.random() * 1.1) * boost,   // smaller...
+        green: Math.random() > 0.35
+      });
+    }
+
+    if (sparks.length > 320) sparks.splice(0, sparks.length - 320);
+  }
+
+  function maybeSpark(x, y) {
+    var now = performance.now();
+    if (now - lastSparkAt < SETTINGS.sparkThrottle) return;
+    lastSparkAt = now;
+    spawnSparks(x, y);
+  }
+
+  function drawSparks() {
+    sctx.clearRect(0, 0, sparkCanvas.width, sparkCanvas.height);
+
+    for (var i = sparks.length - 1; i >= 0; i--) {
+      var s = sparks[i];
+      s.x += s.vx;
+      s.y += s.vy;
+      s.vy += 0.022;             // gentle gravity, keeps accelerating downward
+      s.life -= 0.011;           // ...and longer-lived, so the trail streaks further
+
+      if (s.life <= 0) { sparks.splice(i, 1); continue; }
+
+      sctx.globalAlpha = Math.max(s.life, 0);
+      sctx.fillStyle = s.green ? "#5fe07f" : "#ffffff";
+      sctx.shadowBlur = 10;
+      sctx.shadowColor = sctx.fillStyle;
+
+      sctx.beginPath();
+      sctx.arc(s.x, s.y, Math.max(s.size * s.life, 0.3), 0, Math.PI * 2);
+      sctx.fill();
+    }
+
+    sctx.globalAlpha = 1;
+    requestAnimationFrame(drawSparks);
+  }
+
+  if (!reduced) requestAnimationFrame(drawSparks);
+
+
+  /* ---------------------------------------------------
+     PRELOADER -> INTRO -> ZOOM -> REVEAL
+     The spinner shows immediately. Once the video has
+     buffered enough to actually play, it fades out and
+     the existing black-screen/logo intro fades in.
+  --------------------------------------------------- */
+
+  function showIntro() {
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { intro.classList.add("is-ready"); });
+    });
+  }
+
+  function hidePreloader() {
+    clearTimeout(preloadFallback);
+    preloader.classList.add("is-gone");
+    setTimeout(function () { preloader.remove(); }, 550);
+    showIntro();
+  }
+
+  // safety net — if a video is missing/slow, don't leave the
+  // spinner stuck forever, just move on after a few seconds
+  var preloadFallback = setTimeout(hidePreloader, 6000);
+
+  video.addEventListener("loadeddata", hidePreloader, { once: true });
+
+  // preload="auto" on the <video> already fetches the file in the
+  // background — no need to actually call play() yet. It starts fresh,
+  // from frame 0, at the exact moment the stage becomes visible (see
+  // below) — not at the click, and not before — so the full opening
+  // shot is always what you see first, every time.
+
+  function enterExperience() {
+    if (entered) return;
+    entered = true;
+
+    // start the track the instant the button is clicked, before
+    // anything else — this is what makes the browser treat it as
+    // a direct result of the click and allow the sound through
+    Player.play();
+
+    // now bring the analyser online for the bass-reactive glow
+    setupAnalyser();
+    if (audioCtx && audioCtx.state === "suspended") audioCtx.resume();
+    bassLoop();
+
+    Sound.play("whoosh");            // silent until you add the file
+
+    intro.classList.add("is-zooming");
+    if (!reduced) bloom.classList.add("is-firing");
+
+    // the main experience pops out of the logo
+    setTimeout(function () {
+      stage.classList.add("is-live");
+      startCues();
+    }, reduced ? 300 : SETTINGS.revealAt);
+
+    // clear the intro away once the logo has passed the camera
+    setTimeout(function () {
+      intro.classList.add("is-gone");
+
+      // the video starts HERE, not at revealAt above — the intro is
+      // still fully opaque (covering everything) until this exact
+      // moment, when it begins its own fade-out. That fade-out is the
+      // first instant any pixel of the video can actually be seen, so
+      // starting it here means frame 0 lines up with first visibility,
+      // instead of the video having already played silently underneath
+      // while it was still hidden.
+      video.currentTime = 0;
+      video.play().catch(function () {});
+
+      setTimeout(function () { intro.remove(); }, 600);
+    }, reduced ? 700 : SETTINGS.zoomDuration);
+  }
+
+  enterBtn.addEventListener("click", enterExperience);
+
+
+  /* ---------------------------------------------------
+     CINEMATIC TYPOGRAPHY
+     Shows one line, hides it, moves to the next, loops.
+  --------------------------------------------------- */
+
+  var cueIndex = 0;
+  var cueTimer = null;
+
+  function showNextCue() {
+    cues.forEach(function (c) { c.classList.remove("is-on"); });
+
+    var cue = cues[cueIndex % cues.length];
+    cueIndex++;
+
+    cue.classList.add("is-on");
+
+    cueTimer = setTimeout(function () {
+      cue.classList.remove("is-on");
+      cueTimer = setTimeout(showNextCue, SETTINGS.cueGap);
+    }, SETTINGS.cueHold);
+  }
+
+  function startCues() {
+    if (!cues.length) return;
+    cueTimer = setTimeout(showNextCue, SETTINGS.cueFirstDelay);
+  }
+
+
+  /* ---------------------------------------------------
+     POINTER PARALLAX (desktop)
+     Target values are set by the pointer; a spring loop
+     eases the card toward them every frame.
+  --------------------------------------------------- */
+
+  var target  = { x: 0, y: 0 };   // -1 .. 1
+  var current = { x: 0, y: 0 };
+  var running = false;
+
+  function frame() {
+    current.x += (target.x - current.x) * SETTINGS.spring;
+    current.y += (target.y - current.y) * SETTINGS.spring;
+
+    var rx = (-current.y * SETTINGS.tiltMax).toFixed(3) + "deg";
+    var ry = ( current.x * SETTINGS.tiltMax).toFixed(3) + "deg";
+
+    tilt.style.setProperty("--rx", rx);
+    tilt.style.setProperty("--ry", ry);
+    tilt.style.setProperty("--tx", (current.x * SETTINGS.shiftMax).toFixed(2) + "px");
+    tilt.style.setProperty("--ty", (current.y * SETTINGS.shiftMax).toFixed(2) + "px");
+
+    // logo drifts a little further than the card it sits on
+    cardLogo.style.transform =
+      "translate3d(" + (current.x * 16).toFixed(2) + "px," +
+                       (current.y * 11).toFixed(2) + "px, 60px)";
+
+    // video moves the other way
+    bgInner.style.setProperty("--bg-x", (-current.x * SETTINGS.bgMax).toFixed(2) + "px");
+    bgInner.style.setProperty("--bg-y", (-current.y * SETTINGS.bgMax).toFixed(2) + "px");
+
+    if (Math.abs(target.x - current.x) > 0.0005 ||
+        Math.abs(target.y - current.y) > 0.0005) {
+      requestAnimationFrame(frame);
+    } else {
+      running = false;
+    }
+  }
+
+  function kick() {
+    if (!running) { running = true; requestAnimationFrame(frame); }
+  }
+
+  if (finePointer && !reduced) {
+
+    window.addEventListener("pointermove", function (e) {
+      target.x = (e.clientX / window.innerWidth  - 0.5) * 2;
+      target.y = (e.clientY / window.innerHeight - 0.5) * 2;
+      kick();
+      maybeSpark(e.clientX, e.clientY);
+    });
+
+    // settle back to centre when the cursor leaves the window
+    window.addEventListener("pointerleave", function () {
+      target.x = 0; target.y = 0; kick();
+    });
+
+  } else if (!reduced) {
+
+    /* -------- TOUCH / TILT FALLBACK (mobile) --------
+       Smaller movement, driven by dragging a finger
+       across the screen. No 3D spinning.               */
+
+    SETTINGS.tiltMax  = 5;
+    SETTINGS.shiftMax = 12;
+    SETTINGS.bgMax    = 12;
+
+    window.addEventListener("touchmove", function (e) {
+      var t = e.touches[0];
+      if (!t) return;
+      target.x = (t.clientX / window.innerWidth  - 0.5) * 1.4;
+      target.y = (t.clientY / window.innerHeight - 0.5) * 1.4;
+      kick();
+      maybeSpark(t.clientX, t.clientY);
+    }, { passive: true });
+
+    window.addEventListener("touchend", function () {
+      target.x = 0; target.y = 0; kick();
+    }, { passive: true });
+  }
+
+
+  /* ---------------------------------------------------
+     CUSTOM CURSOR
+     A dot that tracks the pointer exactly, and a ring
+     that eases in behind it and grows over anything
+     clickable. Off entirely on touch devices.
+  --------------------------------------------------- */
+
+  if (finePointer && !reduced) {
+
+    document.body.classList.add("has-custom-cursor");
+
+    var ringPos    = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    var ringTarget = { x: ringPos.x, y: ringPos.y };
+
+    window.addEventListener("pointermove", function (e) {
+      cursorDot.style.transform = "translate3d(" + e.clientX + "px," + e.clientY + "px,0)";
+      ringTarget.x = e.clientX;
+      ringTarget.y = e.clientY;
+    });
+
+    function cursorFrame() {
+      ringPos.x += (ringTarget.x - ringPos.x) * 0.18;
+      ringPos.y += (ringTarget.y - ringPos.y) * 0.18;
+      cursorRing.style.transform = "translate3d(" + ringPos.x + "px," + ringPos.y + "px,0)";
+      requestAnimationFrame(cursorFrame);
+    }
+    requestAnimationFrame(cursorFrame);
+
+    // grow + tint the ring over anything interactive —
+    // add more selectors here if you add more clickable elements
+    var hoverTargets = "a, button, .row, .player-btn, .intro-enter";
+
+    document.addEventListener("pointerover", function (e) {
+      if (e.target.closest(hoverTargets)) cursorRing.classList.add("is-active");
+    });
+
+    document.addEventListener("pointerout", function (e) {
+      if (e.target.closest(hoverTargets)) cursorRing.classList.remove("is-active");
+    });
+  }
+
+
+  /* ---------------------------------------------------
+     ROW HOVER SOUND
+     A quiet "tick" plays on each nav row when the cursor
+     lands on it — using the same Sound.play() system as
+     the whoosh/clipper effects. Silent right now since no
+     file is set; add one line to Sound.effects up above
+     (e.g. tick: "assets/audio/tick.webm") and it turns on
+     automatically, nothing here needs to change.
+  --------------------------------------------------- */
+
+  document.querySelectorAll(".row").forEach(function (row) {
+    row.addEventListener("pointerenter", function () {
+      Sound.play("tick", 0.35);
+    });
+  });
+
+
+  /* ---------------------------------------------------
+     HOUSEKEEPING
+  --------------------------------------------------- */
+
+  // don't burn battery or play audio to an empty tab
+  var wasPlaying = false;
+
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+      video.pause();
+      wasPlaying = entered && !track.paused;
+      if (entered) track.pause();
+    } else {
+      video.play().catch(function () {});
+      if (entered && wasPlaying) track.play().catch(function () {});
+    }
+  });
+
+  // keyboard: Enter/Space on the intro button already works,
+  // this just lets any key start the experience
+  document.addEventListener("keydown", function (e) {
+    if (!entered && (e.key === "Enter" || e.key === " ")) {
+      e.preventDefault();
+      enterExperience();
+    }
+  });
+
+})();
+</script>
+
+</body>
+</html>
