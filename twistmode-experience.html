@@ -88,9 +88,10 @@
 
   <div class="bg">
     <div class="bg-inner" id="bgInner">
-      <!-- starts on the "story" cut, no loop attribute — it plays
-           once, then the script swaps it for the ambient loop clip
-           and turns looping on for that one, permanently -->
+      <!-- no "loop" attribute — the script decides everything about
+           when this repeats: plays this "story" clip once, then
+           cycles the ambient loop clip a couple times, then back
+           to this one, forever. See LOOP_REPEATS below. -->
       <video
         class="bg-video"
         id="video"
@@ -302,7 +303,7 @@
   --------------------------------------------------- */
 
   var SETTINGS = {
-    musicVolume:   0.6,    // 0 to 1
+    musicVolume:   1,      // 0 to 1 — this is the default level it fades up to
     musicFadeIn:   2200,   // ms it takes to reach full volume
     zoomDuration:  1600,   // must match the CSS zoom transition
     revealAt:      1050,   // ms into the zoom when the main page appears
@@ -348,8 +349,7 @@
   --------------------------------------------------- */
 
   var TRACKS = [
-    { src: "assets/audio/twistmode-track.webm", startAt: 21 },
-    { src: "assets/audio/twistmode-track-2.webm", startAt: 20 }
+    "assets/audio/twistmode-track.webm"
 
     // a plain filename always starts at 0:
     // , "assets/audio/twistmode-track-2.mp3"
@@ -368,18 +368,18 @@
   /* ---------------------------------------------------
      BACKGROUND VIDEO
      -----------------------------------------------------
-     Two clips, two jobs:
+     Two clips, cycling forever:
 
-     STORY_VIDEO plays once, right from page load — this is
-     the "action" cut (tool reveal -> styling -> after reveal).
+     STORY_VIDEO plays once — this is the "action" cut
+     (tool reveal -> styling -> after reveal).
 
-     LOOP_VIDEO takes over the instant STORY_VIDEO finishes,
-     and loops forever from then on as the calm ambient
-     background — something steady behind the card for anyone
-     who lingers, instead of the same fast cut replaying.
+     LOOP_VIDEO then plays LOOP_REPEATS times in a row (see
+     that setting further down, near onVideoEnded) — the
+     calm ambient shot, something steady for anyone who
+     lingers, instead of the fast cut just replaying forever.
 
-     The switch between them fades through black so it's never
-     a hard cut.
+     Then it crossfades back to STORY_VIDEO and the whole
+     thing repeats. Every switch fades through black.
 
      TO SWAP EITHER ONE OUT LATER: just point the variable at
      a new file in assets/videos/ — nothing else needs to change.
@@ -528,29 +528,56 @@
 
 
   /* ---------------------------------------------------
-     STORY -> AMBIENT LOOP HANDOFF
-     STORY_VIDEO plays once (it starts loaded in the HTML
-     with no "loop" attribute, so it naturally fires an
-     "ended" event). The instant that happens, this fades
-     to black, swaps the source to LOOP_VIDEO, turns native
-     looping on, and fades back in — permanently, from then on.
+     STORY <-> AMBIENT LOOP CYCLE
+     Plays STORY_VIDEO once, then LOOP_VIDEO LOOP_REPEATS
+     times in a row, then crossfades back to STORY_VIDEO and
+     repeats — forever, in that pattern. Change LOOP_REPEATS
+     below to play the loop more or fewer times per cycle.
   --------------------------------------------------- */
 
-  function settleIntoAmbientLoop() {
+  var LOOP_REPEATS = 2;    // how many times the ambient loop plays
+                            // before it crossfades back to the story cut
+
+  var videoStage = "story"; // "story" or "loop" — which one is currently up
+  var loopPlaysSoFar = 0;
+
+  function crossfadeVideoTo(src) {
     video.style.transition = "opacity 0.7s ease";
     video.style.opacity = 0;
 
     setTimeout(function () {
       var source = video.querySelector("source");
-      source.src = LOOP_VIDEO;
-      video.loop = true;
+      source.src = src;
       video.load();
       video.play().catch(function () {});
       video.style.opacity = 1;
     }, 720);
   }
 
-  video.addEventListener("ended", settleIntoAmbientLoop, { once: true });
+  function onVideoEnded() {
+    if (videoStage === "story") {
+      videoStage = "loop";
+      loopPlaysSoFar = 0;
+      crossfadeVideoTo(LOOP_VIDEO);
+      return;
+    }
+
+    // videoStage === "loop"
+    loopPlaysSoFar++;
+    if (loopPlaysSoFar < LOOP_REPEATS) {
+      // play it again, no crossfade needed — it's a seamless boomerang loop
+      video.currentTime = 0;
+      video.play().catch(function () {});
+    } else {
+      videoStage = "story";
+      crossfadeVideoTo(STORY_VIDEO);
+    }
+  }
+
+  // no "loop" attribute is ever set on the element — this function is
+  // what decides when anything repeats, so it needs "ended" to keep
+  // firing every time, not just once
+  video.addEventListener("ended", onVideoEnded);
 
 
   /* ---------------------------------------------------
@@ -819,6 +846,10 @@
 
     Sound.play("whoosh");            // silent until you add the file
 
+    // ask for the phone's motion sensor right here, inside this
+    // click — required for iOS to even show the permission prompt
+    if (!finePointer) tryEnableGyroTilt();
+
     intro.classList.add("is-zooming");
     if (!reduced) bloom.classList.add("is-firing");
 
@@ -920,6 +951,46 @@
     if (!running) { running = true; requestAnimationFrame(frame); }
   }
 
+  /* -------- GYRO TILT SETUP (mobile) --------
+     Declared out here (not inside the touch branch below) so
+     enterExperience() can call tryEnableGyroTilt() directly —
+     it has to run from inside the ENTER click itself, or iOS
+     won't show the permission prompt at all. */
+
+  var gyroActive = false;
+  var gyroBase = null; // calibrated to wherever the phone is held when it starts
+
+  function handleOrientation(e) {
+    var gamma = e.gamma || 0; // left/right tilt
+    var beta  = e.beta  || 0; // front/back tilt
+
+    if (!gyroBase) gyroBase = { gamma: gamma, beta: beta };
+
+    var dx = (gamma - gyroBase.gamma) / 24;
+    var dy = (beta  - gyroBase.beta)  / 24;
+
+    target.x = Math.max(-1, Math.min(1, dx));
+    target.y = Math.max(-1, Math.min(1, dy));
+    gyroActive = true;
+    kick();
+  }
+
+  function tryEnableGyroTilt() {
+    var DOE = window.DeviceOrientationEvent;
+    if (!DOE) return; // not supported on this device at all
+
+    if (typeof DOE.requestPermission === "function") {
+      DOE.requestPermission().then(function (state) {
+        if (state === "granted") {
+          window.addEventListener("deviceorientation", handleOrientation);
+        }
+      }).catch(function () {});
+    } else {
+      // Android and older iOS — no explicit permission step needed
+      window.addEventListener("deviceorientation", handleOrientation);
+    }
+  }
+
   if (finePointer && !reduced) {
 
     window.addEventListener("pointermove", function (e) {
@@ -936,25 +1007,30 @@
 
   } else if (!reduced) {
 
-    /* -------- TOUCH / TILT FALLBACK (mobile) --------
-       Smaller movement, driven by dragging a finger
-       across the screen. No 3D spinning.               */
+    /* -------- TOUCH-DRAG FALLBACK (mobile) --------
+       If tryEnableGyroTilt() (called from ENTER) gets the phone's
+       motion sensor active, gyroActive is true and this steps
+       aside — tilting the actual phone drives the card instead.
+       Otherwise dragging a finger across the screen does the job. */
 
-    SETTINGS.tiltMax  = 5;
+    SETTINGS.tiltMax  = 6;
     SETTINGS.shiftMax = 12;
-    SETTINGS.bgMax    = 12;
+    SETTINGS.bgMax     = 12;
 
     window.addEventListener("touchmove", function (e) {
       var t = e.touches[0];
       if (!t) return;
-      target.x = (t.clientX / window.innerWidth  - 0.5) * 1.4;
-      target.y = (t.clientY / window.innerHeight - 0.5) * 1.4;
-      kick();
+
+      if (!gyroActive) {
+        target.x = (t.clientX / window.innerWidth  - 0.5) * 1.4;
+        target.y = (t.clientY / window.innerHeight - 0.5) * 1.4;
+        kick();
+      }
       maybeSpark(t.clientX, t.clientY);
     }, { passive: true });
 
     window.addEventListener("touchend", function () {
-      target.x = 0; target.y = 0; kick();
+      if (!gyroActive) { target.x = 0; target.y = 0; kick(); }
     }, { passive: true });
   }
 
@@ -963,33 +1039,40 @@
      CUSTOM CURSOR
      A dot that tracks the pointer exactly, and a ring
      that eases in behind it and grows over anything
-     clickable. Off entirely on touch devices.
+     clickable. On touch, the same dot + trailing ring
+     appear right at your finger while you're touching the
+     screen, and fade out the moment you lift it.
   --------------------------------------------------- */
+
+  var ringPos    = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  var ringTarget = { x: ringPos.x, y: ringPos.y };
+
+  function cursorFrame() {
+    ringPos.x += (ringTarget.x - ringPos.x) * 0.18;
+    ringPos.y += (ringTarget.y - ringPos.y) * 0.18;
+    cursorRing.style.transform = "translate3d(" + ringPos.x + "px," + ringPos.y + "px,0)";
+    requestAnimationFrame(cursorFrame);
+  }
+  requestAnimationFrame(cursorFrame);
+
+  // grow + tint the ring over anything interactive —
+  // add more selectors here if you add more clickable elements
+  var hoverTargets = "a, button, .row, .player-btn, .intro-enter";
+
+  function placeCursorAt(x, y, snapRing) {
+    cursorDot.style.transform = "translate3d(" + x + "px," + y + "px,0)";
+    ringTarget.x = x;
+    ringTarget.y = y;
+    if (snapRing) { ringPos.x = x; ringPos.y = y; } // no travel-in on first touch
+  }
 
   if (finePointer && !reduced) {
 
     document.body.classList.add("has-custom-cursor");
 
-    var ringPos    = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    var ringTarget = { x: ringPos.x, y: ringPos.y };
-
     window.addEventListener("pointermove", function (e) {
-      cursorDot.style.transform = "translate3d(" + e.clientX + "px," + e.clientY + "px,0)";
-      ringTarget.x = e.clientX;
-      ringTarget.y = e.clientY;
+      placeCursorAt(e.clientX, e.clientY, false);
     });
-
-    function cursorFrame() {
-      ringPos.x += (ringTarget.x - ringPos.x) * 0.18;
-      ringPos.y += (ringTarget.y - ringPos.y) * 0.18;
-      cursorRing.style.transform = "translate3d(" + ringPos.x + "px," + ringPos.y + "px,0)";
-      requestAnimationFrame(cursorFrame);
-    }
-    requestAnimationFrame(cursorFrame);
-
-    // grow + tint the ring over anything interactive —
-    // add more selectors here if you add more clickable elements
-    var hoverTargets = "a, button, .row, .player-btn, .intro-enter";
 
     document.addEventListener("pointerover", function (e) {
       if (e.target.closest(hoverTargets)) cursorRing.classList.add("is-active");
@@ -998,6 +1081,29 @@
     document.addEventListener("pointerout", function (e) {
       if (e.target.closest(hoverTargets)) cursorRing.classList.remove("is-active");
     });
+
+  } else if (!reduced) {
+
+    document.body.classList.add("has-touch-cursor");
+
+    window.addEventListener("touchstart", function (e) {
+      var t = e.touches[0];
+      if (!t) return;
+      placeCursorAt(t.clientX, t.clientY, true); // snap straight there, no lag-in
+      document.body.classList.add("is-touching");
+      if (t.target && t.target.closest(hoverTargets)) cursorRing.classList.add("is-active");
+    }, { passive: true });
+
+    window.addEventListener("touchmove", function (e) {
+      var t = e.touches[0];
+      if (!t) return;
+      placeCursorAt(t.clientX, t.clientY, false);
+    }, { passive: true });
+
+    window.addEventListener("touchend", function () {
+      document.body.classList.remove("is-touching");
+      cursorRing.classList.remove("is-active");
+    }, { passive: true });
   }
 
 

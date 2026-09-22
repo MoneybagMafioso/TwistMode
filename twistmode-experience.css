@@ -124,6 +124,14 @@ body.has-custom-cursor .cursor-ring {
   opacity: 1;
 }
 
+/* touch: only visible while an actual finger is on the screen,
+   and skips the ring's usual ease-in transition on that first
+   appearance (handled in JS by snapping ringPos straight there) */
+body.has-touch-cursor.is-touching .cursor-dot,
+body.has-touch-cursor.is-touching .cursor-ring {
+  opacity: 1;
+}
+
 /* grows and tints green over anything clickable */
 .cursor-ring.is-active {
   width: 52px;
@@ -135,9 +143,6 @@ body.has-custom-cursor .cursor-ring {
 }
 
 @media (max-width: 760px), (hover: none) {
-  .cursor-dot,
-  .cursor-ring { display: none; }
-
   body.has-custom-cursor,
   body.has-custom-cursor * { cursor: auto; }
 }
@@ -680,6 +685,13 @@ body.has-custom-cursor .cursor-ring {
 .spark-layer {
   position: fixed;
   inset: 0;
+  width: 100vw;                     /* a <canvas> is a replaced element —
+  height: 100vh;                       without an explicit on-screen size,
+                                        its layout box can end up matching
+                                        its internal pixel resolution
+                                        instead of the viewport, which is
+                                        what caused the giant/garbled trail
+                                        on higher-DPI Windows displays */
   z-index: 210;                     /* above the intro too, so the trail
                                         is visible before ENTER is clicked */
   pointer-events: none;
