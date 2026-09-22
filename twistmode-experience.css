@@ -579,9 +579,26 @@ body.has-touch-cursor.is-touching .cursor-ring {
   height: 14px;
 }
 
-.player-btn:hover {
-  color: var(--white);
-  background: rgba(255, 255, 255, 0.08);
+/* taps register instantly on phones: no double-tap-zoom wait,
+   no grey flash, and a quick press-down response instead */
+.player,
+.player-btn,
+.player-volume {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.player-btn:active {
+  transform: scale(0.92);
+}
+
+/* hover highlight only on mouse devices — on phones it would
+   "stick" after a tap and make the wrong button look selected */
+@media (hover: hover) and (pointer: fine) {
+  .player-btn:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.08);
+  }
 }
 
 /* the play/pause button reads as the primary control */
@@ -594,8 +611,10 @@ body.has-touch-cursor.is-touching .cursor-ring {
 
 .player-btn--play svg { width: 15px; height: 15px; }
 
-.player-btn--play:hover {
-  background: rgba(95, 224, 127, 0.22);
+@media (hover: hover) and (pointer: fine) {
+  .player-btn--play:hover {
+    background: rgba(95, 224, 127, 0.22);
+  }
 }
 
 .icon-play { display: none; }
@@ -623,14 +642,18 @@ body.has-touch-cursor.is-touching .cursor-ring {
     opacity 0.35s ease;
 }
 
-/* expands out to the left on hover/focus — keeps the pill compact
-   until someone actually wants to touch the volume */
-.player:hover .player-volume,
-.player-volume:focus,
-.player-volume.is-active {
-  width: 64px;
-  margin-left: 4px;
-  opacity: 1;
+/* expands out on hover — ONLY on devices with a real mouse.
+   On phones a tap counts as "hover", which used to slide the
+   volume bar open and shove the buttons sideways right under
+   your finger mid-tap. That was the main reason the music
+   buttons felt unreliable on mobile. */
+@media (hover: hover) and (pointer: fine) {
+  .player:hover .player-volume,
+  .player-volume:focus {
+    width: 64px;
+    margin-left: 4px;
+    opacity: 1;
+  }
 }
 
 .player-volume::-webkit-slider-runnable-track {
@@ -664,13 +687,26 @@ body.has-touch-cursor.is-touching .cursor-ring {
   box-shadow: 0 0 8px var(--green-soft);
 }
 
-/* on touch devices "hover" never happens, so keep it reachable —
-   small and always present rather than hidden behind a hover state */
-@media (hover: none) {
+/* on touch devices the slider is always visible at a fixed width
+   (it never grows or shrinks, so nothing shifts while you tap),
+   with a thumb big enough to actually grab with a finger */
+@media (hover: none), (pointer: coarse) {
   .player-volume {
-    width: 46px;
-    margin-left: 4px;
+    width: 70px;
+    margin: 0 8px 0 6px;
     opacity: 1;
+    transition: none;
+  }
+
+  .player-volume::-webkit-slider-thumb {
+    width: 20px;
+    height: 20px;
+    margin-top: -8.5px;
+  }
+
+  .player-volume::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -1079,7 +1115,21 @@ body.has-touch-cursor.is-touching .cursor-ring {
 
 @media (max-width: 760px) {
 
-  .stage { padding: 80px 18px 150px; }
+  /* the top padding clears the music player (it ends ~78px down),
+     so the card can never slide up underneath it. The cue text in
+     the bottom-left is meant to pass behind the glass, so the
+     bottom only needs a little room. */
+  .stage {
+    padding:
+      calc(max(16px, env(safe-area-inset-top)) + 74px)
+      18px
+      24px;
+    align-items: flex-start;
+  }
+
+  /* auto margins center the card when there's room, and pin it
+     below the player (instead of spilling upward) when there isn't */
+  .card-tilt { margin-top: auto; margin-bottom: auto; }
 
   .card { padding: 34px 24px 24px; border-radius: 24px; }
 
@@ -1102,7 +1152,15 @@ body.has-touch-cursor.is-touching .cursor-ring {
 
   .mark { right: 22px; bottom: 26px; font-size: 7px; }
 
-  .hud { padding: 20px 20px; }
+  /* safe-area padding keeps the player clear of the notch /
+     Dynamic Island and rounded corners on iPhones */
+  .hud {
+    padding:
+      max(16px, env(safe-area-inset-top))
+      max(14px, env(safe-area-inset-right))
+      16px
+      14px;
+  }
 
   /* bigger tap targets — 34-38px is comfortable for a mouse but
      genuinely small for a thumb; this pushes them closer to the
@@ -1141,6 +1199,17 @@ body.has-touch-cursor.is-touching .cursor-ring {
 @media (max-height: 620px) {
   .cue { font-size: clamp(20px, 4vw, 30px); }
   .stage { padding-bottom: 110px; }
+}
+
+/* shorter phones (iPhone SE/mini class): a slightly more compact
+   card so the whole thing fits between the player and the bottom */
+@media (max-width: 760px) and (max-height: 700px) {
+  .stage { padding-bottom: 20px; }
+  .card { padding: 26px 20px 18px; }
+  .card-logo { width: 156px; }
+  .card-tag { margin-top: 10px; }
+  .card-links { margin-top: 14px; }
+  .row { padding: 11px 10px; }
 }
 
 

@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /success.html
+Sitemap: https://shoptwistmode.com/sitemap.xml

@@ -3,7 +3,92 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TwistMode – Texture & Styling Tools for Barbers</title>
+  <title>TwistMode | Twist &amp; Curl Texture Tool for Barbers</title>
+
+  <!-- SEARCH + LINK PREVIEWS
+       description = the sentence Google shows under your link.
+       og: tags   = the picture/title/text shown when the link is texted or posted. -->
+  <meta name="description" content="Rinseable twist tool built by a barber. Create twists, coils and curl texture on afros and textured hair. A durable twist sponge alternative for the shop.">
+  <link rel="canonical" href="https://shoptwistmode.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TwistMode">
+  <meta property="og:title" content="TwistMode | Twist &amp; Curl Texture Tool for Barbers">
+  <meta property="og:description" content="Rinseable twist tool built by a barber. Create twists, coils and curl texture on afros and textured hair. A durable twist sponge alternative for the shop.">
+  <meta property="og:url" content="https://shoptwistmode.com/">
+  <meta property="og:image" content="https://shoptwistmode.com/assets/images/twistmode-og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="TwistMode twist tool next to a finished curly cut">
+
+  <!-- product info Google can show in search results (name, price, in stock) -->
+  <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "TwistMode Lite",
+    "brand": {
+      "@type": "Brand",
+      "name": "TwistMode"
+    },
+    "description": "Twist and curl texture tool for shorter, coarse and textured hair. Rinseable and reusable, built by a barber.",
+    "image": "https://shoptwistmode.com/assets/images/lite-twistmode.jpg",
+    "offers": {
+      "@type": "Offer",
+      "price": "14.99",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": "https://shoptwistmode.com/#products"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "TwistMode XL",
+    "brand": {
+      "@type": "Brand",
+      "name": "TwistMode"
+    },
+    "description": "Twist and curl texture tool for short to long textured hair, with more coverage. Rinseable and reusable, built by a barber.",
+    "image": "https://shoptwistmode.com/assets/images/sponge.jpg",
+    "offers": {
+      "@type": "Offer",
+      "price": "29.99",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": "https://shoptwistmode.com/#products"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "TwistMode Bundle",
+    "brand": {
+      "@type": "Brand",
+      "name": "TwistMode"
+    },
+    "description": "TwistMode Lite and XL together: the complete twist and curl texture setup for the barbershop.",
+    "image": "https://shoptwistmode.com/assets/images/lite-twistmode.jpg",
+    "offers": {
+      "@type": "Offer",
+      "price": "39.99",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": "https://shoptwistmode.com/#products"
+    }
+  }
+]
+  </script>
+  <!-- ICONS: the "T" in browser tabs, the product icon on phone home screens -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- lets the page know JavaScript is running, so sections only
+       start hidden (for the fade-in) when the fade-in can actually run -->
+  <script>document.documentElement.classList.add("js");</script>
+
   <link rel="stylesheet" href="style.css"/>
 </head>
 
@@ -753,73 +838,53 @@
 </footer>
 
 
-<!-- EMAIL MODAL -->
-<div class="modal" id="emailModal">
-  <div class="modal-content">
-    <span class="close-modal">&times;</span>
-    <h3>Request a Color</h3>
-    <p style="color:#aaa; margin-bottom:20px;">
-     Tell us what color you'd like to see next.
-    </p>
-
-    <form action="https://formspree.io/f/xkovjzkl" method="POST">
-      <input 
-        type="email" 
-        name="email" 
-        placeholder="Enter your email"
-        required
-      >
-      <button type="submit" class="btn small">
-      Send Request  
-      </button>
-    </form>
-  </div>
-</div>
-
-
-<script src="https://js.stripe.com/v3/"></script>
-
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-const stripe = Stripe("pk_test_51T22WcQVzg9AuHq0Y1QxQojA7Xg1FXTkzUD95VGYr7Do5wlDijynnTL2SWxvyKHyzP7kwyb6NIanLiv099eomaTf00KLfmo6oC"); // your key
-
-/* SCROLL ANIMATION */
+/* SCROLL ANIMATION
+   Each section fades in the first time it comes on screen.
+   Sections already on screen when the page loads (or when you
+   jump to #products from another page) show up right away. */
 const sections = document.querySelectorAll(".section");
-window.addEventListener("scroll", () => {
-  sections.forEach(section => {
-    if (section.getBoundingClientRect().top < window.innerHeight - 100) {
-      section.classList.add("visible");
-    }
-  });
-});
 
-/* EMAIL MODAL */
-const modal = document.getElementById("emailModal");
-const openBtns = document.querySelectorAll(".open-modal");
-const closeBtn = document.querySelector(".close-modal");
-
-openBtns.forEach(btn => {
-  btn.addEventListener("click", () => {
-    modal.style.display = "flex";
-  });
-});
-
-closeBtn.addEventListener("click", () => {
-  modal.style.display = "none";
-});
-
-window.addEventListener("click", e => {
-  if (e.target === modal) modal.style.display = "none";
-});
+if ("IntersectionObserver" in window) {
+  const revealer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        revealer.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: "0px 0px -60px 0px", threshold: 0.05 });
+  sections.forEach(section => revealer.observe(section));
+} else {
+  sections.forEach(section => section.classList.add("visible"));
+}
 
 /* PRODUCT BUTTONS */
 
 const buttons = document.querySelectorAll(".add-to-cart-btn");
 
 
-/* CART */
-let cart = [];
+/* CART
+   Saved in the browser (localStorage), so it survives a refresh
+   and visiting other pages. Cleared on success.html after checkout. */
+const CART_KEY = "twistmode-cart";
+
+function loadCart() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+    return Array.isArray(saved) ? saved : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function saveCart() {
+  try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) {}
+}
+
+let cart = loadCart();
 
 const cartCount = document.getElementById("cart-count");
 const cartItems = document.getElementById("cart-items");
@@ -923,6 +988,8 @@ const existingItem = cart.find(item =>
 /* UPDATE CART UI */
 
 function updateCartUI() {
+
+  saveCart();
 
   cartItems.innerHTML = "";
 
@@ -1056,25 +1123,57 @@ window.changeQty = function(index, amount) {
   updateCartUI();
 };
 
-/* CHECKOUT → STRIPE PAYMENT LINK */
+/* SHOW THE SAVED CART WHEN THE PAGE LOADS */
+updateCartUI();
+
+/* CHECKOUT → STRIPE
+   Shows "Opening checkout..." while it works, can't be
+   double-clicked, and shows a message if something fails
+   instead of silently doing nothing. */
+const checkoutError = document.createElement("p");
+checkoutError.className = "checkout-error";
+checkoutError.setAttribute("role", "alert");
+checkoutBtn.insertAdjacentElement("afterend", checkoutError);
+
 checkoutBtn.addEventListener("click", async () => {
 
+  checkoutError.textContent = "";
+
   if (cart.length === 0) {
-    alert("Your cart is empty");
+    checkoutError.textContent = "Your cart is empty. Add a TwistMode first.";
     return;
   }
 
-  const response = await fetch("https://shoptwistmode.com/create-checkout", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ cart })
-  });
+  if (checkoutBtn.disabled) return;
 
-  const data = await response.json();
+  const originalText = checkoutBtn.textContent;
+  checkoutBtn.disabled = true;
+  checkoutBtn.textContent = "Opening checkout...";
 
-  window.location.href = data.url;
+  try {
+    const response = await fetch("https://shoptwistmode.com/create-checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ cart })
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok || !data.url) {
+      throw new Error(data.error || "Checkout did not return a link.");
+    }
+
+    window.location.href = data.url;
+
+  } catch (error) {
+    console.error("Checkout failed:", error);
+    checkoutError.textContent =
+      "Checkout couldn't open. Please try again, or email shoptwistmode@gmail.com.";
+    checkoutBtn.disabled = false;
+    checkoutBtn.textContent = originalText;
+  }
 
 });
 
@@ -1878,6 +1977,31 @@ setupColorSelector(
   document.getElementById("bundle-xl-color"),
   xlColorSettings
 );
+
+/* Shows the saved cart count on pages without the full cart (wholesale, legal pages). */
+(function () {
+  var count = 0;
+  try {
+    var cart = JSON.parse(localStorage.getItem("twistmode-cart") || "[]");
+    if (Array.isArray(cart)) {
+      cart.forEach(function (item) {
+        var qty = parseInt(item && item.qty, 10);
+        if (qty > 0) count += qty;
+      });
+    }
+  } catch (e) {
+    count = 0;
+  }
+  if (!count) return;
+  document.querySelectorAll(".cart-ui").forEach(function (el) {
+    if (el.querySelector(".cart-count")) return;
+    var badge = document.createElement("span");
+    badge.className = "cart-count";
+    badge.textContent = count;
+    el.appendChild(document.createTextNode(" "));
+    el.appendChild(badge);
+  });
+})();
 
 });
 </script>

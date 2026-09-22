@@ -10,7 +10,28 @@
     content="width=device-width, initial-scale=1.0"
   />
 
-  <title>TwistMode — Wholesale</title>
+  <title>TwistMode Wholesale | Twist Tools for Barbershops</title>
+
+  <!-- SEARCH + LINK PREVIEWS
+       description = the sentence Google shows under your link.
+       og: tags   = the picture/title/text shown when the link is texted or posted. -->
+  <meta name="description" content="Stock TwistMode in your barbershop. Wholesale pricing on Lite and XL twist tools for shops, salons and resellers. Mix sizes and colors, 10-unit minimum.">
+  <link rel="canonical" href="https://shoptwistmode.com/wholesale.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TwistMode">
+  <meta property="og:title" content="TwistMode Wholesale | Twist Tools for Barbershops">
+  <meta property="og:description" content="Stock TwistMode in your barbershop. Wholesale pricing on Lite and XL twist tools for shops, salons and resellers. Mix sizes and colors, 10-unit minimum.">
+  <meta property="og:url" content="https://shoptwistmode.com/wholesale.html">
+  <meta property="og:image" content="https://shoptwistmode.com/assets/images/twistmode-og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="TwistMode twist tool next to a finished curly cut">
+
+  <!-- ICONS: the "T" in browser tabs, the product icon on phone home screens -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <link rel="stylesheet" href="style.css" />
 
@@ -242,9 +263,9 @@
 
       <p class="custom-text">
 
-        TwistMode is available in the Overture High Speed
-        TPU color lineup. Ready-to-ship availability can
-        change as inventory moves.
+        Every TwistMode is printed in-house in a wide range
+        of colors. Ready-to-ship availability can change as
+        inventory moves.
 
       </p>
 
@@ -1397,6 +1418,8 @@
   </div>
 </footer>
 
+<script src="cart-count.js" defer></script>
+
 <script>
 
 /* =====================================================
@@ -2426,7 +2449,7 @@ async function selectAddress(index) {
 
     const response =
       await fetch(
-        `https://places.googleapis.com/v1/${prediction.placeId}`,
+        `https://places.googleapis.com/v1/places/${prediction.placeId}?sessionToken=${encodeURIComponent(addressSessionToken)}`,
         {
           method: "GET",
 

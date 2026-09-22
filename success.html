@@ -6,6 +6,18 @@
 
   <title>Order Received | TwistMode</title>
 
+  <!-- SEARCH + LINK PREVIEWS
+       description = the sentence Google shows under your link.
+       og: tags   = the picture/title/text shown when the link is texted or posted. -->
+  <meta name="description" content="Your TwistMode order has been received.">
+  <meta name="robots" content="noindex">
+
+  <!-- ICONS: the "T" in browser tabs, the product icon on phone home screens -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -73,6 +85,11 @@
   </div>
 
 </header>
+
+<!-- the order went through, so empty the saved cart -->
+<script>
+  try { localStorage.removeItem("twistmode-cart"); } catch (e) {}
+</script>
 
 </body>
 </html>

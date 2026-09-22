@@ -341,10 +341,6 @@ body {
 
   margin: auto;
 
-  opacity: 0;
-
-  transform: translateY(40px);
-
   transition: all 0.8s ease;
 }
 
@@ -3296,4 +3292,327 @@ h1 {
 .wholesale-hero .custom-hero-content {
   position: relative;
   z-index: 2;
+}
+
+/* =========================================================
+   MOBILE TOP BAR — FINAL FIX (keep this at the very END of the file)
+   ---------------------------------------------------------
+   Why it was broken: two older rules further up (the 420px-wide
+   ".nav-logo-img" block and the "translateY(-18px)" nudges on the
+   buttons) were written for desktop, but they sat AFTER the mobile
+   section, so phones got them too. The logo came out wider than
+   the phone, and the Cart button got pushed off the right edge.
+
+   This block is last in the file, so on phones it always wins.
+   Desktop is untouched.
+
+   Layout on phones:
+     row 1:  [ logo ................ Cart ]
+     row 2:     [   Shop   ][ Wholesale ]
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .top-nav {
+    height: 108px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: 58px 40px;
+    column-gap: 10px;
+    padding: 0 14px 10px;
+  }
+
+  /* LOGO: sized by height so any logo shape fits, never wider than its space */
+  .nav-logo {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    min-width: 0;
+    transform: none;
+  }
+
+  .nav-logo-img {
+    width: auto;
+    height: 48px;
+    max-width: 100%;
+    max-height: none;
+    object-fit: contain;
+    transform: none;
+  }
+
+  /* CART: top-right, same height as the other buttons */
+  .cart-ui {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    width: auto;
+    min-width: 0;
+    height: 36px;
+    padding: 0 14px;
+    transform: none;
+  }
+
+  /* SHOP + WHOLESALE: second row, centered */
+  .nav-links {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: center;
+    width: 100%;
+    max-width: 320px;
+    transform: none;
+  }
+
+  .nav-links .nav-control {
+    width: 50%;
+    height: 36px;
+  }
+
+}
+
+/* =========================================================
+   MOBILE HEROES — homepage + wholesale (keep at the very END)
+   ---------------------------------------------------------
+   The logo file has a lot of empty space built in around the
+   lettering (the letters only fill about 60% of the image).
+   On phones the image was showing at its full 612px width, so
+   it ran off both sides of the screen and dragged the text
+   with it. These rules size the logo by the screen width and
+   use negative margins to trim the empty space, so the
+   lettering is big but everything stays on screen.
+========================================================= */
+
+@media (max-width: 768px) {
+
+  /* bigger logo in the top bar, same space taken up */
+  .nav-logo-img {
+    height: 84px;
+    margin: -13px 0 -13px -18px;
+  }
+
+  /* HOMEPAGE HERO */
+  .hero {
+    height: auto;
+    min-height: 100svh;
+    padding-bottom: 40px;
+  }
+
+  .hero-content {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .hero-logo {
+    width: 130vw;
+    max-width: none;
+    height: auto;
+    margin: -20vw 0 -21vw calc(50% - 65vw);
+  }
+
+  .tagline {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .limited {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .micro {
+    white-space: normal;
+    width: calc(100% - 40px);
+    text-align: center;
+  }
+
+  /* WHOLESALE HERO: "Stock" on top, the logo underneath */
+  .custom-eyebrow {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+
+  .wholesale-hero-title {
+    flex-direction: column;
+    gap: 0;
+    font-size: 2.4rem;
+  }
+
+  .wholesale-logo-wrap {
+    display: block;
+    width: 100%;
+  }
+
+  .wholesale-hero-logo {
+    width: 125vw;
+    max-width: none;
+    transform: none;
+    margin: -19vw 0 -21vw calc(50% - 62.5vw);
+  }
+
+}
+
+/* =========================================================
+   SCROLL REVEAL (only hides sections when JS is running)
+========================================================= */
+
+.js .section {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.js .section.show,
+.js .section.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+
+/* =========================================================
+   CHECKOUT ERROR
+========================================================= */
+
+.checkout-error {
+  margin: 12px 0 0;
+  color: #ff8a8a;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.checkout-error:empty {
+  display: none;
+}
+
+#checkout-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+
+/* =========================================================
+   WHOLESALE FORM EXTRAS
+========================================================= */
+
+.form-helper {
+  margin: -2px 0 4px;
+  font-size: 0.8rem;
+  color: #888;
+  line-height: 1.4;
+}
+
+.form-optional {
+  font-weight: 400;
+  color: #777;
+  font-size: 0.8rem;
+}
+
+.wholesale-address-autocomplete {
+  position: relative;
+}
+
+.wholesale-address-suggestions {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 50;
+  max-height: 260px;
+  overflow-y: auto;
+  background: #111;
+  border: 1px solid rgba(138, 255, 193, 0.35);
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+}
+
+.wholesale-address-suggestions.show {
+  display: block;
+}
+
+.wholesale-address-suggestion {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: #eee;
+  font-family: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.wholesale-address-suggestion:last-child {
+  border-bottom: 0;
+}
+
+.wholesale-address-suggestion:hover,
+.wholesale-address-suggestion:focus {
+  background: rgba(138, 255, 193, 0.1);
+  color: #8affc1;
+  outline: none;
+}
+
+.wholesale-minimum-notice,
+.wholesale-submit-notice {
+  display: none;
+  padding: 14px 16px;
+  border-radius: 10px;
+  line-height: 1.45;
+  font-size: 0.92rem;
+}
+
+.wholesale-minimum-notice {
+  background: rgba(255, 196, 0, 0.1);
+  border: 1px solid rgba(255, 196, 0, 0.45);
+  color: #ffd76a;
+}
+
+.wholesale-minimum-notice strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.wholesale-submit-notice {
+  background: rgba(138, 255, 193, 0.1);
+  border: 1px solid rgba(138, 255, 193, 0.45);
+  color: #8affc1;
+}
+
+.wholesale-minimum-notice.show,
+.wholesale-submit-notice.show {
+  display: block;
+  animation: wholesaleNoticeIn 0.35s ease;
+}
+
+@keyframes wholesaleNoticeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.wholesale-selection-title {
+  margin-bottom: 8px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8affc1;
+}
+
+.wholesale-color-selections {
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.wholesale-total-units {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(138, 255, 193, 0.2);
 }
