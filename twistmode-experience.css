@@ -1103,6 +1103,31 @@ body.has-touch-cursor.is-touching .cursor-ring {
 
   .hud { padding: 20px 20px; }
 
+  /* bigger tap targets — 34-38px is comfortable for a mouse but
+     genuinely small for a thumb; this pushes them closer to the
+     ~44px Apple/Google both recommend as a minimum */
+  .player { gap: 2px; padding: 7px; }
+
+  .player-btn {
+    width: 42px;
+    height: 42px;
+  }
+
+  .player-btn svg { width: 16px; height: 16px; }
+
+  .player-btn--play {
+    width: 46px;
+    height: 46px;
+  }
+
+  .player-btn--play svg { width: 18px; height: 18px; }
+
+  /* the volume slider's hover-to-reveal doesn't exist on touch at
+     all (there's no "hover"), so it's already handled by the
+     (hover: none) rule elsewhere — this just gives it a little
+     more room to be tapped/dragged accurately once visible */
+  .player-volume { height: 24px; }
+
   .intro-logo { width: min(280px, 74vw); }
 
   .intro-tag { font-size: 9px; letter-spacing: 0.22em; max-width: 280px; }
