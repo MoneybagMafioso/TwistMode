@@ -3681,3 +3681,35 @@ h1 {
 .form-status.error {
   color: #ff8a8a;
 }
+
+
+/* =========================================================
+   COLOR CATEGORY NOTE
+   (the "glows in the dark" / "flat finish" line)
+========================================================= */
+
+.custom-color-options .custom-color-category-note {
+  margin: 2px 2px 7px;
+  color: #999;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  text-align: left;
+}
+
+
+.wholesale-color-note {
+  margin: 0 0 12px;
+  color: #999;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.wholesale-color-options .wholesale-color-note {
+  text-align: left;
+}
+
+.wholesale-color-group .wholesale-color-note {
+  text-align: center;
+  margin: -4px auto 14px;
+  max-width: 560px;
+}
