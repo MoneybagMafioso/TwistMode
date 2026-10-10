@@ -3450,22 +3450,28 @@ h1 {
 }
 
 /* =========================================================
-   SCROLL REVEAL (only hides sections when JS is running)
+   SCROLL REVEAL
+   Sections only start hidden when JavaScript is switched on,
+   so the page still reads fine if it never loads.
 ========================================================= */
 
-.js .section {
-  opacity: 0;
-  transform: translateY(40px);
-}
+@media (scripting: enabled) {
 
-.js .section.show,
-.js .section.visible {
-  opacity: 1;
-  transform: none;
+  .section {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  .section.show,
+  .section.visible {
+    opacity: 1;
+    transform: none;
+  }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .js .section {
+  .section {
     opacity: 1;
     transform: none;
     transition: none;
@@ -3615,4 +3621,63 @@ h1 {
   margin-top: 10px;
   padding-top: 10px;
   border-top: 1px solid rgba(138, 255, 193, 0.2);
+}
+
+
+/* =========================================================
+   CONTACT / COLOR REQUEST FORM
+========================================================= */
+
+.form-field-label {
+  display: block;
+  margin: 0 0 8px;
+  color: #aaa;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.color-request-form select {
+  width: 100%;
+  height: 44px;
+  box-sizing: border-box;
+  display: block;
+  margin: 0 0 10px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  background: #111;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.color-request-form select:focus {
+  border-color: #8affc1;
+  box-shadow: 0 0 0 2px rgba(138, 255, 193, 0.08);
+}
+
+.color-request-form button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.form-status {
+  margin: 14px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  min-height: 1px;
+}
+
+.form-status.success {
+  color: #8affc1;
+}
+
+.form-status.error {
+  color: #ff8a8a;
 }

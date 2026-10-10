@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>TwistMode Inventory</title>
+
+  <style>
+    :root {
+      --green: #8affc1;
+      --bg: #0e0e0e;
+      --card: #141414;
+      --line: rgba(255,255,255,0.1);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 24px 16px 140px;
+      background: var(--bg);
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    .wrap { max-width: 720px; margin: 0 auto; }
+
+    h1 { margin: 0 0 6px; font-size: 1.5rem; letter-spacing: 0.02em; }
+
+    .sub { margin: 0 0 22px; color: #999; font-size: 0.9rem; line-height: 1.5; }
+
+    .counts {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 22px;
+    }
+
+    .count {
+      flex: 1; min-width: 140px; padding: 12px 14px;
+      background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    }
+
+    .count b { display: block; font-size: 1.4rem; color: var(--green); }
+    .count span { font-size: 0.78rem; color: #999; text-transform: uppercase; letter-spacing: 0.06em; }
+
+    h2 {
+      margin: 26px 0 10px; font-size: 1rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--green);
+    }
+
+    .bulk { display: flex; gap: 8px; margin-bottom: 10px; }
+
+    .bulk button {
+      flex: 1; padding: 9px; font-size: 0.8rem; border-radius: 8px;
+      border: 1px solid var(--line); background: #1a1a1a; color: #ccc;
+      cursor: pointer; font-family: inherit;
+    }
+
+    .bulk button:hover { border-color: var(--green); color: var(--green); }
+
+    .list {
+      background: var(--card); border: 1px solid var(--line);
+      border-radius: 12px; overflow: hidden;
+    }
+
+    .row {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; padding: 13px 16px; border-bottom: 1px solid var(--line);
+    }
+
+    .row:last-child { border-bottom: 0; }
+
+    .row-name { font-size: 0.95rem; }
+
+    .row-state { font-size: 0.72rem; color: #888; display: block; margin-top: 2px; }
+
+    .row.on .row-state { color: var(--green); }
+
+    /* the switch */
+    .toggle {
+      position: relative; flex: none; width: 54px; height: 30px;
+      border-radius: 30px; border: 1px solid var(--line);
+      background: #222; cursor: pointer; padding: 0;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .toggle::after {
+      content: ""; position: absolute; top: 3px; left: 3px;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: #777; transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .row.on .toggle { background: rgba(138,255,193,0.18); border-color: var(--green); }
+    .row.on .toggle::after { transform: translateX(24px); background: var(--green); }
+
+    .bar {
+      position: fixed; left: 0; right: 0; bottom: 0;
+      padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
+      background: rgba(14,14,14,0.96);
+      border-top: 1px solid var(--line);
+      display: flex; gap: 10px; align-items: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .bar button {
+      flex: 1; padding: 14px; border-radius: 10px; border: 0;
+      background: var(--green); color: #000; font-weight: 700;
+      font-size: 0.95rem; font-family: inherit; cursor: pointer;
+    }
+
+    .bar button.ghost {
+      background: transparent; color: #ccc; border: 1px solid var(--line);
+      font-weight: 600;
+    }
+
+    .note { margin-top: 12px; font-size: 0.8rem; color: #888; line-height: 1.5; }
+
+    .flash {
+      position: fixed; left: 50%; bottom: 96px; transform: translateX(-50%);
+      background: var(--green); color: #000; font-weight: 700;
+      padding: 10px 18px; border-radius: 999px; font-size: 0.85rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
+    }
+
+    .flash.show { opacity: 1; }
+  </style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <h1>Inventory</h1>
+
+  <p class="sub">
+    Flip a color on when you have it printed and ready to ship. Off means made to
+    order. When you're done, hit <b>Download colors.json</b> and drop that file into
+    your site folder on GitHub, right next to index.html. The shop picks it up on the
+    next page load.
+  </p>
+
+  <div class="counts">
+    <div class="count"><b id="count-lite">0</b><span>Lite ready</span></div>
+    <div class="count"><b id="count-xl">0</b><span>XL ready</span></div>
+  </div>
+
+  <h2>TwistMode Lite</h2>
+  <div class="bulk">
+    <button type="button" data-all="lite" data-value="true">All ready</button>
+    <button type="button" data-all="lite" data-value="false">All made to order</button>
+  </div>
+  <div class="list" id="list-lite"></div>
+
+  <h2>TwistMode XL</h2>
+  <div class="bulk">
+    <button type="button" data-all="xl" data-value="true">All ready</button>
+    <button type="button" data-all="xl" data-value="false">All made to order</button>
+  </div>
+  <div class="list" id="list-xl"></div>
+
+  <p class="note">
+    This page is just for you. It isn't linked from the shop and search engines are
+    told to skip it. Nothing changes on the site until you upload the file.
+  </p>
+
+</div>
+
+<div class="bar">
+  <button type="button" class="ghost" id="reload">Reload</button>
+  <button type="button" id="download">Download colors.json</button>
+</div>
+
+<div class="flash" id="flash"></div>
+
+<script>
+/* The colors, in the same order as the shop. */
+var COLORS = {
+  lite: [
+    ["black","Black"],["white","White"],["clear","Clear"],["gray","Gray"],["pink","Pink"],
+    ["orange","Orange"],["grass-green","Lime Green"],["yellow","Yellow"],
+    ["cold-white","Bright White"],["light-gray","Light Gray"],["purple","Purple"],
+    ["fresh-red","Cherry Red"],["red","Red"],["blue","Blue"],["gray-blue","Slate Blue"],
+    ["olive-green","Olive"],["chocolate","Brown"],["translucent-blue","Clear Blue"],
+    ["translucent-red","Clear Red"],["translucent-green","Clear Green"],
+    ["translucent-purple","Clear Purple"],["translucent-orange","Clear Orange"],
+    ["neon-magenta","Neon Pink"],["pastel-rose","Soft Pink"],["neon-yellow","Neon Yellow"],
+    ["luminous-pink","Glow Pink"],["luminous-electric-indigo","Glow Purple"],
+    ["luminous-blue","Glow Blue"],["luminous-green","Glow Green"],
+    ["luminous-orange","Glow Orange"]
+  ],
+  xl: [
+    ["black","Black"],["white","White"],["clear","Clear"],["gray","Gray"],["pink","Pink"],
+    ["orange","Orange"],["grass-green","Lime Green"],["red","Red"],
+    ["bright-pink","Hot Pink"],["digital-blue","Royal Blue"],["purple","Purple"],
+    ["green","Green"],["matte-black","Matte Black"],["matte-space-gray","Matte Charcoal"],
+    ["matte-gray","Matte Gray"],["matte-white","Matte White"],
+    ["matte-natural","Matte Cream"],["matte-orange","Matte Orange"],
+    ["matte-yellow","Matte Yellow"],["neon-orange","Neon Orange"],
+    ["translucent-blue","Clear Blue"],["translucent-red","Clear Red"],
+    ["translucent-green","Clear Green"],["translucent-purple","Clear Purple"],
+    ["translucent-orange","Clear Orange"],["neon-magenta","Neon Pink"],
+    ["pastel-rose","Soft Pink"],["neon-yellow","Neon Yellow"],["luminous-pink","Glow Pink"],
+    ["luminous-electric-indigo","Glow Purple"],["luminous-blue","Glow Blue"],
+    ["luminous-green","Glow Green"],["luminous-orange","Glow Orange"]
+  ]
+};
+
+var state = { lite: {}, xl: {} };
+
+function build(product) {
+
+  var list = document.getElementById("list-" + product);
+  list.innerHTML = "";
+
+  COLORS[product].forEach(function (color) {
+
+    var value = color[0];
+    var label = color[1];
+    var on = state[product][value] === true;
+
+    var row = document.createElement("div");
+    row.className = "row" + (on ? " on" : "");
+
+    var text = document.createElement("div");
+    text.innerHTML =
+      '<span class="row-name">' + label + '</span>' +
+      '<span class="row-state">' + (on ? "Ready to ship" : "Made to order") + '</span>';
+
+    var toggle = document.createElement("button");
+    toggle.type = "button";
+    toggle.className = "toggle";
+    toggle.setAttribute("aria-label", label);
+    toggle.setAttribute("aria-pressed", on ? "true" : "false");
+
+    toggle.addEventListener("click", function () {
+      state[product][value] = !(state[product][value] === true);
+      build(product);
+      updateCounts();
+    });
+
+    row.appendChild(text);
+    row.appendChild(toggle);
+    list.appendChild(row);
+
+  });
+
+}
+
+function updateCounts() {
+  ["lite", "xl"].forEach(function (product) {
+    var ready = COLORS[product].filter(function (c) {
+      return state[product][c[0]] === true;
+    }).length;
+    document.getElementById("count-" + product).textContent = ready;
+  });
+}
+
+function buildAll() {
+  build("lite");
+  build("xl");
+  updateCounts();
+}
+
+/* Start every color off, then load whatever colors.json says. */
+function blankState() {
+  ["lite", "xl"].forEach(function (product) {
+    state[product] = {};
+    COLORS[product].forEach(function (c) { state[product][c[0]] = false; });
+  });
+}
+
+function load() {
+
+  blankState();
+
+  fetch("colors.json", { cache: "no-store" })
+
+    .then(function (response) { return response.ok ? response.json() : null; })
+
+    .then(function (saved) {
+
+      if (saved) {
+        ["lite", "xl"].forEach(function (product) {
+          var group = saved[product] || {};
+          Object.keys(state[product]).forEach(function (value) {
+            if (typeof group[value] === "boolean") {
+              state[product][value] = group[value];
+            }
+          });
+        });
+        flash("Loaded colors.json");
+      } else {
+        flash("No colors.json yet — starting fresh");
+      }
+
+    })
+
+    .catch(function () { flash("No colors.json yet — starting fresh"); })
+
+    .then(buildAll);
+
+}
+
+function flash(message) {
+  var box = document.getElementById("flash");
+  box.textContent = message;
+  box.classList.add("show");
+  clearTimeout(flash.timer);
+  flash.timer = setTimeout(function () { box.classList.remove("show"); }, 2200);
+}
+
+document.querySelectorAll("[data-all]").forEach(function (button) {
+  button.addEventListener("click", function () {
+    var product = button.dataset.all;
+    var value = button.dataset.value === "true";
+    Object.keys(state[product]).forEach(function (color) {
+      state[product][color] = value;
+    });
+    build(product);
+    updateCounts();
+  });
+});
+
+document.getElementById("reload").addEventListener("click", load);
+
+document.getElementById("download").addEventListener("click", function () {
+
+  var text = JSON.stringify(state, null, 2) + "\n";
+  var blob = new Blob([text], { type: "application/json" });
+  var url = URL.createObjectURL(blob);
+
+  var link = document.createElement("a");
+  link.href = url;
+  link.download = "colors.json";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+
+  flash("Saved — now upload it to your site folder");
+
+});
+
+load();
+</script>
+
+</body>
+</html>

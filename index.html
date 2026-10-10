@@ -85,10 +85,6 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
 
-  <!-- lets the page know JavaScript is running, so sections only
-       start hidden (for the fade-in) when the fade-in can actually run -->
-  <script>document.documentElement.classList.add("js");</script>
-
   <link rel="stylesheet" href="style.css"/>
 </head>
 
@@ -130,9 +126,15 @@
 
   <p class="micro">Small batch. 3D printed. Built by a barber.</p>
 
-  <video autoplay muted loop playsinline class="hero-video">
-    <source src="assets/videos/hero-2.mp4" type="video/mp4">
-  </video>
+  <video
+    class="hero-video lazy-video"
+    muted
+    loop
+    playsinline
+    preload="none"
+    poster="assets/images/hero-2-poster.jpg"
+    data-src="assets/videos/hero-2.mp4"
+  ></video>
 
   <div class="hero-content">
   <img
@@ -165,14 +167,14 @@
   </p>
 
   <video
-    autoplay
+    class="washing-video lazy-video"
     muted
     loop
     playsinline
-    class="washing-video"
-  >
-    <source src="assets/videos/washing.mp4" type="video/mp4">
-  </video>
+    preload="none"
+    poster="assets/images/washing-poster.jpg"
+    data-src="assets/videos/washing.mp4"
+  ></video>
 
 </section>
 
@@ -212,22 +214,24 @@
   BUILT FOR DAILY USE
 </p>
 
-<h2>Flexible. Durable. Made for the Shop</h2>
+<h2>Flex Where It Counts</h2>
 
 <p class="section-text flex-description">
-  Built to move with the hair and hold up through the daily grind of the shop.
+  The XL bends with the hair and snaps right back. The Lite is stiff on purpose,
+  so shorter, coarse hair gets more bite and control. Both hold up through the
+  daily grind of the shop.
 </p>
 
 
   <video
-    autoplay
+    class="flex-video lazy-video"
     muted
     loop
     playsinline
-    class="flex-video"
-  >
-    <source src="assets/videos/flex-shot.mp4" type="video/mp4">
-  </video>
+    preload="none"
+    poster="assets/images/flex-shot-poster.jpg"
+    data-src="assets/videos/flex-shot.mp4"
+  ></video>
 
 </section>
 
@@ -294,9 +298,15 @@
 
   <h2>How It Works.</h2>
 
-  <video autoplay muted loop playsinline class="how-video">
-    <source src="assets/videos/twist-on-client.mp4" type="video/mp4">
-  </video>
+  <video
+    class="how-video lazy-video"
+    muted
+    loop
+    playsinline
+    preload="none"
+    poster="assets/images/twist-on-client-poster.jpg"
+    data-src="assets/videos/twist-on-client.mp4"
+  ></video>
 
   <ol class="how-steps">
     <li>Start with clean, slightly damp hair.</li>
@@ -316,9 +326,15 @@
 
   <h2>TwistMode Lite</h2>
 
-  <video autoplay muted loop playsinline class="lite-video">
-    <source src="assets/videos/hero-lite.mp4" type="video/mp4">
-  </video>
+  <video
+    class="lite-video lazy-video"
+    muted
+    loop
+    playsinline
+    preload="none"
+    poster="assets/images/hero-lite-poster.jpg"
+    data-src="assets/videos/hero-lite.mp4"
+  ></video>
 
   <p class="section-text">
     Made for shorter cuts and tighter control. A great fit for kids and adults with shorter, coarse or textured hair.
@@ -354,29 +370,39 @@
     <option value="gray">Gray</option>
     <option value="pink">Pink</option>
     <option value="orange">Orange</option>
-    <option value="grass-green">Grass Green</option>
+    <option value="grass-green">Lime Green</option>
+    <option value="yellow">Yellow</option>
+    <option value="cold-white">Bright White</option>
+    <option value="light-gray">Light Gray</option>
+    <option value="purple">Purple</option>
+    <option value="fresh-red">Cherry Red</option>
+    <option value="red">Red</option>
+    <option value="blue">Blue</option>
+    <option value="gray-blue">Slate Blue</option>
+    <option value="olive-green">Olive</option>
+    <option value="chocolate">Brown</option>
   </optgroup>
 
-  <optgroup label="TRANSLUCENT">
-    <option value="translucent-blue">Translucent Blue</option>
-    <option value="translucent-red">Translucent Red</option>
-    <option value="translucent-green">Translucent Green</option>
-    <option value="translucent-purple">Translucent Purple</option>
-    <option value="translucent-orange">Translucent Orange</option>
+  <optgroup label="CLEAR COLORS">
+    <option value="translucent-blue">Clear Blue</option>
+    <option value="translucent-red">Clear Red</option>
+    <option value="translucent-green">Clear Green</option>
+    <option value="translucent-purple">Clear Purple</option>
+    <option value="translucent-orange">Clear Orange</option>
   </optgroup>
 
   <optgroup label="SPECIAL COLORS">
-    <option value="neon-magenta">Neon Magenta</option>
-    <option value="pastel-rose">Pastel Rose</option>
+    <option value="neon-magenta">Neon Pink</option>
+    <option value="pastel-rose">Soft Pink</option>
     <option value="neon-yellow">Neon Yellow</option>
   </optgroup>
 
-  <optgroup label="LUMINOUS — GLOW IN THE DARK">
-    <option value="luminous-pink">Luminous Pink</option>
-    <option value="luminous-electric-indigo">Luminous Electric Indigo</option>
-    <option value="luminous-blue">Luminous Blue</option>
-    <option value="luminous-green">Luminous Green</option>
-    <option value="luminous-orange">Luminous Orange</option>
+  <optgroup label="GLOW IN THE DARK">
+    <option value="luminous-pink">Glow Pink</option>
+    <option value="luminous-electric-indigo">Glow Purple</option>
+    <option value="luminous-blue">Glow Blue</option>
+    <option value="luminous-green">Glow Green</option>
+    <option value="luminous-orange">Glow Orange</option>
   </optgroup>
 
 </select>
@@ -425,29 +451,45 @@
     <option value="gray">Gray</option>
     <option value="pink">Pink</option>
     <option value="orange">Orange</option>
-    <option value="grass-green">Grass Green</option>
+    <option value="grass-green">Lime Green</option>
+    <option value="red">Red</option>
+    <option value="bright-pink">Hot Pink</option>
+    <option value="digital-blue">Royal Blue</option>
+    <option value="purple">Purple</option>
+    <option value="green">Green</option>
   </optgroup>
 
-  <optgroup label="TRANSLUCENT">
-    <option value="translucent-blue">Translucent Blue</option>
-    <option value="translucent-red">Translucent Red</option>
-    <option value="translucent-green">Translucent Green</option>
-    <option value="translucent-purple">Translucent Purple</option>
-    <option value="translucent-orange">Translucent Orange</option>
+  <optgroup label="MATTE">
+    <option value="matte-black">Matte Black</option>
+    <option value="matte-space-gray">Matte Charcoal</option>
+    <option value="matte-gray">Matte Gray</option>
+    <option value="matte-white">Matte White</option>
+    <option value="matte-natural">Matte Cream</option>
+    <option value="matte-orange">Matte Orange</option>
+    <option value="matte-yellow">Matte Yellow</option>
+  </optgroup>
+
+  <optgroup label="CLEAR COLORS">
+    <option value="translucent-blue">Clear Blue</option>
+    <option value="translucent-red">Clear Red</option>
+    <option value="translucent-green">Clear Green</option>
+    <option value="translucent-purple">Clear Purple</option>
+    <option value="translucent-orange">Clear Orange</option>
   </optgroup>
 
   <optgroup label="SPECIAL COLORS">
-    <option value="neon-magenta">Neon Magenta</option>
-    <option value="pastel-rose">Pastel Rose</option>
+    <option value="neon-magenta">Neon Pink</option>
+    <option value="neon-orange">Neon Orange</option>
+    <option value="pastel-rose">Soft Pink</option>
     <option value="neon-yellow">Neon Yellow</option>
   </optgroup>
 
-  <optgroup label="LUMINOUS — GLOW IN THE DARK">
-    <option value="luminous-pink">Luminous Pink</option>
-    <option value="luminous-electric-indigo">Luminous Electric Indigo</option>
-    <option value="luminous-blue">Luminous Blue</option>
-    <option value="luminous-green">Luminous Green</option>
-    <option value="luminous-orange">Luminous Orange</option>
+  <optgroup label="GLOW IN THE DARK">
+    <option value="luminous-pink">Glow Pink</option>
+    <option value="luminous-electric-indigo">Glow Purple</option>
+    <option value="luminous-blue">Glow Blue</option>
+    <option value="luminous-green">Glow Green</option>
+    <option value="luminous-orange">Glow Orange</option>
   </optgroup>
 
 </select>
@@ -499,29 +541,39 @@
     <option value="gray">Gray</option>
     <option value="pink">Pink</option>
     <option value="orange">Orange</option>
-    <option value="grass-green">Grass Green</option>
+    <option value="grass-green">Lime Green</option>
+    <option value="yellow">Yellow</option>
+    <option value="cold-white">Bright White</option>
+    <option value="light-gray">Light Gray</option>
+    <option value="purple">Purple</option>
+    <option value="fresh-red">Cherry Red</option>
+    <option value="red">Red</option>
+    <option value="blue">Blue</option>
+    <option value="gray-blue">Slate Blue</option>
+    <option value="olive-green">Olive</option>
+    <option value="chocolate">Brown</option>
   </optgroup>
 
-  <optgroup label="TRANSLUCENT">
-    <option value="translucent-blue">Translucent Blue</option>
-    <option value="translucent-red">Translucent Red</option>
-    <option value="translucent-green">Translucent Green</option>
-    <option value="translucent-purple">Translucent Purple</option>
-    <option value="translucent-orange">Translucent Orange</option>
+  <optgroup label="CLEAR COLORS">
+    <option value="translucent-blue">Clear Blue</option>
+    <option value="translucent-red">Clear Red</option>
+    <option value="translucent-green">Clear Green</option>
+    <option value="translucent-purple">Clear Purple</option>
+    <option value="translucent-orange">Clear Orange</option>
   </optgroup>
 
   <optgroup label="SPECIAL COLORS">
-    <option value="neon-magenta">Neon Magenta</option>
-    <option value="pastel-rose">Pastel Rose</option>
+    <option value="neon-magenta">Neon Pink</option>
+    <option value="pastel-rose">Soft Pink</option>
     <option value="neon-yellow">Neon Yellow</option>
   </optgroup>
 
-  <optgroup label="LUMINOUS — GLOW IN THE DARK">
-    <option value="luminous-pink">Luminous Pink</option>
-    <option value="luminous-electric-indigo">Luminous Electric Indigo</option>
-    <option value="luminous-blue">Luminous Blue</option>
-    <option value="luminous-green">Luminous Green</option>
-    <option value="luminous-orange">Luminous Orange</option>
+  <optgroup label="GLOW IN THE DARK">
+    <option value="luminous-pink">Glow Pink</option>
+    <option value="luminous-electric-indigo">Glow Purple</option>
+    <option value="luminous-blue">Glow Blue</option>
+    <option value="luminous-green">Glow Green</option>
+    <option value="luminous-orange">Glow Orange</option>
   </optgroup>
 
     </select>
@@ -541,29 +593,45 @@
     <option value="gray">Gray</option>
     <option value="pink">Pink</option>
     <option value="orange">Orange</option>
-    <option value="grass-green">Grass Green</option>
+    <option value="grass-green">Lime Green</option>
+    <option value="red">Red</option>
+    <option value="bright-pink">Hot Pink</option>
+    <option value="digital-blue">Royal Blue</option>
+    <option value="purple">Purple</option>
+    <option value="green">Green</option>
   </optgroup>
 
-  <optgroup label="TRANSLUCENT">
-    <option value="translucent-blue">Translucent Blue</option>
-    <option value="translucent-red">Translucent Red</option>
-    <option value="translucent-green">Translucent Green</option>
-    <option value="translucent-purple">Translucent Purple</option>
-    <option value="translucent-orange">Translucent Orange</option>
+  <optgroup label="MATTE">
+    <option value="matte-black">Matte Black</option>
+    <option value="matte-space-gray">Matte Charcoal</option>
+    <option value="matte-gray">Matte Gray</option>
+    <option value="matte-white">Matte White</option>
+    <option value="matte-natural">Matte Cream</option>
+    <option value="matte-orange">Matte Orange</option>
+    <option value="matte-yellow">Matte Yellow</option>
+  </optgroup>
+
+  <optgroup label="CLEAR COLORS">
+    <option value="translucent-blue">Clear Blue</option>
+    <option value="translucent-red">Clear Red</option>
+    <option value="translucent-green">Clear Green</option>
+    <option value="translucent-purple">Clear Purple</option>
+    <option value="translucent-orange">Clear Orange</option>
   </optgroup>
 
   <optgroup label="SPECIAL COLORS">
-    <option value="neon-magenta">Neon Magenta</option>
-    <option value="pastel-rose">Pastel Rose</option>
+    <option value="neon-magenta">Neon Pink</option>
+    <option value="neon-orange">Neon Orange</option>
+    <option value="pastel-rose">Soft Pink</option>
     <option value="neon-yellow">Neon Yellow</option>
   </optgroup>
 
-  <optgroup label="LUMINOUS — GLOW IN THE DARK">
-    <option value="luminous-pink">Luminous Pink</option>
-    <option value="luminous-electric-indigo">Luminous Electric Indigo</option>
-    <option value="luminous-blue">Luminous Blue</option>
-    <option value="luminous-green">Luminous Green</option>
-    <option value="luminous-orange">Luminous Orange</option>
+  <optgroup label="GLOW IN THE DARK">
+    <option value="luminous-pink">Glow Pink</option>
+    <option value="luminous-electric-indigo">Glow Purple</option>
+    <option value="luminous-blue">Glow Blue</option>
+    <option value="luminous-green">Glow Green</option>
+    <option value="luminous-orange">Glow Orange</option>
   </optgroup>
 
     </select>
@@ -590,30 +658,47 @@
 
 
 
-<!-- COLOR REQUEST FORM -->
-<section class="section color-request" style="text-align: center;">
+<!-- CONTACT / COLOR REQUEST FORM
+     Goes to the Cloudflare Worker, which sends it to the right
+     inbox depending on what they pick in "What's this about?" -->
+<section class="section color-request" id="contact" style="text-align: center;">
 
   <p class="homepage-eyebrow">
-    CAN'T FIND YOUR COLOR?
+    GET IN TOUCH
   </p>
 
-  <h2>Want a Different Color?</h2>
+  <h2>Questions or a Color Request?</h2>
 
   <p class="section-text">
-    Don't see the color you're looking for?
-    Let us know what you'd like and we'll see what we can make.
+    Don't see the color you want, need help with an order, or want to send
+    something back? Send it here and it lands in the right inbox.
   </p>
 
-  <form
-    action="https://formspree.io/f/mqedlqrz"
-    method="POST"
-    class="color-request-form"
-  >
+  <form class="color-request-form" id="contact-form">
+
+    <!-- Spam trap: hidden from people, bots fill it in. Leave empty. -->
+    <div style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+      <label for="contact-website">Website</label>
+      <input id="contact-website" type="text" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <label class="form-field-label" for="contact-topic">
+      What's this about?
+    </label>
+
+    <select id="contact-topic" name="topic" required>
+      <option value="Color request">Color request</option>
+      <option value="Order question">Question about my order</option>
+      <option value="Return or exchange">Return or exchange</option>
+      <option value="Wholesale">Wholesale</option>
+      <option value="Something else">Something else</option>
+    </select>
 
     <input
       type="text"
       name="name"
       placeholder="Your Name"
+      autocomplete="name"
       required
     >
 
@@ -621,14 +706,26 @@
       type="email"
       name="email"
       placeholder="Your Email"
+      autocomplete="email"
       required
     >
 
+    <!-- only shows for a color request -->
     <input
       type="text"
+      id="contact-color"
       name="color"
       placeholder="Color You Want"
-      required
+      data-show-for="Color request"
+    >
+
+    <!-- only shows for an order question or a return -->
+    <input
+      type="text"
+      id="contact-order"
+      name="order"
+      placeholder="Order Number (if you have it)"
+      data-show-for="Order question,Return or exchange"
     >
 
     <textarea
@@ -638,8 +735,10 @@
     ></textarea>
 
     <button type="submit" class="btn">
-      Request Color
+      Send
     </button>
+
+    <p class="form-status" id="contact-status" role="status"></p>
 
   </form>
 
@@ -860,6 +959,50 @@ if ("IntersectionObserver" in window) {
 } else {
   sections.forEach(section => section.classList.add("visible"));
 }
+
+/* VIDEOS
+   Nothing downloads until a video scrolls into view, and it pauses
+   again when it scrolls away. Keeps the page quick on phone data.
+   Until then the poster image is what people see. */
+const lazyVideos = document.querySelectorAll(".lazy-video");
+
+if ("IntersectionObserver" in window) {
+
+  const videoObserver = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+      const video = entry.target;
+
+      if (entry.isIntersecting) {
+
+        if (!video.getAttribute("src") && video.dataset.src) {
+          video.setAttribute("src", video.dataset.src);
+        }
+
+        const playing = video.play();
+        if (playing && playing.catch) playing.catch(() => {});
+
+      } else if (!video.paused) {
+        video.pause();
+      }
+
+    });
+
+  }, { rootMargin: "200px 0px" });
+
+  lazyVideos.forEach(video => videoObserver.observe(video));
+
+} else {
+
+  /* Old browser: just load them the normal way. */
+  lazyVideos.forEach(video => {
+    if (video.dataset.src) video.setAttribute("src", video.dataset.src);
+    video.setAttribute("autoplay", "");
+  });
+
+}
+
 
 /* PRODUCT BUTTONS */
 
@@ -1130,6 +1273,11 @@ updateCartUI();
    Shows "Opening checkout..." while it works, can't be
    double-clicked, and shows a message if something fails
    instead of silently doing nothing. */
+/* Where the Checkout button sends the cart.
+   Paste in your Worker's own .workers.dev address. */
+const CHECKOUT_ENDPOINT =
+  "https://twistmode-api.margarci6782.workers.dev/create-checkout";
+
 const checkoutError = document.createElement("p");
 checkoutError.className = "checkout-error";
 checkoutError.setAttribute("role", "alert");
@@ -1151,7 +1299,7 @@ checkoutBtn.addEventListener("click", async () => {
   checkoutBtn.textContent = "Opening checkout...";
 
   try {
-    const response = await fetch("https://shoptwistmode.com/create-checkout", {
+    const response = await fetch(CHECKOUT_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -1176,6 +1324,85 @@ checkoutBtn.addEventListener("click", async () => {
   }
 
 });
+
+/* CONTACT / COLOR REQUEST FORM
+   Sends to the Worker, which emails whichever inbox matches
+   the topic they picked. Shows the extra fields only when
+   they're relevant, and never leaves the page. */
+const CONTACT_ENDPOINT =
+  CHECKOUT_ENDPOINT.replace("/create-checkout", "/contact");
+
+const contactForm = document.getElementById("contact-form");
+
+if (contactForm) {
+
+  const topicSelect = document.getElementById("contact-topic");
+  const contactStatus = document.getElementById("contact-status");
+  const conditionalFields =
+    contactForm.querySelectorAll("[data-show-for]");
+
+  function updateContactFields() {
+    const topic = topicSelect.value;
+    conditionalFields.forEach(field => {
+      const shows = field.dataset.showFor.split(",").includes(topic);
+      field.style.display = shows ? "" : "none";
+      if (!shows) field.value = "";
+      field.required = shows && field.id === "contact-color";
+    });
+  }
+
+  topicSelect.addEventListener("change", updateContactFields);
+  updateContactFields();
+
+  contactForm.addEventListener("submit", async (event) => {
+
+    event.preventDefault();
+
+    const button = contactForm.querySelector("button[type=submit]");
+    const originalText = button.textContent;
+
+    contactStatus.textContent = "";
+    contactStatus.className = "form-status";
+
+    button.disabled = true;
+    button.textContent = "Sending...";
+
+    try {
+      const response = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        body: new FormData(contactForm)
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || "Message not sent.");
+      }
+
+      contactForm.reset();
+      updateContactFields();
+
+      contactStatus.textContent =
+        "\u2713 Sent. We'll get back to you by email.";
+      contactStatus.className = "form-status success";
+
+      button.textContent = "Sent \u2713";
+
+    } catch (error) {
+      console.error("Contact form failed:", error);
+
+      contactStatus.textContent =
+        "Couldn't send that. Please try again, or email shoptwistmode@gmail.com.";
+      contactStatus.className = "form-status error";
+
+      button.disabled = false;
+      button.textContent = originalText;
+    }
+
+  });
+
+}
+
 
  /* COMPARISON SLIDER */
 
@@ -1224,6 +1451,16 @@ const liteColorSettings = {
   "pink": false,
   "orange": false,
   "grass-green": false,
+  "yellow": false,
+  "cold-white": false,
+  "light-gray": false,
+  "purple": false,
+  "fresh-red": false,
+  "red": false,
+  "blue": false,
+  "gray-blue": false,
+  "olive-green": false,
+  "chocolate": false,
 
   "translucent-blue": false,
   "translucent-red": false,
@@ -1253,6 +1490,19 @@ const xlColorSettings = {
   "pink": false,
   "orange": false,
   "grass-green": false,
+  "red": false,
+  "bright-pink": false,
+  "digital-blue": false,
+  "purple": false,
+  "green": false,
+  "matte-black": false,
+  "matte-space-gray": false,
+  "matte-gray": false,
+  "matte-white": false,
+  "matte-natural": false,
+  "matte-orange": false,
+  "matte-yellow": false,
+  "neon-orange": false,
 
   "translucent-blue": false,
   "translucent-red": false,
@@ -1286,7 +1536,30 @@ const colorCategories = {
     "gray",
     "pink",
     "orange",
-    "grass-green"
+    "grass-green",
+    "yellow",
+    "cold-white",
+    "light-gray",
+    "purple",
+    "fresh-red",
+    "red",
+    "blue",
+    "gray-blue",
+    "olive-green",
+    "chocolate",
+    "bright-pink",
+    "digital-blue",
+    "green"
+  ],
+
+  matte: [
+    "matte-yellow",
+    "matte-black",
+    "matte-space-gray",
+    "matte-gray",
+    "matte-white",
+    "matte-natural",
+    "matte-orange"
   ],
 
   translucent: [
@@ -1298,6 +1571,7 @@ const colorCategories = {
   ],
 
   special: [
+    "neon-orange",
     "neon-magenta",
     "pastel-rose",
     "neon-yellow"
@@ -1326,23 +1600,44 @@ const colorNames = {
   "gray": "Gray",
   "pink": "Pink",
   "orange": "Orange",
-  "grass-green": "Grass Green",
+  "grass-green": "Lime Green",
+  "yellow": "Yellow",
+  "cold-white": "Bright White",
+  "light-gray": "Light Gray",
+  "purple": "Purple",
+  "fresh-red": "Cherry Red",
+  "red": "Red",
+  "blue": "Blue",
+  "gray-blue": "Slate Blue",
+  "olive-green": "Olive",
+  "chocolate": "Brown",
+  "bright-pink": "Hot Pink",
+  "digital-blue": "Royal Blue",
+  "green": "Green",
+  "matte-black": "Matte Black",
+  "matte-space-gray": "Matte Charcoal",
+  "matte-gray": "Matte Gray",
+  "matte-white": "Matte White",
+  "matte-natural": "Matte Cream",
+  "matte-orange": "Matte Orange",
+  "matte-yellow": "Matte Yellow",
+  "neon-orange": "Neon Orange",
 
-  "translucent-blue": "Translucent Blue",
-  "translucent-red": "Translucent Red",
-  "translucent-green": "Translucent Green",
-  "translucent-purple": "Translucent Purple",
-  "translucent-orange": "Translucent Orange",
+  "translucent-blue": "Clear Blue",
+  "translucent-red": "Clear Red",
+  "translucent-green": "Clear Green",
+  "translucent-purple": "Clear Purple",
+  "translucent-orange": "Clear Orange",
 
-  "neon-magenta": "Neon Magenta",
-  "pastel-rose": "Pastel Rose",
+  "neon-magenta": "Neon Pink",
+  "pastel-rose": "Soft Pink",
   "neon-yellow": "Neon Yellow",
 
-  "luminous-pink": "Luminous Pink",
-  "luminous-electric-indigo": "Luminous Electric Indigo",
-  "luminous-blue": "Luminous Blue",
-  "luminous-green": "Luminous Green",
-  "luminous-orange": "Luminous Orange"
+  "luminous-pink": "Glow Pink",
+  "luminous-electric-indigo": "Glow Purple",
+  "luminous-blue": "Glow Blue",
+  "luminous-green": "Glow Green",
+  "luminous-orange": "Glow Orange"
 
 };
 
@@ -1369,8 +1664,13 @@ function setupColorSelector(select, settings) {
       colors: colorCategories.standard
     },
     {
+      key: "matte",
+      label: "MATTE",
+      colors: colorCategories.matte
+    },
+    {
       key: "translucent",
-      label: "TRANSLUCENT",
+      label: "CLEAR COLORS",
       colors: colorCategories.translucent
     },
     {
@@ -1380,10 +1680,16 @@ function setupColorSelector(select, settings) {
     },
     {
       key: "luminous",
-      label: "LUMINOUS — GLOW IN THE DARK",
+      label: "GLOW IN THE DARK",
       colors: colorCategories.luminous
     }
-  ];
+  ]
+    /* Only show colors this product offers (Lite and XL have different lists). */
+    .map(category => ({
+      ...category,
+      colors: category.colors.filter(value => value in settings)
+    }))
+    .filter(category => category.colors.length > 0);
 
 
   // ---------------------------------------------------------
@@ -1945,63 +2251,64 @@ function updateProductionNote(select) {
 
 
 // =========================================================
-// LITE
+// INVENTORY
+// colors.json (made with inventory.html) says which colors are
+// ready to ship. If it's missing, the list above is used instead,
+// so the page never breaks.
 // =========================================================
 
-setupColorSelector(
-  document.getElementById("lite-color"),
-  liteColorSettings
-);
+function applyInventory(saved, settings) {
 
+  if (!saved) return;
 
-// =========================================================
-// XL
-// =========================================================
-
-setupColorSelector(
-  document.getElementById("xl-color"),
-  xlColorSettings
-);
-
-
-// =========================================================
-// BUNDLE
-// =========================================================
-
-setupColorSelector(
-  document.getElementById("bundle-lite-color"),
-  liteColorSettings
-);
-
-setupColorSelector(
-  document.getElementById("bundle-xl-color"),
-  xlColorSettings
-);
-
-/* Shows the saved cart count on pages without the full cart (wholesale, legal pages). */
-(function () {
-  var count = 0;
-  try {
-    var cart = JSON.parse(localStorage.getItem("twistmode-cart") || "[]");
-    if (Array.isArray(cart)) {
-      cart.forEach(function (item) {
-        var qty = parseInt(item && item.qty, 10);
-        if (qty > 0) count += qty;
-      });
+  Object.keys(settings).forEach(color => {
+    if (typeof saved[color] === "boolean") {
+      settings[color] = saved[color];
     }
-  } catch (e) {
-    count = 0;
-  }
-  if (!count) return;
-  document.querySelectorAll(".cart-ui").forEach(function (el) {
-    if (el.querySelector(".cart-count")) return;
-    var badge = document.createElement("span");
-    badge.className = "cart-count";
-    badge.textContent = count;
-    el.appendChild(document.createTextNode(" "));
-    el.appendChild(badge);
   });
-})();
+
+}
+
+
+function setupAllColorSelectors() {
+
+  setupColorSelector(
+    document.getElementById("lite-color"),
+    liteColorSettings
+  );
+
+  setupColorSelector(
+    document.getElementById("xl-color"),
+    xlColorSettings
+  );
+
+  setupColorSelector(
+    document.getElementById("bundle-lite-color"),
+    liteColorSettings
+  );
+
+  setupColorSelector(
+    document.getElementById("bundle-xl-color"),
+    xlColorSettings
+  );
+
+}
+
+
+fetch("colors.json", { cache: "no-store" })
+
+  .then(response => response.ok ? response.json() : null)
+
+  .then(saved => {
+    if (saved) {
+      applyInventory(saved.lite, liteColorSettings);
+      applyInventory(saved.xl, xlColorSettings);
+    }
+  })
+
+  .catch(() => {})
+
+  .then(setupAllColorSelectors);
 
 });
 </script>
